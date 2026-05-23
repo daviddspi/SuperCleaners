@@ -12,6 +12,7 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import { GENERATED_IMAGES } from './data';
+import { config } from './config';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -140,23 +141,17 @@ export default function App() {
               </span>
               
               <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-                Few Words About <span className="italic font-serif text-brand-500">Super Cleaners</span> <br />
-                Professional Services
+                {config.brand.aboutTitleLine1} <span className="italic font-serif text-brand-500">{config.brand.name}</span> <br />
+                {config.brand.aboutTitleLine2}
               </h2>
               
               <p className="text-sm md:text-base text-slate-500 leading-relaxed font-normal">
-                Founded in 2012, Super Cleaners is a professional and certified cleaning company dedicated to making your home and office cleaner, fresher, more comfortable, and more beautiful. Our team of diligent and respectful professionals works to ensure your home shines like new.
+                {config.brand.aboutDescription}
               </p>
 
               {/* Checklist details matching reference mockup */}
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-650 font-medium">
-                {[
-                  'Coverage of 90% of UK cities and towns',
-                  '6 types of cleaning services available',
-                  'Over 120 professional cleaners',
-                  '7 days a week service',
-                  'UK based office for support'
-                ].map((item) => (
+                {config.features.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <span className="p-1 bg-brand-50 text-brand-550 rounded-lg shrink-0 mt-0.5">
                       <Check className="w-3.5 h-3.5 stroke-[3]" />
@@ -202,17 +197,13 @@ export default function App() {
               </span>
               
               <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-                We Make Cleaning <span className="italic font-serif text-brand-500">Easier</span> <br />
-                and More Convenient
+                {config.brand.convenienceTitleLine1} <span className="italic font-serif text-brand-500">{config.brand.convenienceTitleHighlight}</span> <br />
+                {config.brand.convenienceTitleLine2}
               </h2>
               
               <div className="space-y-4 text-xs sm:text-sm text-slate-550 leading-relaxed font-normal">
-                <p>
-                  Super Cleaners offers convenient, professional cleaning services to help make your life easier. Our experienced, trained cleaners use top-quality products and equipment to deliver thorough, efficient cleaning. We strive to provide a hassle-free experience with cleaners who are punctual, reliable, and committed to exceptional results.
-                </p>
-                <p>
-                  Whether you need a one-time cleaning or a regular cleaning service, our professional team is here to meet your needs. We offer flexible scheduling options and customizable cleaning plans to ensure that your home or office is cleaned to your satisfaction.
-                </p>
+                <p>{config.brand.convenienceDescription1}</p>
+                <p>{config.brand.convenienceDescription2}</p>
               </div>
 
               <div className="pt-2">
@@ -320,10 +311,10 @@ export default function App() {
                   <Sparkles className="w-5 h-5 animate-pulse" />
                 </span>
                 <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                  Join the Super Cleaners Crew!
+                  Join the {config.brand.name} Crew!
                 </h3>
                 <p className="text-xs text-slate-550 mt-1.5">
-                  We look for dedicated background-checked professionals. Earn between £14 - £22/hour with full flexible hours inside London.
+                  {config.recruitment.description} Earn between {config.recruitment.salaryRange} with full flexible hours inside {config.recruitment.location}.
                 </p>
               </div>
 

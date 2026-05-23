@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Sparkles, ArrowRight, ShieldCheck, Heart, Star } from 'lucide-react';
 import { GENERATED_IMAGES } from '../data';
+import { config } from '../config';
 
 interface HeroProps {
   onOpenBooking: () => void;
@@ -30,7 +31,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-wider"
             >
               <Sparkles className="w-3.5 h-3.5 text-brand-500 animate-pulse" />
-              <span>Sparkling Clean • Guaranteed</span>
+              <span>{config.brand.taglineHighlight}</span>
             </motion.div>
 
             <motion.div
@@ -40,11 +41,11 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               className="space-y-4"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light text-slate-900 tracking-tight leading-[1.12]">
-                Coming home to a clean space <br />
-                should feel like <span className="italic font-serif text-brand-500">a deep breath.</span>
+                {config.brand.heroTitleLine1} <br />
+                {config.brand.heroTitleLine2} <span className="italic font-serif text-brand-500">{config.brand.heroTitleHighlight}</span>
               </h1>
               <p className="text-base sm:text-lg text-slate-500 max-w-lg leading-relaxed font-normal">
-                Premium residential cleaning services tailored to your schedule. We handle the dust so you can focus on what truly matters.
+                {config.brand.heroDescription}
               </p>
             </motion.div>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Menu, X, CheckCircle } from 'lucide-react';
+import { config } from '../config';
 
 interface NavbarProps {
   onOpenBooking: (serviceId?: string) => void;
@@ -67,7 +68,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           </div>
           <div>
             <span className="font-display font-semibold text-lg md:text-xl tracking-tight text-slate-900 flex items-center gap-1.5 select-none animate-fade-in">
-              Super <span className="text-brand-500">Cleaners</span>
+              {config.brand.name}
             </span>
           </div>
         </a>

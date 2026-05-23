@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { config } from '../config';
 
 interface FooterProps {
   onOpenBooking: () => void;
@@ -44,26 +45,26 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
               <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
             </div>
             <span className="font-display font-semibold text-xl text-white tracking-tight">
-              Super <span className="text-brand-500">Cleaners</span>
+              {config.brand.name}
             </span>
           </a>
 
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-            Super Cleaners is the premier professional cleaning agency in your local area. We deliver sparkling, allergen-free conditions for domestic homes and commercial offices.
+            {config.brand.footerDescription}
           </p>
 
           <div className="space-y-3.5 text-xs">
-            <a href="tel:+442070037880" className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
+            <a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
               <Phone className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>+44 20 7003 7880</span>
+              <span>{config.contact.phone}</span>
             </a>
-            <a href="mailto:supercleaners@gmail.com" className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
+            <a href={`mailto:${config.contact.email}`} className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
               <Mail className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>supercleaners@gmail.com</span>
+              <span>{config.contact.email}</span>
             </a>
             <div className="flex items-start gap-3.5 text-slate-400">
               <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-              <span>24 Admirals Way, London E14 9UJ, United Kingdom</span>
+              <span>{config.contact.address}</span>
             </div>
           </div>
         </div>
@@ -149,10 +150,10 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
         {/* Column 4: Become a Cleaner */}
         <div className="space-y-4">
           <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Become a Super Cleaner!
+            Become a {config.brand.shortName} team member!
           </h4>
           <p className="text-xs text-slate-400 leading-relaxed font-normal">
-            Want to join our dynamic team and develop fantastic professional cleaning skills? We offer flexible shifts, premium gear, top-tier compensation, and a supportive team environment.
+            {config.recruitment.description}
           </p>
           <div className="pt-2">
             <button
@@ -173,18 +174,18 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
       {/* Footer Bottom Bar */}
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
         <div>
-          <span>© {currentYear} Super Cleaners. All Rights Reserved.</span>
+          <span>© {currentYear} {config.brand.name}. All Rights Reserved.</span>
         </div>
         
         {/* Socials Icons */}
         <div className="flex gap-4.5">
-          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Facebook handle" className="hover:text-brand-500 transition">
+          <a href={config.contact.socials.facebook} onClick={(e) => { if(config.contact.socials.facebook === '#') e.preventDefault(); }} aria-label="Facebook handle" className="hover:text-brand-500 transition">
             <Facebook className="w-4 h-4" />
           </a>
-          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Twitter handle" className="hover:text-brand-500 transition">
+          <a href={config.contact.socials.twitter} onClick={(e) => { if(config.contact.socials.twitter === '#') e.preventDefault(); }} aria-label="Twitter handle" className="hover:text-brand-500 transition">
             <Twitter className="w-4 h-4" />
           </a>
-          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Instagram handle" className="hover:text-brand-500 transition">
+          <a href={config.contact.socials.instagram} onClick={(e) => { if(config.contact.socials.instagram === '#') e.preventDefault(); }} aria-label="Instagram handle" className="hover:text-brand-500 transition">
             <Instagram className="w-4 h-4" />
           </a>
         </div>
