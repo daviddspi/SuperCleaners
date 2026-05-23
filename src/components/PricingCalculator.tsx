@@ -82,13 +82,13 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
           <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            Transparent Rates
+            Transparentne cene
           </span>
           <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            Interactive Cleaning <span className="italic font-serif text-brand-500">Estimate Calculator</span>
+            Interaktivni <span className="italic font-serif text-brand-500">Kalkulator Cene</span>
           </h2>
           <p className="text-sm text-slate-500 font-normal">
-            No hidden fees, no phone calls required. Customize your specifications below and receive a guaranteed price in seconds.
+            Bez skrivenih troškova. Prilagodite specifikacije ispod i dobijte garantovanu cenu u sekundi.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
             {/* Service Toggle row */}
             <div className="space-y-3.5">
               <label className="text-xs font-semibold text-slate-800 uppercase tracking-wider block">
-                1. Select Core Cleaning Program
+                1. Izaberite osnovni program čišćenja
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {SERVICES.map((serv) => (
@@ -118,7 +118,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
                     <span className={`block text-[10px] font-medium leading-none mt-1 ${
                       serviceId === serv.id ? 'text-brand-100' : 'text-slate-400'
                     }`}>
-                      Avg. Price £{serv.basePrice}
+                      Pros. Cena {serv.basePrice}€
                     </span>
                   </button>
                 ))}
@@ -129,9 +129,9 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bedrooms</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Spavaće sobe</span>
                   <span className="text-xs font-extrabold text-brand-600 bg-brand-50 px-2 py-0.5 rounded">
-                    {bedrooms} {bedrooms === 1 ? 'Bedroom' : 'Bedrooms'}
+                    {bedrooms}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -153,9 +153,9 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bathrooms</span>
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Kupatila</span>
                   <span className="text-xs font-extrabold text-brand-600 bg-brand-50 px-2 py-0.5 rounded">
-                    {bathrooms} {bathrooms === 1 ? 'Bathroom' : 'Bathrooms'}
+                    {bathrooms}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -179,9 +179,9 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
             {/* Slider Square footage */}
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Approximate House Size</span>
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Približna veličina</span>
                 <span className="text-xs font-bold text-brand-500 bg-brand-50 px-2.5 py-1 rounded">
-                  {squareFeet} sq ft
+                  {squareFeet} kvadrata
                 </span>
               </div>
               <input
@@ -194,16 +194,16 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
                 className="w-full accent-brand-500 cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-400 font-semibold uppercase">
-                <span>Apartment (400)</span>
-                <span>Suburban (1500)</span>
-                <span>Large Estate (4000)</span>
+                <span>Stan (400)</span>
+                <span>Kuća (1500)</span>
+                <span>Vila (4000)</span>
               </div>
             </div>
 
             {/* Upgrades selecting row */}
             <div className="space-y-3 pt-2">
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                2. Extra Attention Details (Optional Upgrades)
+                2. Dodatni detalji (Opciono)
               </span>
               <div className="flex flex-wrap gap-2">
                 {ADDONS.map(addon => {
@@ -219,7 +219,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
                       }`}
                     >
                       <span>{addon.name.replace(' Cleaning', '')}</span>
-                      <span className="text-[10px] opacity-75">+£{addon.price}</span>
+                      <span className="text-[10px] opacity-75">+{addon.price}€</span>
                       {isSelected && <Check className="w-3.5 h-3.5 text-brand-500" />}
                     </button>
                   );
@@ -238,9 +238,9 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 flex items-start gap-3">
                 <Tag className="w-5 h-5 text-brand-200 mt-0.5 shrink-0" />
                 <div>
-                  <h4 className="font-bold text-sm text-brand-100">Frequency Discount active!</h4>
+                  <h4 className="font-bold text-sm text-brand-100">Popust za učestalost je aktivan!</h4>
                   <p className="text-[11px] text-brand-200">
-                    Switch to a recurring arrangement to save up to 18% on your total.
+                    Pređite na redovno održavanje i uštedite do 18%.
                   </p>
                 </div>
               </div>
@@ -248,14 +248,14 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               {/* Frequency selection */}
               <div className="space-y-2.5">
                 <span className="text-xs font-bold text-brand-200 uppercase tracking-wider block">
-                  Frequency program
+                  Program učestalosti
                 </span>
                 <div className="grid grid-cols-2 gap-2">
                   {[
-                    { id: 'one-time', title: 'One-Time', desc: 'No contract' },
-                    { id: 'weekly', title: 'Weekly', desc: 'Save 18%' },
-                    { id: 'biweekly', title: 'Bi-Weekly', desc: 'Save 12%' },
-                    { id: 'monthly', title: 'Monthly', desc: 'Save 7%' }
+                    { id: 'one-time', title: 'Jednokratno', desc: 'Bez ugovora' },
+                    { id: 'weekly', title: 'Nedeljno', desc: 'Ušteda 18%' },
+                    { id: 'biweekly', title: 'Dvonedeljno', desc: 'Ušteda 12%' },
+                    { id: 'monthly', title: 'Mesečno', desc: 'Ušteda 7%' }
                   ].map((freq) => (
                     <button
                       key={freq.id}
@@ -276,23 +276,23 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               {/* Estimate Breakdown summary */}
               <div className="border-t border-brand-700 pt-6 space-y-3 text-xs text-brand-200/90">
                 <div className="flex justify-between items-center">
-                  <span>Selected Program:</span>
+                  <span>Izabrani program:</span>
                   <span className="font-bold text-white">{activeService.name}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Bedrooms ({bedrooms}) & Baths ({bathrooms}):</span>
-                  <span className="font-bold text-white">Included</span>
+                  <span>Spavaće sobe ({bedrooms}) i Kupatila ({bathrooms}):</span>
+                  <span className="font-bold text-white">Uključeno</span>
                 </div>
                 {selectedAddons.length > 0 && (
                   <div className="flex justify-between items-center">
-                    <span>Upgrades:</span>
+                    <span>Dodaci:</span>
                     <span className="font-bold text-white">
-                      +£{selectedAddons.reduce((acc, aId) => acc + (ADDONS.find(a => a.id === aId)?.price || 0), 0)}
+                      +{selectedAddons.reduce((acc, aId) => acc + (ADDONS.find(a => a.id === aId)?.price || 0), 0)}€
                     </span>
                   </div>
                 )}
                 <div className="flex justify-between items-center">
-                  <span>Service Frequency:</span>
+                  <span>Učestalost usluge:</span>
                   <span className="font-bold text-white capitalize">{frequency}</span>
                 </div>
               </div>
@@ -303,16 +303,16 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               <div className="flex justify-between items-baseline">
                 <div>
                   <span className="text-xs text-brand-200 uppercase tracking-wider block">
-                    Estimated Price
+                    Procenjena cena
                   </span>
-                  <span className="text-[10px] opacity-60">Inclusive of taxes & cover</span>
+                  <span className="text-[10px] opacity-60">Uključuje porez i osiguranje</span>
                 </div>
                 <div className="text-right">
                   <span className="text-4xl font-black text-white tracking-tight">
-                    £{estimatedTotal}
+                    {estimatedTotal}€
                   </span>
                   {frequency !== 'one-time' && (
-                    <span className="text-[9px] text-brand-200 block mt-0.5">Discount applied</span>
+                    <span className="text-[9px] text-brand-200 block mt-0.5">Popust uračunat</span>
                   )}
                 </div>
               </div>
@@ -322,7 +322,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
                 onClick={handleProceed}
                 className="w-full py-4 bg-white text-brand-800 hover:bg-slate-50 active:scale-[0.98] font-semibold text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <span>Instant Online Booking</span>
+                <span>Zakaži odmah</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

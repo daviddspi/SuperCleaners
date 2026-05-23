@@ -21,13 +21,13 @@ export default function WhyChoose() {
         {/* Title and subtitle */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
           <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            The Super Cleaners Difference
+            Prednost Super Cleaners-a
           </span>
           <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            Why Choose <span className="italic font-serif text-brand-500">Super Cleaners</span>
+            Zašto izabrati <span className="italic font-serif text-brand-500">Super Cleaners</span>
           </h2>
           <p className="text-sm md:text-base text-slate-500 max-w-md mx-auto">
-            We hold ourselves to absolute pristine standards, aligning state-of-the-art machinery with vetted professionals.
+            Držimo se najviših standarda, kombinujući savremenu opremu sa proverenim profesionalcima.
           </p>
         </div>
 

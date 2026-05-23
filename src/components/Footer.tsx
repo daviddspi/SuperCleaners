@@ -72,37 +72,37 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
         {/* Column 2: Lists of Services */}
         <div className="space-y-5">
           <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Our Cleaning Services
+            Naše usluge čišćenja
           </h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Carpet Steam Cleaning
+                Dubinsko pranje tepiha
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Mattress Sanitizing
+                Dezinfekcija dušeka
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Professional Oven Scouring
+                Profesionalno čišćenje rerni
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Squeegee Window Treatments
+                Pranje prozora
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                End of Tenancy Deep Cleaning
+                Detaljno čišćenje pre iseljenja
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Delicate Upholstery Polishing
+                Poliranje i čišćenje nameštaja
               </a>
             </li>
           </ul>
@@ -111,37 +111,37 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
         {/* Column 3: Help & Details */}
         <div className="space-y-5">
           <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Help & Information
+            Pomoć i informacije
           </h4>
           <ul className="space-y-2.5 text-xs text-slate-400">
             <li>
               <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="hover:text-white transition">
-                About Our Company
+                O našoj kompaniji
               </a>
             </li>
             <li>
               <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
-                Interactive Pricing
+                Interaktivni kalkulator cene
               </a>
             </li>
             <li>
               <a href="#reviews-section" onClick={(e) => handleLinkClick(e, '#reviews-section')} className="hover:text-white transition">
-                Client Reviews
+                Recenzije klijenata
               </a>
             </li>
             <li>
               <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
-                Real-Time Booking
+                Zakazivanje
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
-                Privacy Policy
+                Politika privatnosti
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
-                Terms of Service
+                Uslovi korišćenja
               </a>
             </li>
           </ul>
@@ -150,7 +150,7 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
         {/* Column 4: Become a Cleaner */}
         <div className="space-y-4">
           <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Become a {config.brand.shortName} team member!
+            Postani član {config.brand.shortName} tima!
           </h4>
           <p className="text-xs text-slate-400 leading-relaxed font-normal">
             {config.recruitment.description}
@@ -161,7 +161,7 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
               onClick={onJoinStaff}
               className="px-6 py-2.5 w-full rounded-xl bg-brand-500 hover:bg-brand-610 text-white text-xs font-semibold transition shadow-md shadow-brand-500/10 cursor-pointer text-center"
             >
-              Apply to Join Us
+              Prijavi se za posao
             </button>
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
       {/* Footer Bottom Bar */}
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
         <div>
-          <span>© {currentYear} {config.brand.name}. All Rights Reserved.</span>
+          <span>© {currentYear} {config.brand.name}. Sva prava zadržana.</span>
         </div>
         
         {/* Socials Icons */}

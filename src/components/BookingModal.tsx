@@ -131,7 +131,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
     setValidationError('');
     if (step === 3) {
       if (!selectedDate) {
-        setValidationError('Please select a preferred service date.');
+        setValidationError('Molimo izaberite željeni datum čišćenja.');
         return;
       }
     }
@@ -162,7 +162,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
     setValidationError('');
 
     if (!fullName || !email || !phone || !address) {
-      setValidationError('Please fill out all required fields marked with *');
+      setValidationError('Molimo popunite sva obavezna polja označena sa *');
       return;
     }
 
@@ -228,10 +228,10 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
   // Available Time slots
   const timeSlots = [
-    '08:00 AM - 11:00 AM (Early Morning)',
-    '11:00 AM - 02:00 PM (Mid Day)',
-    '02:00 PM - 05:00 PM (Afternoon)',
-    '05:00 PM - 08:00 PM (Late Shift)'
+    '08:00 - 11:00 (Rano ujutru)',
+    '11:00 - 14:00 (Sredina dana)',
+    '14:00 - 17:00 (Popodne)',
+    '17:00 - 20:00 (Kasno popodne)'
   ];
 
   return (
@@ -253,10 +253,10 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
               </span>
               <div>
                 <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                  {step === 5 ? 'Booking Confirmed!' : 'Plan Your Premium Cleaning'}
+                  {step === 5 ? 'Rezervacija potvrđena!' : 'Zakažite Premium Čišćenje'}
                 </h3>
                 <p className="text-xs text-slate-500">
-                  {step < 5 && `Step ${step} of 4 • Instant Estimation`}
+                  {step < 5 && `Korak ${step} od 4 • Brza procena`}
                 </p>
               </div>
             </div>
@@ -302,7 +302,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                   >
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-3">
-                        Choose Your Service Type
+                        Izaberite vrstu usluge
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {SERVICES.map((s) => (
@@ -325,7 +325,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                               {s.name}
                             </span>
                             <span className="text-[10px] text-slate-500 mt-0.5">
-                              From £{s.basePrice}
+                              Od {s.basePrice}€
                             </span>
                           </button>
                         ))}
@@ -334,7 +334,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
                       <p className="text-xs text-slate-600">
-                        <strong className="text-slate-800">Selected Service:</strong> {selectedService.longDescription}
+                        <strong className="text-slate-800">Izabrana usluga:</strong> {selectedService.longDescription}
                       </p>
                     </div>
 
@@ -343,10 +343,10 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
                           <label className="text-sm font-semibold text-slate-700">
-                            Bedrooms count
+                            Broj spavaćih soba
                           </label>
                           <span className="px-2 py-0.5 bg-slate-200 rounded-lg text-xs font-bold text-slate-800">
-                            {bedrooms} Rooms
+                            {bedrooms} soba
                           </span>
                         </div>
                         <div className="flex items-center gap-3">
@@ -378,10 +378,10 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
                           <label className="text-sm font-semibold text-slate-700">
-                            Bathrooms count
+                            Broj kupatila
                           </label>
                           <span className="px-2 py-0.5 bg-slate-200 rounded-lg text-xs font-bold text-slate-800">
-                            {bathrooms} Baths
+                            {bathrooms} kupatila
                           </span>
                         </div>
                         <div className="flex items-center gap-3">
@@ -414,10 +414,10 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <label className="text-sm font-semibold text-slate-700">
-                          Approximate Home Area
+                          Približna veličina prostora
                         </label>
                         <span className="text-xs font-bold text-brand-600">
-                          {squareFeet} sq ft
+                          {squareFeet} kvadrata
                         </span>
                       </div>
                       <input 
@@ -431,8 +431,8 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                       />
                       <div className="flex justify-between text-[10px] text-slate-400">
                         <span>Studio (400)</span>
-                        <span>Medium House (1500)</span>
-                        <span>Large Mansion (4500+)</span>
+                        <span>Srednja kuća (1500)</span>
+                        <span>Velika kuća (4500+)</span>
                       </div>
                     </div>
                   </motion.div>
@@ -449,14 +449,14 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                   >
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-3">
-                        How often should we visit?
+                        Koliko često želite čišćenje?
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {[
-                          { id: 'one-time', title: 'One-Time', desc: 'No contract' },
-                          { id: 'weekly', title: 'Weekly', desc: 'Save 18%' },
-                          { id: 'biweekly', title: 'Bi-Weekly', desc: 'Save 12%' },
-                          { id: 'monthly', title: 'Monthly', desc: 'Save 7%' }
+                          { id: 'one-time', title: 'Jednokratno', desc: 'Bez ugovora' },
+                          { id: 'weekly', title: 'Nedeljno', desc: 'Ušteda 18%' },
+                          { id: 'biweekly', title: 'Dvonedeljno', desc: 'Ušteda 12%' },
+                          { id: 'monthly', title: 'Mesečno', desc: 'Ušteda 7%' }
                         ].map((freq) => (
                           <button
                             key={freq.id}
@@ -482,9 +482,9 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     <div>
                       <div className="flex justify-between items-end mb-3">
                         <label className="text-sm font-semibold text-slate-700">
-                          Add Optional Upgrades & Add-ons
+                          Dodajte opcione usluge
                         </label>
-                        <span className="text-xs text-slate-400">Boost pristine details</span>
+                        <span className="text-xs text-slate-400">Za još više detalja</span>
                       </div>
                       <div className="space-y-3">
                         {ADDONS.map((addon) => {
@@ -511,13 +511,13 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                                     {addon.name}
                                   </span>
                                   <span className="text-[11px] text-slate-400 block sm:hidden">
-                                    +£{addon.price}
+                                    +{addon.price}€
                                   </span>
                                 </div>
                               </div>
                               <div className="flex items-center gap-3">
                                 <span className="font-bold text-slate-755 text-sm hidden sm:inline">
-                                  +£{addon.price}
+                                  +{addon.price}€
                                 </span>
                                 <span className={`w-5 h-5 flex items-center justify-center rounded-full ${
                                   isSelected ? 'bg-brand-500 text-white' : 'border border-slate-350 bg-white'
@@ -544,7 +544,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                   >
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-3">
-                        Pick a Date (Available Days)
+                        Izaberite datum (Dostupni dani)
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                         {getUpcomingDates().map((day) => {
@@ -580,7 +580,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     <div>
                       <label className="block text-sm font-semibold text-slate-700 mb-3">
-                        Preferred Arrival Window
+                        Željeno vreme dolaska
                       </label>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                         {timeSlots.map((slot) => {
@@ -618,7 +618,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100 text-amber-800 flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 mt-0.5 text-amber-500 shrink-0" />
                       <div className="text-xs">
-                        <strong className="font-bold">Estimated duration:</strong> This service type typically takes around <strong className="font-bold">{selectedService.durationHours} hours</strong> to reach the optimal pristine, allergen-free state.
+                        <strong className="font-bold">Procenjeno vreme trajanja:</strong> Ova vrsta usluge obično traje oko <strong className="font-bold">{selectedService.durationHours} sati</strong> kako bismo dostigli optimalne rezultate.
                       </div>
                     </div>
                   </motion.div>
@@ -636,7 +636,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                          Full Name *
+                          Ime i prezime *
                         </label>
                         <div className="relative">
                           <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -645,7 +645,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                           <input
                             type="text"
                             required
-                            placeholder="John Doe"
+                            placeholder="Petar Petrović"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
                             className="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-250 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm placeholder:text-slate-400"
@@ -655,7 +655,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                          Email Address *
+                          Email adresa *
                         </label>
                         <div className="relative">
                           <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -664,7 +664,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                           <input
                             type="email"
                             required
-                            placeholder="johndoe@gmail.com"
+                            placeholder="petar@gmail.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-250 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm placeholder:text-slate-400"
@@ -675,7 +675,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                        Phone Number *
+                        Broj telefona *
                       </label>
                       <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -684,7 +684,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                         <input
                           type="tel"
                           required
-                          placeholder="+44 7123 456789"
+                          placeholder="+381 60 1234567"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
                           className="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-250 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm placeholder:text-slate-400"
@@ -694,7 +694,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                        Service Delivery Address *
+                        Adresa za čišćenje *
                       </label>
                       <div className="relative">
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
@@ -703,7 +703,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                         <input
                           type="text"
                           required
-                          placeholder="e.g. 24 Admirals Way, London E14 9UJ"
+                          placeholder="npr. Knez Mihailova 1, Beograd"
                           value={address}
                           onChange={(e) => setAddress(e.target.value)}
                           className="w-full pl-10 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-250 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm placeholder:text-slate-400"
@@ -713,11 +713,11 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
-                        Special Instructions / Door Access Codes (Optional)
+                        Posebne napomene / Šifre za ulaz (Opciono)
                       </label>
                       <textarea
                         rows={3}
-                        placeholder="e.g. Key is located under the flower pot. Please pay special attention to the white hallway rug."
+                        placeholder="npr. Ključ se nalazi ispod saksije. Molimo obratite posebnu pažnju na tepih u hodniku."
                         value={specialInstructions}
                         onChange={(e) => setSpecialInstructions(e.target.value)}
                         className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-250 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm placeholder:text-slate-400"
@@ -725,7 +725,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     </div>
 
                     <p className="text-[11px] text-slate-400 leading-relaxed text-center mt-3">
-                      By submitting, you agree to allow Super Cleaners to access your premises at the chosen date/time. Cancellation is 100% free up to 24 hours prior.
+                      Slanjem ovog zahteva slažete se da Super Cleaners pristupi vašem posedu u izabranom terminu. Otkazivanje je 100% besplatno do 24 sata ranije.
                     </p>
                   </motion.div>
                 )}
@@ -744,39 +744,39 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     
                     <div className="space-y-2">
                       <h4 className="text-2xl font-black text-slate-900 leading-tight">
-                        Pristine Conditions Await!
+                        Blistava čistoća vas čeka!
                       </h4>
                       <p className="text-sm text-slate-500 max-w-md mx-auto">
-                        Your cleaning request has been received. Our professional, background-checked staff will arrive in uniform.
+                        Vaš zahtev za čišćenje je primljen. Naš profesionalni, provereni tim će stići u dogovoreno vreme.
                       </p>
                     </div>
 
                     {/* Receipt breakdown */}
                     <div className="p-6 bg-slate-50 border border-slate-100 rounded-3xl text-left divide-y divide-slate-200/60 text-slate-700 max-w-md mx-auto space-y-3.5">
                       <div className="flex justify-between items-center pb-2">
-                        <span className="text-xs font-bold text-slate-450 uppercase tracking-wide">Booking Reference</span>
+                        <span className="text-xs font-bold text-slate-450 uppercase tracking-wide">Referenca rezervacije</span>
                         <span className="font-mono text-xs font-bold text-brand-700 bg-brand-50 px-2 py-1 rounded-md">
                           {bookingResult.id}
                         </span>
                       </div>
                       <div className="flex justify-between items-center py-2 text-sm">
-                        <span>Service Choice</span>
+                        <span>Izabrana usluga</span>
                         <strong className="text-slate-940 font-bold">{selectedService.name}</strong>
                       </div>
                       <div className="flex justify-between items-center py-2 text-sm">
-                        <span>Date & Time</span>
+                        <span>Datum i vreme</span>
                         <strong className="text-slate-940 font-bold">
                           {new Date(bookingResult.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} @ {bookingResult.timeSlot.split(' (')[0]}
                         </strong>
                       </div>
                       <div className="flex justify-between items-center py-2 text-sm">
-                        <span>Client</span>
+                        <span>Klijent</span>
                         <strong className="text-slate-940 font-bold">{bookingResult.fullName}</strong>
                       </div>
                       <div className="flex justify-between items-center pt-2">
-                        <span className="font-bold text-slate-800">Guaranteed Price</span>
+                        <span className="font-bold text-slate-800">Garantovana cena</span>
                         <strong className="text-lg font-black text-brand-600">
-                          £{bookingResult.estimate.totalPrice}
+                          {bookingResult.estimate.totalPrice}€
                         </strong>
                       </div>
                     </div>
@@ -787,7 +787,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                         onClick={resetAndClose}
                         className="px-6 py-3 rounded-full bg-slate-850 text-white hover:bg-slate-750 font-bold transition-all shadow-md"
                       >
-                        Done, Back to Homepage
+                        Završi i vrati se na početnu
                       </button>
                     </div>
                   </motion.div>
@@ -800,13 +800,13 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
               
               <div>
                 <h4 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
-                  Invoice Estimation
+                  Pregled računa
                 </h4>
 
                 {/* Micro details panel */}
                 <div className="space-y-4">
                   <div>
-                    <span className="text-xs text-slate-400 block font-medium">Service Choice</span>
+                    <span className="text-xs text-slate-400 block font-medium">Izabrana usluga</span>
                     <strong className="text-sm font-bold text-slate-800 block">
                       {selectedService.name}
                     </strong>
@@ -814,18 +814,18 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                   <div className="grid grid-cols-2 gap-2 text-xs text-slate-600">
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Layout</span>
-                      <strong className="font-semibold">{bedrooms} Bed • {bathrooms} Bath</strong>
+                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Raspored</span>
+                      <strong className="font-semibold">{bedrooms} Sp.soba • {bathrooms} Kup.</strong>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Frequency</span>
+                      <span className="text-slate-400 block text-[10px] uppercase font-bold">Učestalost</span>
                       <strong className="font-semibold capitalize">{frequency}</strong>
                     </div>
                   </div>
 
                   {selectedAddons.length > 0 && (
                     <div>
-                      <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1.5">Selected Add-ons</span>
+                      <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block mb-1.5">Izabrani dodaci</span>
                       <div className="flex flex-wrap gap-1">
                         {selectedAddons.map(addonId => {
                           const item = ADDONS.find(a => a.id === addonId);
@@ -841,29 +841,29 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                   <div className="border-t border-slate-200/60 pt-4 space-y-1.5 text-xs text-slate-500">
                     <div className="flex justify-between">
-                      <span>Base rate:</span>
-                      <span>£{selectedService.basePrice}</span>
+                      <span>Osnovna cena:</span>
+                      <span>{selectedService.basePrice}€</span>
                     </div>
                     
                     {selectedService.id === 'end-of-tenancy' ? (
                       bedrooms > 1 && (
                         <div className="flex justify-between">
-                          <span>Additional bedrooms ({bedrooms - 1}):</span>
-                          <span>+£{(bedrooms - 1) * selectedService.pricePerUnit}</span>
+                          <span>Dodatne spavaće sobe ({bedrooms - 1}):</span>
+                          <span>+{(bedrooms - 1) * selectedService.pricePerUnit}€</span>
                         </div>
                       )
                     ) : (
                       <>
                         {bedrooms > 2 && (
                           <div className="flex justify-between">
-                            <span>Bedrooms scale (+{bedrooms - 2}):</span>
-                            <span>+£{(bedrooms - 2) * selectedService.pricePerUnit}</span>
+                            <span>Spavaće sobe (+{bedrooms - 2}):</span>
+                            <span>+{(bedrooms - 2) * selectedService.pricePerUnit}€</span>
                           </div>
                         )}
                         {bathrooms > 1 && (
                           <div className="flex justify-between">
-                            <span>Bathrooms scale (+{bathrooms - 1}):</span>
-                            <span>+£{(bathrooms - 1) * selectedService.pricePerUnit}</span>
+                            <span>Kupatila (+{bathrooms - 1}):</span>
+                            <span>+{(bathrooms - 1) * selectedService.pricePerUnit}€</span>
                           </div>
                         )}
                       </>
@@ -871,21 +871,21 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
 
                     {squareFeet > 1500 && (
                       <div className="flex justify-between">
-                        <span>Space adjustment:</span>
-                        <span>+£{Math.floor((squareFeet - 1500) / 100) * 4}</span>
+                        <span>Površina prostora:</span>
+                        <span>+{Math.floor((squareFeet - 1500) / 100) * 4}€</span>
                       </div>
                     )}
 
                     {selectedAddons.length > 0 && (
                       <div className="flex justify-between">
-                        <span>Exclusive upgrades:</span>
-                        <span>+£{selectedAddons.reduce((acc, aId) => acc + (ADDONS.find(a => a.id === aId)?.price || 0), 0)}</span>
+                        <span>Dodaci:</span>
+                        <span>+{selectedAddons.reduce((acc, aId) => acc + (ADDONS.find(a => a.id === aId)?.price || 0), 0)}€</span>
                       </div>
                     )}
 
                     {frequency !== 'one-time' && (
                       <div className="flex justify-between text-emerald-600 font-bold">
-                        <span>Frequency discount:</span>
+                        <span>Popust za učestalost:</span>
                         <span>
                           {frequency === 'weekly' ? '-18%' : frequency === 'biweekly' ? '-12%' : '-7%'}
                         </span>
@@ -898,12 +898,12 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
               {/* Total display & navigation button */}
               <div className="pt-6 border-t border-slate-200 mt-6 md:mt-10 space-y-4">
                 <div className="flex justify-between items-baseline">
-                  <span className="font-extrabold text-slate-800 text-sm">Estimated Total:</span>
+                  <span className="font-extrabold text-slate-800 text-sm">Ukupno (procena):</span>
                   <div className="text-right">
                     <span className="text-3xl font-black text-slate-900 tracking-tight">
-                      £{totalPrice}
+                      {totalPrice}€
                     </span>
-                    <span className="text-[10px] text-slate-400 block font-medium">VAT and insurance included</span>
+                    <span className="text-[10px] text-slate-400 block font-medium">PDV i osiguranje uključeni</span>
                   </div>
                 </div>
 
@@ -920,7 +920,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     onClick={handleNextStep}
                     className="w-full py-3.5 rounded-full bg-brand-500 hover:bg-brand-610 active:scale-[0.98] text-white font-heavy transition shadow-md shadow-brand-500/10 text-sm flex items-center justify-center gap-1.5"
                   >
-                    <span>Continue Booking</span>
+                    <span>Nastavi sa rezervacijom</span>
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 ) : step === 4 ? (
@@ -936,12 +936,12 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        <span>Confirming Slot...</span>
+                        <span>Potvrda termina...</span>
                       </>
                     ) : (
                       <>
                         <Sparkles className="w-4 h-4" />
-                        <span>Book Super Cleaners Now</span>
+                        <span>Zakaži Super Cleaners odmah</span>
                       </>
                     )}
                   </button>
@@ -954,7 +954,7 @@ export default function BookingModal({ isOpen, onClose, preselectedServiceId }: 
                     className="w-full py-2.5 rounded-full border border-slate-200 hover:bg-slate-100 text-slate-600 font-bold transition text-xs flex items-center justify-center gap-1"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
-                    <span>Back to Step {step - 1}</span>
+                    <span>Nazad na korak {step - 1}</span>
                   </button>
                 )}
               </div>

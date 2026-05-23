@@ -20,13 +20,13 @@ export default function Testimonials() {
         {/* Section Title */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            Customer Confidence
+            Poverenje klijenata
           </span>
           <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            What Our Customers <span className="italic font-serif text-brand-500">Say</span>
+            Šta kažu naši <span className="italic font-serif text-brand-500">Klijenti</span>
           </h2>
           <p className="text-sm text-slate-500">
-            Real feedback from homeowners, property managers, and renters across Great Britain.
+            Pravi utisci vlasnika domova, menadžera nekretnina i stanara iz celog regiona.
           </p>
         </div>
 

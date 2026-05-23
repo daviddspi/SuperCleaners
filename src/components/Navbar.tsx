@@ -19,11 +19,11 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   }, []);
 
   const menuItems = [
-    { label: 'About', href: '#about-section' },
-    { label: 'Services', href: '#services-section' },
-    { label: 'Why Choose Us', href: '#why-choose-section' },
-    { label: 'Reviews', href: '#reviews-section' },
-    { label: 'Estimator', href: '#estimator-section' }
+    { label: 'O nama', href: '#about-section' },
+    { label: 'Usluge', href: '#services-section' },
+    { label: 'Zašto mi', href: '#why-choose-section' },
+    { label: 'Recenzije', href: '#reviews-section' },
+    { label: 'Kalkulator', href: '#estimator-section' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -94,7 +94,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             onClick={() => onOpenBooking()}
             className="px-6 py-2.5 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-all shadow-sm active:scale-95 cursor-pointer"
           >
-            Book Now
+            Zakažite
           </button>
         </div>
 
@@ -128,7 +128,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             }}
             className="w-full py-3 rounded-xl bg-slate-900 text-white font-medium text-center text-sm shadow-md"
           >
-            Book Now
+            Zakažite
           </button>
         </div>
       )}

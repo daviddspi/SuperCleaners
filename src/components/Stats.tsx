@@ -56,16 +56,16 @@ export default function Stats({ onOpenBooking }: StatsProps) {
         {/* Right Side: Copy and call-to-action (5 cols) */}
         <div className="lg:col-span-6 text-left space-y-6 order-1 lg:order-2">
           <span className="text-xs uppercase tracking-widest text-brand-500 bg-brand-50 px-3.5 py-1.5 rounded-full font-bold inline-block text-[11px]">
-            Rapid Market Expansion
+            Brz rast na tržištu
           </span>
           
           <h2 className="text-3xl md:text-5xl font-display font-light tracking-tight leading-tight text-white">
-            We are the Fastest <br />
-            <span className="italic font-serif text-brand-200">Growing</span> Cleaning Agency
+            Mi smo najbrže <br />
+            <span className="italic font-serif text-brand-200">Rastoća</span> Agencija za Čišćenje
           </h2>
           
           <p className="text-sm md:text-base text-brand-100/95 leading-relaxed font-normal">
-            Our cleaning service is growing quickly because our staff work hard to keep your home or office clean, fresh, and pristine. You can trust us to do the job right. We use premium non-toxic, eco-friendly formulas so you can reside in an immaculately sterile environment safety.
+            Naša usluga brzo raste jer naš tim marljivo radi kako bi vaš dom ili kancelarija bili čisti, sveži i besprekorno uredni. Možete nam verovati. Koristimo premium netoksične, ekološke formule kako biste živeli u savršeno sterilnom okruženju.
           </p>
 
           <div className="pt-2">
@@ -74,7 +74,7 @@ export default function Stats({ onOpenBooking }: StatsProps) {
               onClick={onOpenBooking}
               className="px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium text-sm transition shadow-lg shadow-brand-500/20 active:scale-95 cursor-pointer"
             >
-              View Services & Estimates
+              Pogledajte usluge i cene
             </button>
           </div>
         </div>

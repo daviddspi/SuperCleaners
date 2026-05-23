@@ -29,23 +29,23 @@ export default function Services({ onOpenBooking }: ServicesProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl text-left">
             <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block mb-2">
-              Our Expertise Areas
+              Naše oblasti stručnosti
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-              Our Professional <span className="italic font-serif text-brand-500">Cleaning Programs</span>
+              Naši profesionalni <span className="italic font-serif text-brand-500">Programi čišćenja</span>
             </h2>
             <p className="text-sm md:text-base text-slate-500 mt-2 font-normal">
-              Select any of our custom-tailored cleaning solutions to maintain pristine hygiene conditions. Fully equipped, prompt, and insured.
+              Izaberite neko od naših prilagođenih rešenja za čišćenje kako biste održali besprekorne higijenske uslove. Potpuno opremljeni, tačni i osigurani.
             </p>
           </div>
 
           {/* Filtering Categories Tabs */}
           <div className="flex flex-wrap gap-2">
             {[
-              { id: 'all', label: 'All Services' },
-              { id: 'specialist', label: 'Specialist Care' },
-              { id: 'deep', label: 'Deep Cleaning' },
-              { id: 'regular', label: 'Maintenance Care' }
+              { id: 'all', label: 'Sve usluge' },
+              { id: 'specialist', label: 'Specijalizovane' },
+              { id: 'deep', label: 'Dubinsko čišćenje' },
+              { id: 'regular', label: 'Redovno održavanje' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -92,7 +92,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   
                   {/* Quick price helper bubble */}
                   <div className="absolute bottom-4 right-4 bg-brand-500 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-md">
-                    from £{service.basePrice}
+                    od {service.basePrice}€
                   </div>
                 </div>
 
@@ -116,7 +116,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   className="flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition"
                 >
                   <Info className="w-3.5 h-3.5" />
-                  <span>Know More</span>
+                  <span>Saznaj više</span>
                 </button>
 
                 <button
@@ -124,7 +124,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   onClick={() => onOpenBooking(service.id)}
                   className="inline-flex items-center gap-1 px-4 py-2 hover:bg-brand-500 hover:text-white bg-brand-50 text-brand-600 rounded-lg text-xs font-bold transition-all"
                 >
-                  <span>Quick Book</span>
+                  <span>Zakaži brzo</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
@@ -155,7 +155,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                       {selectedServiceDetail.category}
                     </span>
                     <h3 className="text-xl font-bold text-slate-900 mt-1">
-                      {selectedServiceDetail.name} Details
+                      {selectedServiceDetail.name} Detalji
                     </h3>
                   </div>
                   <button 
@@ -182,14 +182,14 @@ export default function Services({ onOpenBooking }: ServicesProps) {
 
                   <div className="grid grid-cols-2 gap-3.5 pt-2">
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Base Cost</span>
-                      <strong className="text-lg font-black text-slate-800">£{selectedServiceDetail.basePrice}</strong>
+                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Osnovna cena</span>
+                      <strong className="text-lg font-black text-slate-800">{selectedServiceDetail.basePrice}€</strong>
                     </div>
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Est. Duration</span>
+                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Trajanje</span>
                       <strong className="text-lg font-black text-slate-800 flex items-center gap-1">
                         <Clock className="w-4 h-4 text-brand-500 inline-block" />
-                        {selectedServiceDetail.durationHours} hrs
+                        {selectedServiceDetail.durationHours} sati
                       </strong>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                     onClick={() => setSelectedServiceDetail(null)}
                     className="py-3 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition text-xs text-center"
                   >
-                    Close
+                    Zatvori
                   </button>
                   <button
                     type="button"
@@ -212,7 +212,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                     }}
                     className="py-3 rounded-full bg-brand-500 text-white font-heavy hover:bg-brand-610 transition shadow-md text-xs text-center"
                   >
-                    Book Now
+                    Zakaži odmah
                   </button>
                 </div>
               </motion.div>

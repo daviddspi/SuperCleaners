@@ -57,10 +57,10 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-600 font-medium"
             >
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-500" /> Fully Insured & Vetted
+                <ShieldCheck className="w-4 h-4 text-brand-500" /> Potpuno osigurani i provereni
               </span>
               <span className="flex items-center gap-1.5">
-                <Heart className="w-4 h-4 text-red-400 fill-red-400" /> 100% Satisfaction Guarantee
+                <Heart className="w-4 h-4 text-red-400 fill-red-400" /> 100% garancija zadovoljstva
               </span>
             </motion.div>
 
@@ -76,7 +76,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 onClick={onOpenBooking}
                 className="group flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium transition shadow-xl shadow-brand-500/10 active:scale-98 cursor-pointer text-sm"
               >
-                <span>Book Premium Clean</span>
+                <span>Zakažite čišćenje</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               
@@ -85,7 +85,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 onClick={onExploreServices}
                 className="px-8 py-4 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-medium transition text-sm cursor-pointer border border-slate-200"
               >
-                View Services
+                Pogledajte usluge
               </button>
             </motion.div>
 
@@ -138,7 +138,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                     Savannah Nguyen
                   </span>
                   <span className="text-[10px] text-brand-600 block font-bold leading-normal">
-                    5★ Elite Cleaning Crew
+                    5★ Elitni tim za čišćenje
                   </span>
                   <div className="flex gap-0.5 mt-0.5">
                     {[1, 2, 3, 4, 5].map((s) => (
@@ -157,14 +157,14 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               >
                 <div>
                   <span className="block text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                    Instant Relief guaranteed
+                    Trenutno olakšanje garantovano
                   </span>
                   <span className="block text-xs sm:text-sm font-black text-slate-800 uppercase mt-0.5">
-                    Premium Domestic Care
+                    Premium održavanje domaćinstva
                   </span>
                 </div>
                 <div className="px-3 py-1.5 bg-brand-500 rounded-xl text-white font-black text-xs">
-                  99% Rating
+                  99% ocena
                 </div>
               </motion.div>
 

@@ -125,8 +125,8 @@ export default function App() {
                     <ShieldCheck className="w-5 h-5" />
                   </span>
                   <div className="text-left font-bold text-xs">
-                    <span className="block text-slate-900 leading-none">Vetted Experts</span>
-                    <span className="text-slate-400 font-semibold block mt-1">100% Background-Checked</span>
+                    <span className="block text-slate-900 leading-none">Provereni stručnjaci</span>
+                    <span className="text-slate-400 font-semibold block mt-1">100% obezbeđeno poslovanje</span>
                   </div>
                 </div>
 
@@ -239,8 +239,8 @@ export default function App() {
                     <Check className="w-4 h-4 stroke-[3]" />
                   </span>
                   <div className="text-left">
-                    <span className="block font-black text-slate-900 text-xs">Certified Quality</span>
-                    <span className="text-[10px] text-slate-400 font-semibold block leading-none mt-1">SGS Approved Products</span>
+                    <span className="block font-black text-slate-900 text-xs">Sertifikovan kvalitet</span>
+                    <span className="text-[10px] text-slate-400 font-semibold block leading-none mt-1">Odobreni SGS proizvodi</span>
                   </div>
                 </div>
 
@@ -311,10 +311,10 @@ export default function App() {
                   <Sparkles className="w-5 h-5 animate-pulse" />
                 </span>
                 <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                  Join the {config.brand.name} Crew!
+                  Pridruži se timu {config.brand.name}!
                 </h3>
                 <p className="text-xs text-slate-550 mt-1.5">
-                  {config.recruitment.description} Earn between {config.recruitment.salaryRange} with full flexible hours inside {config.recruitment.location}.
+                  {config.recruitment.description} Zaradi između {config.recruitment.salaryRange} uz fleksibilno radno vreme na teritoriji {config.recruitment.location}.
                 </p>
               </div>
 
@@ -324,20 +324,20 @@ export default function App() {
                     <Check className="w-6 h-6 stroke-[3]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">Application Received!</h4>
+                    <h4 className="font-bold text-slate-900">Prijava primljena!</h4>
                     <p className="text-xs text-slate-500">
-                      Our hiring managers will reach out to schedule an interview within 48 business hours.
+                      Naš tim za ljudske resurse će vas kontaktirati radi zakazivanja intervjua u roku od 48 sati.
                     </p>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleJoinStaffSubmit} className="space-y-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Your name *</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase">Vaše ime *</label>
                     <input 
                       type="text" 
                       required 
-                      placeholder="e.g. David Smith" 
+                      placeholder="npr. Petar Petrović" 
                       value={staffName}
                       onChange={(e) => setStaffName(e.target.value)}
                       className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400"
@@ -345,11 +345,11 @@ export default function App() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Email Address *</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase">Email adresa *</label>
                     <input 
                       type="email" 
                       required 
-                      placeholder="e.g. davidsmith@yahoo.co.uk" 
+                      placeholder="npr. petar@gmail.com" 
                       value={staffEmail}
                       onChange={(e) => setStaffEmail(e.target.value)}
                       className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400"
@@ -357,12 +357,12 @@ export default function App() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase block">Years cleaning experience</label>
+                    <label className="text-xs font-bold text-slate-500 uppercase block">Godine iskustva u čišćenju</label>
                     <select className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-                      <option>Less than 1 year</option>
-                      <option>1 - 2 years</option>
-                      <option>3 - 5 years</option>
-                      <option>More than 5 years</option>
+                      <option>Manje od 1 godine</option>
+                      <option>1 - 2 godine</option>
+                      <option>3 - 5 godina</option>
+                      <option>Više od 5 godina</option>
                     </select>
                   </div>
 
@@ -370,7 +370,7 @@ export default function App() {
                     type="submit"
                     className="w-full py-3.5 bg-brand-500 text-white hover:bg-brand-610 font-bold text-center rounded-full transition shadow-md mt-4 text-xs tracking-wider uppercase cursor-pointer"
                   >
-                    Submit Application
+                    Pošalji prijavu
                   </button>
                 </form>
               )}
