@@ -15,9 +15,9 @@ export default function Services({ onOpenBooking }: ServicesProps) {
 
   const filteredServices = SERVICES.filter(service => {
     if (activeTab === 'all') return true;
-    if (activeTab === 'specialist') return service.category === 'Specialist';
-    if (activeTab === 'deep') return service.category === 'Deep Cleaning';
-    if (activeTab === 'regular') return service.category === 'Regular' || service.category === 'Detailing';
+    if (activeTab === 'specialist') return service.category === 'Specijalizovano';
+    if (activeTab === 'deep') return service.category === 'Dubinsko čišćenje';
+    if (activeTab === 'regular') return service.category === 'Redovno' || service.category === 'Detaljno';
     return true;
   });
 
