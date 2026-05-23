@@ -1,0 +1,194 @@
+import React from 'react';
+import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+
+interface FooterProps {
+  onOpenBooking: () => void;
+  onJoinStaff: () => void;
+}
+
+export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
+  const currentYear = new Date().getFullYear();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.querySelector(targetId);
+    if (element) {
+      const offset = 85;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-850">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
+        
+        {/* Column 1: Info and contact */}
+        <div className="space-y-6">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center gap-2"
+          >
+            <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center shadow-sm shadow-brand-500/15">
+              <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
+            </div>
+            <span className="font-display font-semibold text-xl text-white tracking-tight">
+              Super <span className="text-brand-500">Cleaners</span>
+            </span>
+          </a>
+
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+            Super Cleaners is the premier professional cleaning agency in your local area. We deliver sparkling, allergen-free conditions for domestic homes and commercial offices.
+          </p>
+
+          <div className="space-y-3.5 text-xs">
+            <a href="tel:+442070037880" className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
+              <Phone className="w-4 h-4 text-brand-500 shrink-0" />
+              <span>+44 20 7003 7880</span>
+            </a>
+            <a href="mailto:supercleaners@gmail.com" className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
+              <Mail className="w-4 h-4 text-brand-500 shrink-0" />
+              <span>supercleaners@gmail.com</span>
+            </a>
+            <div className="flex items-start gap-3.5 text-slate-400">
+              <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
+              <span>24 Admirals Way, London E14 9UJ, United Kingdom</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Column 2: Lists of Services */}
+        <div className="space-y-5">
+          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+            Our Cleaning Services
+          </h4>
+          <ul className="space-y-2.5 text-xs text-slate-400">
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                Carpet Steam Cleaning
+              </a>
+            </li>
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                Mattress Sanitizing
+              </a>
+            </li>
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                Professional Oven Scouring
+              </a>
+            </li>
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                Squeegee Window Treatments
+              </a>
+            </li>
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                End of Tenancy Deep Cleaning
+              </a>
+            </li>
+            <li>
+              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
+                Delicate Upholstery Polishing
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 3: Help & Details */}
+        <div className="space-y-5">
+          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+            Help & Information
+          </h4>
+          <ul className="space-y-2.5 text-xs text-slate-400">
+            <li>
+              <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="hover:text-white transition">
+                About Our Company
+              </a>
+            </li>
+            <li>
+              <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
+                Interactive Pricing
+              </a>
+            </li>
+            <li>
+              <a href="#reviews-section" onClick={(e) => handleLinkClick(e, '#reviews-section')} className="hover:text-white transition">
+                Client Reviews
+              </a>
+            </li>
+            <li>
+              <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
+                Real-Time Booking
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
+                Terms of Service
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4: Become a Cleaner */}
+        <div className="space-y-4">
+          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
+            Become a Super Cleaner!
+          </h4>
+          <p className="text-xs text-slate-400 leading-relaxed font-normal">
+            Want to join our dynamic team and develop fantastic professional cleaning skills? We offer flexible shifts, premium gear, top-tier compensation, and a supportive team environment.
+          </p>
+          <div className="pt-2">
+            <button
+              id="footer-join-us-btn"
+              onClick={onJoinStaff}
+              className="px-6 py-2.5 w-full rounded-xl bg-brand-500 hover:bg-brand-610 text-white text-xs font-semibold transition shadow-md shadow-brand-500/10 cursor-pointer text-center"
+            >
+              Apply to Join Us
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Decorative full-width strip */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-8" />
+
+      {/* Footer Bottom Bar */}
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div>
+          <span>© {currentYear} Super Cleaners. All Rights Reserved.</span>
+        </div>
+        
+        {/* Socials Icons */}
+        <div className="flex gap-4.5">
+          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Facebook handle" className="hover:text-brand-500 transition">
+            <Facebook className="w-4 h-4" />
+          </a>
+          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Twitter handle" className="hover:text-brand-500 transition">
+            <Twitter className="w-4 h-4" />
+          </a>
+          <a href="#" onClick={(e) => e.preventDefault()} aria-label="Instagram handle" className="hover:text-brand-500 transition">
+            <Instagram className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}

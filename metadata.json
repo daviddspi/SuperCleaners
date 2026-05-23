@@ -1,0 +1,6 @@
+{
+  "name": "Super Cleaners",
+  "description": "A beautifully crafted website for premium and reliable professional cleaning services, featuring interactive calculators, live bookings, feedback carousels, and high-performance layouts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
