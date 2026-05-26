@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Info, Sparkles, ArrowRight, ShieldCheck, Check, Clock } from 'lucide-react';
+import { Info, ArrowRight, ShieldCheck, Check } from 'lucide-react';
 import { SERVICES } from '../data';
 import { Service } from '../types';
 
@@ -9,43 +9,37 @@ interface ServicesProps {
 }
 
 export default function Services({ onOpenBooking }: ServicesProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'specialist' | 'deep' | 'regular'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'Glavno' | 'Dodatno'>('all');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedServiceDetail, setSelectedServiceDetail] = useState<Service | null>(null);
 
   const filteredServices = SERVICES.filter(service => {
     if (activeTab === 'all') return true;
-    if (activeTab === 'specialist') return service.category === 'Specijalizovano';
-    if (activeTab === 'deep') return service.category === 'Dubinsko čišćenje';
-    if (activeTab === 'regular') return service.category === 'Redovno' || service.category === 'Detaljno';
-    return true;
+    return service.category === activeTab;
   });
 
   return (
     <section id="services-section" className="py-16 md:py-24 bg-slate-50 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl text-left">
             <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block mb-2">
-              Naše oblasti stručnosti
+              Naše usluge
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-              Naši profesionalni <span className="italic font-serif text-brand-500">Programi čišćenja</span>
+              Profesionalno <span className="italic font-serif text-brand-500">Dubinsko pranje</span>
             </h2>
             <p className="text-sm md:text-base text-slate-500 mt-2 font-normal">
-              Izaberite neko od naših prilagođenih rešenja za čišćenje kako biste održali besprekorne higijenske uslove. Potpuno opremljeni, tačni i osigurani.
+              Izaberite neku od naših usluga kako biste održali besprekornu čistoću vašeg nameštaja, tepiha i vozila.
             </p>
           </div>
 
-          {/* Filtering Categories Tabs */}
           <div className="flex flex-wrap gap-2">
             {[
               { id: 'all', label: 'Sve usluge' },
-              { id: 'specialist', label: 'Specijalizovane' },
-              { id: 'deep', label: 'Dubinsko čišćenje' },
-              { id: 'regular', label: 'Redovno održavanje' }
+              { id: 'Glavno', label: 'Glavne usluge' },
+              { id: 'Dodatno', label: 'Dodatne usluge' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -65,7 +59,6 @@ export default function Services({ onOpenBooking }: ServicesProps) {
           </div>
         </div>
 
-        {/* 6 Services Presentation Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service) => (
             <motion.div
@@ -76,7 +69,6 @@ export default function Services({ onOpenBooking }: ServicesProps) {
               onMouseLeave={() => setHoveredId(null)}
             >
               <div>
-                {/* Custom Aspect Ratio Image Box per attached layout */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                   <img
                     src={service.image}
@@ -85,18 +77,11 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                     referrerPolicy="no-referrer"
                   />
                   
-                  {/* Category Pill Tag */}
                   <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 bg-white/95 backdrop-blur-xs text-[10px] font-bold uppercase tracking-wide rounded-full text-slate-800 border border-slate-100/50 shadow-xs">
                     {service.category}
                   </span>
-                  
-                  {/* Quick price helper bubble */}
-                  <div className="absolute bottom-4 right-4 bg-brand-500 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-md">
-                    od {service.basePrice}€
-                  </div>
                 </div>
 
-                {/* Info and action board */}
                 <div className="p-6 space-y-3.5 text-left">
                   <h3 className="text-lg font-semibold text-slate-900 leading-tight">
                     {service.name}
@@ -108,7 +93,6 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                 </div>
               </div>
 
-              {/* Interaction Drawer footer line */}
               <div className="px-6 pb-6 pt-2 flex items-center justify-between gap-3 border-t border-slate-100 mt-auto">
                 <button
                   type="button"
@@ -116,7 +100,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   className="flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition"
                 >
                   <Info className="w-3.5 h-3.5" />
-                  <span>Saznaj više</span>
+                  <span>Prikaži cene</span>
                 </button>
 
                 <button
@@ -124,7 +108,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   onClick={() => onOpenBooking(service.id)}
                   className="inline-flex items-center gap-1 px-4 py-2 hover:bg-brand-500 hover:text-white bg-brand-50 text-brand-600 rounded-lg text-xs font-bold transition-all"
                 >
-                  <span>Zakaži brzo</span>
+                  <span>Zakaži</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
@@ -132,7 +116,6 @@ export default function Services({ onOpenBooking }: ServicesProps) {
           ))}
         </div>
 
-        {/* Dynamic Detail Dialog Overlay (if user clicks "Know More") */}
         <AnimatePresence>
           {selectedServiceDetail && (
             <motion.div 
@@ -146,7 +129,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                 initial={{ scale: 0.95, y: 10 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.95, y: 10 }}
-                className="w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl p-6 text-left relative"
+                className="w-full max-w-lg bg-white rounded-3xl overflow-hidden shadow-2xl p-6 text-left relative max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex justify-between items-start mb-4">
@@ -180,17 +163,20 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                     {selectedServiceDetail.longDescription}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3.5 pt-2">
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Osnovna cena</span>
-                      <strong className="text-lg font-black text-slate-800">{selectedServiceDetail.basePrice}€</strong>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                      <span className="text-[10px] text-slate-400 block font-semibold uppercase">Trajanje</span>
-                      <strong className="text-lg font-black text-slate-800 flex items-center gap-1">
-                        <Clock className="w-4 h-4 text-brand-500 inline-block" />
-                        {selectedServiceDetail.durationHours} sati
-                      </strong>
+                  <div className="pt-4 border-t border-slate-100">
+                    <h4 className="text-sm font-bold text-slate-800 mb-3">Cenovnik</h4>
+                    <div className="space-y-2">
+                      {selectedServiceDetail.items?.map(item => (
+                        <div key={item.id} className="flex justify-between items-center text-xs p-2 rounded-lg bg-slate-50 border border-slate-100">
+                          <span className="font-semibold text-slate-700">{item.name} {item.description && <span className="font-normal text-slate-500 text-[10px]">({item.description})</span>}</span>
+                          <span className="font-bold text-brand-600">
+                            {item.priceType === 'starting' && 'od '}
+                            {item.price} RSD
+                            {item.priceType === 'per_m2' && '/m²'}
+                            {item.priceType === 'per_seat' && '/mesto'}
+                          </span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -199,7 +185,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   <button
                     type="button"
                     onClick={() => setSelectedServiceDetail(null)}
-                    className="py-3 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition text-xs text-center"
+                    className="py-3 rounded-full border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition text-xs text-center cursor-pointer"
                   >
                     Zatvori
                   </button>
@@ -210,9 +196,9 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                       setSelectedServiceDetail(null);
                       onOpenBooking(id);
                     }}
-                    className="py-3 rounded-full bg-brand-500 text-white font-heavy hover:bg-brand-610 transition shadow-md text-xs text-center"
+                    className="py-3 rounded-full bg-brand-500 text-white font-heavy hover:bg-brand-610 transition shadow-md text-xs text-center cursor-pointer"
                   >
-                    Zakaži odmah
+                    Izračunaj cenu
                   </button>
                 </div>
               </motion.div>
@@ -225,7 +211,6 @@ export default function Services({ onOpenBooking }: ServicesProps) {
   );
 }
 
-// Simple internal icon to prevent missing imports
 function XIcon({ className }: { className?: string }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

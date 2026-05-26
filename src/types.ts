@@ -1,14 +1,21 @@
+export interface PricingItem {
+  id: string;
+  name: string;
+  price: number;
+  priceType: 'fixed' | 'per_m2' | 'per_seat' | 'starting';
+  category: 'namestaj' | 'tepisi' | 'automobili';
+  description?: string;
+}
+
 export interface Service {
   id: string;
   name: string;
   description: string;
   longDescription: string;
-  basePrice: number; // base price per hour or job
-  pricePerUnit: number; // e.g., price per bedroom or bathroom
   category: string;
   image: string;
   iconName: string; // Lucide icon identifier
-  durationHours: number;
+  items?: PricingItem[];
 }
 
 export interface Testimonial {
@@ -30,12 +37,7 @@ export interface StatItem {
 }
 
 export interface Estimate {
-  serviceId: string;
-  bedrooms: number;
-  bathrooms: number;
-  squareFeet: number;
-  frequency: 'one-time' | 'weekly' | 'biweekly' | 'monthly';
-  addons: string[]; // list of addon ids
+  items: Record<string, number>; // itemId -> quantity
   totalPrice: number;
 }
 

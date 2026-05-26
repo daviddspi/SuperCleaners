@@ -63,14 +63,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           }}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all shadow-sm shadow-brand-500/15">
-            <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
-          </div>
-          <div>
-            <span className="font-display font-semibold text-lg md:text-xl tracking-tight text-slate-900 flex items-center gap-1.5 select-none animate-fade-in">
-              {config.brand.name}
-            </span>
-          </div>
+          <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-10 w-auto object-contain" />
         </a>
 
         {/* Desktop Links */}

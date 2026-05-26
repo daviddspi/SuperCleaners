@@ -16,8 +16,8 @@ import { config } from './config';
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [preselectedServiceId, setPreselectedServiceId] = useState<string | undefined>(undefined);
-  
+  const [preselectedItems, setPreselectedItems] = useState<Record<string, number>>({});
+  const [preselectedTotalPrice, setPreselectedTotalPrice] = useState<number>(0);
   // Custom states for staff applications & news signups
   const [isApplyingStaff, setIsApplyingStaff] = useState(false);
   const [staffName, setStaffName] = useState('');
@@ -28,20 +28,15 @@ export default function App() {
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
   const handleOpenBooking = (serviceId?: string) => {
-    setPreselectedServiceId(serviceId);
-    setIsBookingOpen(true);
+    handleScrollToSection('#estimator-section');
   };
 
   const handleOpenBookingWithPrefs = (prefs: {
-    serviceId: string;
-    bedrooms: number;
-    bathrooms: number;
-    squareFeet: number;
-    frequency: 'one-time' | 'weekly' | 'biweekly' | 'monthly';
-    addons: string[];
+    items: Record<string, number>;
+    totalPrice: number;
   }) => {
-    // Open the booking modal and pre-expand choice parameters
-    setPreselectedServiceId(prefs.serviceId);
+    setPreselectedItems(prefs.items);
+    setPreselectedTotalPrice(prefs.totalPrice);
     setIsBookingOpen(true);
   };
 
@@ -137,7 +132,7 @@ export default function App() {
             {/* Right details content checklist */}
             <div className="lg:col-span-7 space-y-7 text-left">
               <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-                Premium Domestic Care
+                Premium Dubinsko Pranje
               </span>
               
               <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
@@ -167,7 +162,7 @@ export default function App() {
                   onClick={() => handleScrollToSection('#services-section')}
                   className="px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium text-xs uppercase tracking-wider transition shadow-lg shadow-brand-500/10 cursor-pointer"
                 >
-                  View Services
+                  Naše Usluge
                 </button>
               </div>
             </div>
@@ -193,7 +188,7 @@ export default function App() {
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-                Exceptional Convenience
+                Izuzetna Pogodnost
               </span>
               
               <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
@@ -212,7 +207,7 @@ export default function App() {
                   onClick={() => handleScrollToSection('#services-section')}
                   className="px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium text-xs uppercase tracking-widest transition shadow-lg shadow-brand-500/10 hover:shadow-brand-500/20 active:scale-98 cursor-pointer scroll-smooth"
                 >
-                  View Services
+                  Naše Usluge
                 </button>
               </div>
             </div>
@@ -265,12 +260,12 @@ export default function App() {
         <div className="flex gap-16 whitespace-nowrap animate-marquee">
           {[1, 2, 3].map((set) => (
             <div key={set} className="flex gap-16 shrink-0 items-center justify-around">
-              <span>Carpet Cleaning</span> <span className="text-brand-200">✦</span>
-              <span>Mattress Cleaning</span> <span className="text-brand-200">✦</span>
-              <span>Oven Cleaning</span> <span className="text-brand-200">✦</span>
-              <span>Window Cleaning</span> <span className="text-brand-200">✦</span>
-              <span>End of Tenancy Cleaning</span> <span className="text-brand-200">✦</span>
-              <span>Upholstery Cleaning</span> <span className="text-brand-100">✔</span>
+              <span>Pranje nameštaja</span> <span className="text-brand-200">✦</span>
+              <span>Dubinsko pranje automobila</span> <span className="text-brand-200">✦</span>
+              <span>Pranje tepiha</span> <span className="text-brand-200">✦</span>
+              <span>Poliranje vozila</span> <span className="text-brand-200">✦</span>
+              <span>Čišćenje dušeka</span> <span className="text-brand-200">✦</span>
+              <span>Uklanjanje fleka</span> <span className="text-brand-100">✔</span>
             </div>
           ))}
         </div>
@@ -286,7 +281,8 @@ export default function App() {
       <BookingModal 
         isOpen={isBookingOpen} 
         onClose={() => setIsBookingOpen(false)} 
-        preselectedServiceId={preselectedServiceId}
+        items={preselectedItems}
+        totalPrice={preselectedTotalPrice}
       />
 
       {/* Dynamic Pop-up Apply for job modal */}

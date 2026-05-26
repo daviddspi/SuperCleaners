@@ -82,27 +82,27 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Dezinfekcija dušeka
+                Dubinsko pranje nameštaja
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Profesionalno čišćenje rerni
+                Dubinsko pranje automobila
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Pranje prozora
+                Uklanjanje fleka i mirisa
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Detaljno čišćenje pre iseljenja
+                Čišćenje dušeka i kreveta
               </a>
             </li>
             <li>
               <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Poliranje i čišćenje nameštaja
+                Poliranje i pranje vozila
               </a>
             </li>
           </ul>

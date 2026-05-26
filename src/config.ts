@@ -1,50 +1,70 @@
-import { Service, Addon, Testimonial, StatItem } from './types';
+import { Service, Addon, Testimonial, StatItem, PricingItem } from './types';
+
+export const PRICING_ITEMS: PricingItem[] = [
+  { id: 'f-fotelja', name: 'Fotelja', price: 900, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-dvosed', name: 'Dvosed', price: 1700, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-trosed', name: 'Trosed', price: 2500, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-ugaona', name: 'Ugaona garnitura', price: 900, priceType: 'per_seat', category: 'namestaj', description: 'po sednom mestu' },
+  { id: 'f-stolica', name: 'Stolica', price: 300, priceType: 'starting', category: 'namestaj', description: '300 - 600 RSD' },
+  { id: 'f-jastuk', name: 'Jastuk', price: 200, priceType: 'starting', category: 'namestaj', description: '200 - 400 RSD' },
+  { id: 'f-singl', name: 'Singl dušek (jedna strana)', price: 900, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-singl-obe', name: 'Singl dušek (obe strane)', price: 1500, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-francuski', name: 'Francuski dušek (jedna strana)', price: 1300, priceType: 'fixed', category: 'namestaj' },
+  { id: 'f-francuski-obe', name: 'Francuski dušek (obe strane)', price: 1900, priceType: 'fixed', category: 'namestaj' },
+
+  { id: 't-tepisi', name: 'Tepisi', price: 400, priceType: 'per_m2', category: 'tepisi' },
+  { id: 't-itisoni', name: 'Itisoni', price: 350, priceType: 'per_m2', category: 'tepisi' },
+  { id: 't-tvrdi', name: 'Tvrdi podovi', price: 350, priceType: 'per_m2', category: 'tepisi' },
+
+  { id: 'a-dubinsko', name: 'Dubinsko pranje', price: 8000, priceType: 'starting', category: 'automobili' },
+  { id: 'a-poliranje', name: 'Poliranje', price: 14000, priceType: 'starting', category: 'automobili', description: 'od 120 €' }
+];
 
 export const config = {
   brand: {
-    name: "Super Cleaners",
-    shortName: "Super Cleaners",
-    tagline: "Premium održavanje domaćinstva",
-    taglineHighlight: "Blistavo čisto • Garantovano",
+    name: "Super Clean",
+    shortName: "Super Clean",
+    tagline: "Profesionalno dubinsko pranje",
+    taglineHighlight: "Besprijekorno čisto",
     foundedYear: 2012,
-    heroTitleLine1: "Povratak u čist dom",
-    heroTitleLine2: "treba da bude kao",
-    heroTitleHighlight: "dubok uzdah olakšanja.",
-    heroDescription: "Premium usluge čišćenja prilagođene vašem rasporedu. Mi brinemo o prašini kako biste vi mogli da se fokusirate na ono što je zaista važno.",
+    heroTitleLine1: "Vratite sjaj vašem",
+    heroTitleLine2: "nameštaju uz naše",
+    heroTitleHighlight: "dubinsko pranje.",
+    heroDescription: "Vrhunske usluge dubinskog pranja nameštaja, tepiha i automobila u Beogradu. Obezbeđujemo svežinu i čistoću koja traje.",
     aboutTitleLine1: "Nekoliko reči o",
-    aboutTitleLine2: "profesionalnim uslugama",
-    aboutDescription: "Osnovani 2012. godine, mi smo profesionalna i sertifikovana agencija za čišćenje posvećena tome da vaš dom i kancelarija budu čistiji, svežiji, udobniji i lepši. Naš tim marljivih i ljubaznih profesionalaca radi na tome da vaš dom zablista kao nov.",
-    convenienceTitleLine1: "Činimo čišćenje",
-    convenienceTitleHighlight: "Lakšim",
-    convenienceTitleLine2: "i praktičnijim",
-    convenienceDescription1: "Nudimo praktične i profesionalne usluge čišćenja koje će vam olakšati život. Naši iskusni i obučeni radnici koriste najkvalitetnija sredstva i opremu kako bi obezbedili temeljno i efikasno čišćenje. Trudimo se da vam pružimo iskustvo bez stresa, sa radnicima koji su tačni, pouzdani i posvećeni vrhunskim rezultatima.",
-    convenienceDescription2: "Bilo da vam je potrebno jednokratno čišćenje ili redovno održavanje, naš profesionalni tim je tu da ispuni vaše zahteve. Nudimo fleksibilne opcije zakazivanja i prilagođene planove čišćenja kako bismo osigurali da vaš dom ili kancelarija budu očišćeni na vaše potpuno zadovoljstvo.",
-    footerDescription: "Super Cleaners je vodeća profesionalna agencija za čišćenje u vašem kraju. Obezbeđujemo blistave prostore bez alergena za vaše domove i poslovne prostore.",
+    aboutTitleLine2: "našim uslugama",
+    aboutDescription: "Mi smo profesionalni tim posvećen dubinskom pranju i čišćenju. Koristimo najmoderniju opremu i ekološka sredstva kako bismo vašem nameštaju, tepisima i vozilima vratili prvobitni sjaj.",
+    convenienceTitleLine1: "Vaš dom zaslužuje",
+    convenienceTitleHighlight: "Najbolje",
+    convenienceTitleLine2: "održavanje",
+    convenienceDescription1: "Dubinsko pranje nije samo estetika, već i zdravlje. Uklanjamo grinje, bakterije i tvrdokorne fleke iz vaših kreveta i garnitura.",
+    convenienceDescription2: "Sa preko decenijom iskustva, naš tim garantuje profesionalan pristup, dolazak na kućnu adresu i rezultate koji će vas oduševiti.",
+    footerDescription: "Super Clean je vaša pouzdana agencija za dubinsko pranje nameštaja, tepiha i vozila u Beogradu. Kvalitet bez kompromisa.",
   },
   contact: {
-    phone: "+44 20 7003 7880",
-    email: "supercleaners@gmail.com",
-    address: "24 Admirals Way, London E14 9UJ, United Kingdom",
+    phone: "+381 60 123 4567",
+    email: "info@superclean.rs",
+    address: "Beograd, Srbija",
     socials: {
       facebook: "#",
       twitter: "#",
-      instagram: "#"
+      instagram: "https://www.instagram.com/dubinsko_pranje_namestaja_bg/"
     }
   },
   recruitment: {
-    salaryRange: "1500€ - 2000€/mesečno",
-    location: "Beogradu",
-    description: "Želite da se pridružite našem dinamičnom timu i razvijete fantastične veštine profesionalnog čišćenja? Nudimo fleksibilno radno vreme, vrhunsku opremu, odličnu zaradu i podržavajuće radno okruženje."
+    salaryRange: "Zaposlenje",
+    location: "Beograd",
+    description: "Uvek smo u potrazi za vrednim i odgovornim radnicima. Pridružite se našem timu."
   },
   theme: {
-    primaryColor: "#059669",
+    primaryColor: "#567AC4",
   },
   features: [
-    "Pokrivamo 90% opština",
-    "6 vrsta usluga čišćenja",
-    "Preko 120 profesionalnih radnika",
-    "Dostupni 7 dana u nedelji",
-    "Lokalna korisnička podrška"
+    "Besplatan dolazak na adresu",
+    "Uklanjanje i najtvrdokornijih fleka",
+    "Ekološka sredstva bezbedna za decu i ljubimce",
+    "Preuzimanje tepiha > 5m2 besplatno",
+    "Profesionalne Karcher mašine"
   ],
   images: {
     immaculateLiving: '/src/assets/images/immaculate_living_1779523124896.png',
@@ -53,162 +73,114 @@ export const config = {
   },
   services: [
     {
-      id: 'carpet-cleaning',
-      name: 'Dubinsko pranje tepiha',
-      description: 'Ekstrakcija vodenom parom za uklanjanje dubinske prljavštine, statike i tvrdokornih fleka.',
-      longDescription: 'Naše dubinsko pranje tepiha koristi dvostepenu ekstrakciju toplom vodom koja prodire duboko u vlakna tepiha kako bi uklonila alergene, prljavštinu, perut kućnih ljubimaca i teške fleke. Koristimo ekološke deterdžente koji se brzo suše i ostavljaju tepihe mekim, osveženim i higijenski čistim.',
-      basePrice: 85,
-      pricePerUnit: 15,
-      category: 'Specijalizovano',
-      image: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80',
-      iconName: 'Sparkles',
-      durationHours: 2
-    },
-    {
-      id: 'mattress-cleaning',
-      name: 'Dubinsko pranje dušeka',
-      description: 'Higijenska dezinfekcija parom za uklanjanje grinja, bakterija i alergena.',
-      longDescription: 'Spavajte mirno uz naš proces medicinske dezinfekcije dušeka. Kombinacijom visoke frekvencije vibracija, UV-C svetlosti za sterilizaciju i ciljanog usisavanja parom, u potpunosti izvlačimo vlagu i odumrle ćelije kože kako bismo stvorili potpuno sterilnu površinu za spavanje.',
-      basePrice: 65,
-      pricePerUnit: 20,
-      category: 'Specijalizovano',
-      image: 'https://images.unsplash.com/photo-1632829811892-61a3d2424b95?auto=format&fit=crop&w=600&q=80',
-      iconName: 'BedDouble',
-      durationHours: 1.5
-    },
-    {
-      id: 'oven-cleaning',
-      name: 'Čišćenje rerne',
-      description: 'Profesionalni tretman uklanjanja masnoće i naslaga ugljenika za besprekornu kuhinju.',
-      longDescription: 'U potpunosti rastavljamo, natapamo i poliramo unutrašnje rešetke i staklene panele kako bismo eliminisali zagorelu masnoću i naslage ugljenika. Naša netoksična rešenja vraćaju rernama fabrički sjaj bez neprijatnih mirisa.',
-      basePrice: 75,
-      pricePerUnit: 25,
-      category: 'Detaljno',
-      image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80',
-      iconName: 'Flame',
-      durationHours: 2.5
-    },
-    {
-      id: 'window-cleaning',
-      name: 'Pranje prozora',
-      description: 'Besprekoran tretman stakla, okvira, pragova i okova bez tragova brisanja.',
-      longDescription: 'Kristalno čist pogled sa sušenjem bez tragova. Čistimo unutrašnje i spoljašnje okvire, kanale i mehanizme za zaključavanje koristeći prečišćenu vodu kako bi stakla ostala besprekorna i otpornija na prašinu i kapljice vode.',
-      basePrice: 55,
-      pricePerUnit: 10,
-      category: 'Redovno',
-      image: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80',
-      iconName: 'Maximize',
-      durationHours: 1.5
-    },
-    {
-      id: 'end-of-tenancy',
-      name: 'Čišćenje pre iseljenja',
-      description: 'Detaljno čišćenje koje garantuje povrat depozita, usklađeno sa zahtevima stanodavca.',
-      longDescription: 'Naše dubinsko čišćenje na kraju najma garantuje potpunu usklađenost sa standardnim uslovima ugovora o zakupu nekretnina. Obavljamo iscrpno čišćenje svih elemenata, od fioka u kuhinji, ribanja rerne, uklanjanja kamenca do brisanja prašine sa zidova.',
-      basePrice: 199,
-      pricePerUnit: 40,
-      category: 'Dubinsko čišćenje',
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80',
-      iconName: 'ShieldCheck',
-      durationHours: 5
-    },
-    {
-      id: 'upholstery-cleaning',
+      id: 'namestaj',
       name: 'Dubinsko pranje nameštaja',
-      description: 'Pažljivo poliranje parom za fotelje, ugaone garniture, zavese i jastuke.',
-      longDescription: 'Zaštitite premium tkanine. Uz pažljivu procenu materijala, vršimo dubinsko pranje i kondicioniranje garnitura od tkanine, prevrnute kože i osetljivih zavesa. Uklanjamo fleke i neprijatne mirise bez oštećenja boje ili strukture niti.',
-      basePrice: 110,
-      pricePerUnit: 30,
-      category: 'Specijalizovano',
+      description: 'Temeljno čišćenje garnitura, fotelja, stolica i dušeka.',
+      longDescription: 'Naše dubinsko pranje uklanja grinje, alergene, prljavštinu i fleke iz dubine materijala. Vaš nameštaj će biti čist, osvežen i suv za par sati.',
+      category: 'Glavno',
       image: 'https://images.unsplash.com/photo-1528740561666-42477c7c346c?auto=format&fit=crop&w=600&q=80',
       iconName: 'Armchair',
-      durationHours: 3
+      items: PRICING_ITEMS.filter(item => item.category === 'namestaj')
+    },
+    {
+      id: 'tepisi',
+      name: 'Pranje tepiha i podova',
+      description: 'Dubinsko pranje tepiha i itisona.',
+      longDescription: 'Nudimo preuzimanje i vraćanje tepiha (besplatno za preko 5m2). Koristimo specijalne četke i ekstrakciju kako bismo uklonili svu nečistoću.',
+      category: 'Glavno',
+      image: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80',
+      iconName: 'LayoutGrid',
+      items: PRICING_ITEMS.filter(item => item.category === 'tepisi')
+    },
+    {
+      id: 'automobili',
+      name: 'Automobili',
+      description: 'Dubinsko pranje enterijera i poliranje.',
+      longDescription: 'Vratite sjaj vašem vozilu. Dubinsko pranje sedišta, poda, neba i gepeka, kao i profesionalno spoljašnje poliranje karoserije.',
+      category: 'Dodatno',
+      image: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=600&q=80',
+      iconName: 'Car',
+      items: PRICING_ITEMS.filter(item => item.category === 'automobili')
     }
   ] as Service[],
-  addons: [
-    { id: 'interior_fridge', name: 'Čišćenje unutrašnjosti frižidera', price: 29, iconName: 'Snowflake' },
-    { id: 'inside_cabinets', name: 'Detaljno čišćenje unutrašnjosti ormara', price: 39, iconName: 'FolderClosed' },
-    { id: 'balcony_sweep', name: 'Pranje i čišćenje terase', price: 45, iconName: 'Compass' },
-    { id: 'ironing_service', name: 'Peglanje odeće (1 sat)', price: 30, iconName: 'Shirt' },
-    { id: 'pet_sanitation', name: 'Sanitizacija mirisa kućnih ljubimaca', price: 25, iconName: 'HeartHandshake' }
-  ] as Addon[],
+  addons: [] as Addon[],
   testimonials: [
     {
       id: '1',
       name: 'Marko Kostić',
       location: 'Novi Beograd',
-      role: 'Vlasnik kuće',
+      role: 'Klijent',
       rating: 5,
-      text: 'Radnici su stigli na vreme i vredno radili dok posao nije bio gotov. Bili su veoma pristojni. Veoma sam zadovoljan uslugom i rado bih ih preporučio drugima ili ponovo koristio njihove usluge.',
+      text: 'Garnitura je kao nova! Fleke od kafe koje su bile tu mesecima su potpuno nestale. Momci su veoma profesionalni i brzi.',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=clamp&w=150&h=150&q=80'
     },
     {
       id: '2',
       name: 'Jelena Nikolić',
-      location: 'Vračar, Beograd',
-      role: 'Vlasnik stana',
+      location: 'Vračar',
+      role: 'Klijent',
       rating: 5,
-      text: 'Pružili su odličnu uslugu u vremenskom okviru koji smo imali pre predaje ključeva agenciji za nekretnine. Saslušali su naše specifične prioritete i divno ih ispunili. Sigurno ću ponovo koristiti njihove usluge.',
+      text: 'Dubinsko pranje kreveta me je spasilo od alergija. Sve preporuke za Super Clean tim, stigli su tačno na vreme.',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=clamp&w=150&h=150&q=80'
     },
     {
       id: '3',
       name: 'Milica Jovanović',
       location: 'Zemun',
-      role: 'Menadžer objekta',
+      role: 'Klijent',
       rating: 5,
-      text: 'Koristili smo njihove usluge pet puta tokom naše najprometnije sezone i bili smo veoma zadovoljni. Bilo je zadovoljstvo imati zgradu očišćenu svako veče. Odlična usluga kao i uvek!',
+      text: 'Radili su mi dubinsko pranje automobila i prezadovoljna sam. Auto miriše fenomenalno i sedišta su savršeno čista.',
       avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=clamp&w=150&h=150&q=80'
     }
   ] as Testimonial[],
   stats: [
     {
       id: 'stats-finished',
-      label: 'Završenih projekata',
-      value: '750+',
-      description: 'Isporučeni besprekorni prostori',
-      iconName: 'Building'
+      label: 'Završenih pranja',
+      value: '2000+',
+      description: 'Očišćenog nameštaja i automobila',
+      iconName: 'Sparkles'
     },
     {
       id: 'stats-experience',
       label: 'Godina iskustva',
-      value: '15+',
-      description: 'Vodeće znanje u industriji',
+      value: '10+',
+      description: 'Znanja i usavršavanja',
       iconName: 'Award'
     },
     {
       id: 'stats-satisfied',
       label: 'Zadovoljnih klijenata',
-      value: '700+',
+      value: '1500+',
       description: 'Pretežno recenzije sa 5 zvezdica',
       iconName: 'Smile'
     },
     {
       id: 'stats-cleaners',
-      label: 'Profesionalnih radnika',
-      value: '120+',
-      description: 'Osigurani i provereni stručnjaci',
-      iconName: 'Users'
+      label: 'Pokrivenost',
+      value: '100%',
+      description: 'Celog Beograda',
+      iconName: 'MapPin'
     }
   ] as StatItem[],
   whyChoose: [
     {
       id: 'wc-machines',
       title: 'Profesionalne mašine',
-      description: 'Koristimo visokokvalitetna sredstva i opremu za čišćenje kako bismo osigurali da vaš dom ili kancelarija ostanu blistavo čisti i sveži.',
+      description: 'Koristimo Karcher Puzzi i druge profesionalne mašine za ekstrakciju za maksimalne rezultate.',
       iconName: 'Wrench'
     },
     {
       id: 'wc-experience',
-      title: 'Dugogodišnje iskustvo',
-      description: 'Sa dugogodišnjim iskustvom u ovoj industriji, razumemo da visokokvalitetne usluge čišćenja mogu zaista poboljšati vaš život.',
-      iconName: 'History'
+      title: 'Vrhunska hemija',
+      description: 'Koristimo specijalizovana, ne-toksična sredstva koja razbijaju prljavštinu a čuvaju tkaninu.',
+      iconName: 'FlaskConical'
     },
     {
       id: 'wc-trusted',
-      title: 'Pouzdani i od poverenja',
-      description: 'Kada birate agenciju za čišćenje, poverenje i pouzdanost su od suštinskog značaja. Zato su nam ovi kvaliteti na prvom mestu.',
-      iconName: 'Lock'
+      title: 'Brzo sušenje',
+      description: 'Zahvaljujući jakim usisnim motorima, nameštaj ostaje minimalno vlažan i brzo se suši.',
+      iconName: 'Wind'
     }
   ]
 };

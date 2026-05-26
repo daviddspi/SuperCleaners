@@ -7,16 +7,16 @@
   --font-serif: "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #059669;
-  --color-brand-600: #047857;
-  --color-brand-610: #065f46;
-  --color-brand-700: #065f46;
-  --color-brand-800: #064e3b;
+  --color-brand-50: #eff4fb;
+  --color-brand-100: #dde9f7;
+  --color-brand-200: #c1d7f1;
+  --color-brand-300: #9abce8;
+  --color-brand-400: #6d9adb;
+  --color-brand-500: #567AC4;
+  --color-brand-600: #3b5fa9;
+  --color-brand-610: #36579b;
+  --color-brand-700: #314b87;
+  --color-brand-800: #2b406e;
 }
 
 @layer base {
@@ -48,7 +48,7 @@
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  background: linear-gradient(135deg, #567AC4 0%, #6d9adb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
