@@ -39,14 +39,9 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 group cursor-pointer"
           >
-            <div className="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center shadow-sm shadow-brand-500/15">
-              <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
-            </div>
-            <span className="font-display font-semibold text-xl text-white tracking-tight">
-              {config.brand.name}
-            </span>
+            <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-14 w-auto object-contain" />
           </a>
 
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">

@@ -49,7 +49,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
       id="main-navbar-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled 
-          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-slate-150 py-3' 
+          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b-2 border-brand-500 py-3' 
           : 'bg-transparent py-5'
       }`}
     >
@@ -63,7 +63,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           }}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-10 w-auto object-contain" />
+          <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-16 w-auto object-contain" />
         </a>
 
         {/* Desktop Links */}
@@ -85,7 +85,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           <button
             id="nav-booking-btn"
             onClick={() => onOpenBooking()}
-            className="px-6 py-2.5 rounded-full bg-slate-900 text-white font-medium text-sm hover:bg-slate-800 transition-all shadow-sm active:scale-95 cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-brand-500 text-white font-medium text-sm hover:bg-brand-600 transition-all shadow-sm shadow-brand-500/20 active:scale-95 cursor-pointer"
           >
             Zakažite
           </button>
@@ -119,7 +119,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               setMobileMenuOpen(false);
               onOpenBooking();
             }}
-            className="w-full py-3 rounded-xl bg-slate-900 text-white font-medium text-center text-sm shadow-md"
+            className="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-center text-sm shadow-md shadow-brand-500/20"
           >
             Zakažite
           </button>

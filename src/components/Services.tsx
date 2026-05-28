@@ -97,7 +97,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                 <button
                   type="button"
                   onClick={() => setSelectedServiceDetail(service)}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition"
+                  className="flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition cursor-pointer"
                 >
                   <Info className="w-3.5 h-3.5" />
                   <span>Prikaži cene</span>
@@ -106,7 +106,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                 <button
                   type="button"
                   onClick={() => onOpenBooking(service.id)}
-                  className="inline-flex items-center gap-1 px-4 py-2 hover:bg-brand-500 hover:text-white bg-brand-50 text-brand-600 rounded-lg text-xs font-bold transition-all"
+                  className="inline-flex items-center gap-1 px-4 py-2 hover:bg-brand-500 hover:text-white bg-brand-50 text-brand-600 rounded-lg text-xs font-bold transition-all cursor-pointer"
                 >
                   <span>Zakaži</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

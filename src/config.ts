@@ -25,7 +25,7 @@ export const config = {
     name: "Super Clean",
     shortName: "Super Clean",
     tagline: "Profesionalno dubinsko pranje",
-    taglineHighlight: "Besprijekorno čisto",
+    taglineHighlight: "Besprekorno čisto",
     foundedYear: 2012,
     heroTitleLine1: "Vratite sjaj vašem",
     heroTitleLine2: "nameštaju uz naše",
@@ -78,7 +78,7 @@ export const config = {
       description: 'Temeljno čišćenje garnitura, fotelja, stolica i dušeka.',
       longDescription: 'Naše dubinsko pranje uklanja grinje, alergene, prljavštinu i fleke iz dubine materijala. Vaš nameštaj će biti čist, osvežen i suv za par sati.',
       category: 'Glavno',
-      image: 'https://images.unsplash.com/photo-1528740561666-42477c7c346c?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80',
       iconName: 'Armchair',
       items: PRICING_ITEMS.filter(item => item.category === 'namestaj')
     },

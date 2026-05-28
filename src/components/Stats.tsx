@@ -37,7 +37,7 @@ export default function Stats({ onOpenBooking }: StatsProps) {
                   {renderIcon(stat.iconName, "w-5 h-5")}
                 </span>
                 <span className="font-mono text-xs text-brand-200 uppercase tracking-widest font-black leading-none">
-                  {stat.label.split(' ').map(w => w[0]).join('')}
+                  {stat.label}
                 </span>
               </div>
               <h4 className="text-3xl sm:text-4xl font-display font-light tracking-tight text-white mb-1.5">
@@ -61,7 +61,7 @@ export default function Stats({ onOpenBooking }: StatsProps) {
           
           <h2 className="text-3xl md:text-5xl font-display font-light tracking-tight leading-tight text-white">
             Mi smo najbrže <br />
-            <span className="italic font-serif text-brand-200">Rastoća</span> Agencija za Čišćenje
+            <span className="italic font-serif text-brand-200">Rastuća</span> Agencija za Čišćenje
           </h2>
           
           <p className="text-sm md:text-base text-brand-100/95 leading-relaxed font-normal">

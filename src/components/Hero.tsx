@@ -114,7 +114,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 <div className="absolute inset-0 bg-linear-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Floating Specialist Card (Savannah Nguyen) with glassmorphism */}
+              {/* Floating Specialist Card (Jovana Nikolić) with glassmorphism */}
               <motion.div
                 initial={{ opacity: 0, x: 25 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -125,7 +125,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-500">
                     <img 
                       src={GENERATED_IMAGES.heroCleaner}
-                      alt="Savannah Nguyen Headshot" 
+                      alt="Jovana Nikolić Headshot" 
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
@@ -135,7 +135,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 
                 <div className="text-left">
                   <span className="block font-black text-slate-900 text-xs sm:text-sm">
-                    Savannah Nguyen
+                    Jovana Nikolić
                   </span>
                   <span className="text-[10px] text-brand-600 block font-bold leading-normal">
                     5★ Elitni tim za čišćenje
