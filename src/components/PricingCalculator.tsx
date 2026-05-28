@@ -32,7 +32,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
     Object.entries(items).forEach(([id, qty]) => {
       const itemDef = PRICING_ITEMS.find(i => i.id === id);
       if (itemDef) {
-        total += itemDef.price * qty;
+        total += itemDef.price * Number(qty);
       }
     });
     return total;
@@ -137,7 +137,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
 
           </div>
 
-          <div className="lg:col-span-5 relative bg-brand-800 text-white p-8 rounded-2xl overflow-hidden flex flex-col justify-between text-left shadow-xl shadow-brand-800/10">
+          <div className="lg:col-span-5 h-fit lg:sticky lg:top-24 relative bg-brand-800 text-white p-8 rounded-2xl overflow-hidden flex flex-col justify-between text-left shadow-xl shadow-brand-800/10">
             <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/25 rounded-full blur-3xl pointer-events-none" />
             
             <div className="space-y-6">
@@ -164,7 +164,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
                       return (
                         <div key={id} className="flex justify-between items-center text-sm border-b border-brand-700/50 pb-2">
                           <span>{qty}x {itemDef.name}</span>
-                          <span className="font-bold text-white">{itemDef.price * qty} RSD</span>
+                          <span className="font-bold text-white">{itemDef.price * Number(qty)} RSD</span>
                         </div>
                       );
                     })}

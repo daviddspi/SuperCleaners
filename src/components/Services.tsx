@@ -69,7 +69,10 @@ export default function Services({ onOpenBooking }: ServicesProps) {
               onMouseLeave={() => setHoveredId(null)}
             >
               <div>
-                <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                <div 
+                  className="relative aspect-[4/3] overflow-hidden bg-slate-100 cursor-pointer"
+                  onClick={() => setSelectedServiceDetail(service)}
+                >
                   <img
                     src={service.image}
                     alt={service.name}
@@ -77,7 +80,15 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                     referrerPolicy="no-referrer"
                   />
                   
-                  <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 bg-white/95 backdrop-blur-xs text-[10px] font-bold uppercase tracking-wide rounded-full text-slate-800 border border-slate-100/50 shadow-xs">
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                    <span className="bg-white/95 text-slate-900 font-bold px-4 py-2 rounded-full text-xs shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1.5">
+                      <Info className="w-4 h-4 text-brand-500" />
+                      Prikaži cene
+                    </span>
+                  </div>
+                  
+                  <span className="absolute top-4 left-4 z-10 inline-flex items-center px-3 py-1 bg-white/95 backdrop-blur-xs text-[10px] font-bold uppercase tracking-wide rounded-full text-slate-800 border border-slate-100/50 shadow-xs">
                     {service.category}
                   </span>
                 </div>
@@ -138,7 +149,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                       {selectedServiceDetail.category}
                     </span>
                     <h3 className="text-xl font-bold text-slate-900 mt-1">
-                      {selectedServiceDetail.name} Detalji
+                      {selectedServiceDetail.name} Cenovnik
                     </h3>
                   </div>
                   <button 
@@ -149,31 +160,30 @@ export default function Services({ onOpenBooking }: ServicesProps) {
                   </button>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-150">
-                    <img 
-                      src={selectedServiceDetail.image}
-                      alt={selectedServiceDetail.name}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-
-                  <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                <div className="space-y-5">
+                  <p className="text-sm text-slate-500 leading-relaxed font-normal">
                     {selectedServiceDetail.longDescription}
                   </p>
 
-                  <div className="pt-4 border-t border-slate-100">
-                    <h4 className="text-sm font-bold text-slate-800 mb-3">Cenovnik</h4>
-                    <div className="space-y-2">
+                  <div className="bg-white border border-slate-100 shadow-sm rounded-xl overflow-hidden">
+                    <div className="bg-slate-50 px-4 py-3 border-b border-slate-100">
+                      <h4 className="text-sm font-bold text-slate-800 flex items-center gap-2">
+                        <Check className="w-4 h-4 text-brand-500" />
+                        Pojedinačne usluge i cene
+                      </h4>
+                    </div>
+                    <div className="divide-y divide-slate-100">
                       {selectedServiceDetail.items?.map(item => (
-                        <div key={item.id} className="flex justify-between items-center text-xs p-2 rounded-lg bg-slate-50 border border-slate-100">
-                          <span className="font-semibold text-slate-700">{item.name} {item.description && <span className="font-normal text-slate-500 text-[10px]">({item.description})</span>}</span>
-                          <span className="font-bold text-brand-600">
+                        <div key={item.id} className="flex justify-between items-center p-4 hover:bg-slate-50/50 transition-colors">
+                          <div className="flex flex-col">
+                            <span className="font-semibold text-sm text-slate-800">{item.name}</span>
+                            {item.description && <span className="text-[11px] text-slate-400 mt-0.5">{item.description}</span>}
+                          </div>
+                          <span className="font-bold text-brand-600 bg-brand-50 px-3 py-1.5 rounded-lg text-sm">
                             {item.priceType === 'starting' && 'od '}
-                            {item.price} RSD
-                            {item.priceType === 'per_m2' && '/m²'}
-                            {item.priceType === 'per_seat' && '/mesto'}
+                            {item.price.toLocaleString('sr-RS')} RSD
+                            {item.priceType === 'per_m2' && ' / m²'}
+                            {item.priceType === 'per_seat' && ' / mesto'}
                           </span>
                         </div>
                       ))}

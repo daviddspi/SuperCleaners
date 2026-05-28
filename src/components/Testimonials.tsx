@@ -1,9 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { TESTIMONIALS } from '../data';
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev === TESTIMONIALS.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? TESTIMONIALS.length - 1 : prev - 1));
@@ -30,14 +38,30 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Desktop Presentation Grid (3 testimonials side-by-side) */}
-        <div className="hidden lg:grid grid-cols-3 gap-8">
-          {TESTIMONIALS.map((review) => (
-            <div
-              key={review.id}
-              className="p-8 rounded-2xl bg-white border border-slate-100 hover:border-brand-500/25 hover:shadow-lg transition-all duration-300 text-left flex flex-col justify-between"
-            >
-              <div className="space-y-4">
+        {/* Shared wrapper for arrows positioning */}
+        <div className="relative w-full max-w-6xl mx-auto">
+          {/* Desktop Presentation Grid (3 testimonials side-by-side) */}
+          <div className="hidden lg:flex items-stretch justify-center gap-6 py-16 px-4">
+          <AnimatePresence mode="popLayout">
+            {[0, 1, 2].map((offset) => {
+              const review = TESTIMONIALS[(currentIndex + offset) % TESTIMONIALS.length];
+              const isMiddle = offset === 1;
+              return (
+              <motion.div
+                key={review.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9, x: 100 }}
+                animate={{ 
+                  opacity: isMiddle ? 1 : 0.4, 
+                  scale: isMiddle ? 1.05 : 0.9,
+                  x: 0,
+                  zIndex: isMiddle ? 10 : 1
+                }}
+                exit={{ opacity: 0, scale: 0.9, x: -100 }}
+                transition={{ duration: 0.5, type: 'spring', bounce: 0.15 }}
+                className={`w-[350px] shrink-0 p-8 rounded-2xl bg-white border text-left flex flex-col justify-between ${isMiddle ? 'border-brand-500 shadow-2xl' : 'border-slate-100 shadow-sm'}`}
+              >
+                <div className="space-y-4">
                 {/* 5 Star Ratings Row */}
                 <div className="flex gap-1 text-amber-400">
                   {[1, 2, 3, 4, 5].map((num) => (
@@ -76,8 +100,10 @@ export default function Testimonials() {
                   <Quote className="w-4 h-4 scale-x-[-1]" />
                 </span>
               </div>
-            </div>
-          ))}
+            </motion.div>
+            );
+          })}
+          </AnimatePresence>
         </div>
 
         {/* Mobile / Tablet Friendly Slider Layout */}
@@ -122,36 +148,37 @@ export default function Testimonials() {
           </div>
 
           {/* Dots Indicator Line */}
-          <div className="flex justify-center gap-1.5 mt-6">
-            {TESTIMONIALS.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentIndex === idx ? 'bg-brand-500 w-5' : 'bg-slate-250'
-                }`}
-              />
-            ))}
+            <div className="flex justify-center gap-1.5 mt-6">
+              {TESTIMONIALS.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    currentIndex === idx ? 'bg-brand-500 w-5' : 'bg-slate-250'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Slider Navigation Buttons */}
-        <div className="flex justify-center gap-3.5 mt-8 lg:mt-12">
+          {/* Absolute Navigation Arrows for both Desktop & Mobile */}
           <button
             onClick={prevSlide}
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200 active:scale-95 transition"
+            className="absolute -left-3 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-brand-500 shadow-[0_8px_30px_rgb(86,122,196,0.25)] border border-brand-500 text-white hover:bg-brand-610 hover:scale-110 active:scale-95 transition-all cursor-pointer"
             aria-label="Previous Testimonial"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-brand-500 text-white hover:bg-brand-610 active:scale-95 transition shadow-lg shadow-brand-500/10"
+            className="absolute -right-3 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-brand-500 shadow-[0_8px_30px_rgb(86,122,196,0.25)] border border-brand-500 text-white hover:bg-brand-610 hover:scale-110 active:scale-95 transition-all cursor-pointer"
             aria-label="Next Testimonial"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-6 h-6" />
           </button>
         </div>
+
+
 
       </div>
     </section>

@@ -131,6 +131,33 @@ export const config = {
       rating: 5,
       text: 'Radili su mi dubinsko pranje automobila i prezadovoljna sam. Auto miriše fenomenalno i sedišta su savršeno čista.',
       avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=clamp&w=150&h=150&q=80'
+    },
+    {
+      id: '4',
+      name: 'Stefan Ilić',
+      location: 'Dorćol',
+      role: 'Klijent',
+      rating: 5,
+      text: 'Odlična usluga! Imali smo ogromnu fleku od vina na ugaonoj garnituri, momci su je skinuli bez problema. Nameštaj je bio suv već isto veče.',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=clamp&w=150&h=150&q=80'
+    },
+    {
+      id: '5',
+      name: 'Ana Marić',
+      location: 'Voždovac',
+      role: 'Klijent',
+      rating: 5,
+      text: 'Tepisi su nam progledali! Zaboravila sam koju su boju uopšte imali. Super Clean tim je veoma ljubazan i pedantan. Sve pohvale!',
+      avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=clamp&w=150&h=150&q=80'
+    },
+    {
+      id: '6',
+      name: 'Nikola Đorđević',
+      location: 'Banovo Brdo',
+      role: 'Klijent',
+      rating: 5,
+      text: 'Profesionalci u pravom smislu te reči. Pozvao sam ih zbog dubinskog pranja dušeka i rezultat je fantastičan. Oseća se svežina u celoj sobi.',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=clamp&w=150&h=150&q=80'
     }
   ] as Testimonial[],
   stats: [

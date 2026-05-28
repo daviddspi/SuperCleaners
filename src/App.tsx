@@ -265,7 +265,7 @@ export default function App() {
               <span>Pranje tepiha</span> <span className="text-brand-200">✦</span>
               <span>Poliranje vozila</span> <span className="text-brand-200">✦</span>
               <span>Čišćenje dušeka</span> <span className="text-brand-200">✦</span>
-              <span>Uklanjanje fleka</span> <span className="text-brand-100">✔</span>
+              <span>Uklanjanje fleka</span> <span className="text-brand-200">✦</span>
             </div>
           ))}
         </div>
