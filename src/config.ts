@@ -43,7 +43,7 @@ export const config = {
   },
   contact: {
     phone: "+381 60 123 4567",
-    email: "info@superclean.rs",
+    email: "online@dubinskopranjebg.rs",
     address: "Beograd, Srbija",
     socials: {
       facebook: "#",

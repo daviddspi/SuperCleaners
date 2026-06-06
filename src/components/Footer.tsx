@@ -1,13 +1,12 @@
 import React from 'react';
-import { Sparkles, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 import { config } from '../config';
 
 interface FooterProps {
   onOpenBooking: () => void;
-  onJoinStaff: () => void;
 }
 
-export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
+export default function Footer({ onOpenBooking }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -28,161 +27,228 @@ export default function Footer({ onOpenBooking, onJoinStaff }: FooterProps) {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-850">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-left mb-16">
+    <footer className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 text-slate-300 pt-20 pb-10 border-t border-slate-800 relative overflow-hidden">
+      {/* Background radial accent glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-52 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
-        {/* Column 1: Info and contact */}
-        <div className="space-y-6">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="flex items-center gap-2 group cursor-pointer"
-          >
-            <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-14 w-auto object-contain" />
-          </a>
-
-          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-            {config.brand.footerDescription}
-          </p>
-
-          <div className="space-y-3.5 text-xs">
-            <a href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
-              <Phone className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>{config.contact.phone}</span>
+        {/* Main Columns Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 text-left mb-16">
+          
+          {/* Column 1: Info and brand profile (lg:col-span-5) */}
+          <div className="space-y-6 lg:col-span-5">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-block group cursor-pointer"
+            >
+              <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-103" />
             </a>
-            <a href={`mailto:${config.contact.email}`} className="flex items-center gap-3.5 text-slate-400 hover:text-white transition">
-              <Mail className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>{config.contact.email}</span>
-            </a>
-            <div className="flex items-start gap-3.5 text-slate-400">
-              <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-              <span>{config.contact.address}</span>
+
+            <p className="text-sm text-slate-400 leading-relaxed font-normal max-w-sm">
+              {config.brand.footerDescription}
+            </p>
+
+            {/* Social media icons */}
+            <div className="flex gap-3 pt-2">
+              <a 
+                href={config.contact.socials.facebook} 
+                onClick={(e) => { if(config.contact.socials.facebook === '#') e.preventDefault(); }} 
+                aria-label="Facebook" 
+                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a 
+                href={config.contact.socials.twitter} 
+                onClick={(e) => { if(config.contact.socials.twitter === '#') e.preventDefault(); }} 
+                aria-label="Twitter" 
+                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a 
+                href={config.contact.socials.instagram} 
+                onClick={(e) => { if(config.contact.socials.instagram === '#') e.preventDefault(); }} 
+                aria-label="Instagram" 
+                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
             </div>
           </div>
-        </div>
 
-        {/* Column 2: Lists of Services */}
-        <div className="space-y-5">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Naše usluge čišćenja
-          </h4>
-          <ul className="space-y-2.5 text-xs text-slate-400">
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Dubinsko pranje tepiha
-              </a>
-            </li>
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Dubinsko pranje nameštaja
-              </a>
-            </li>
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Dubinsko pranje automobila
-              </a>
-            </li>
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Uklanjanje fleka i mirisa
-              </a>
-            </li>
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Čišćenje dušeka i kreveta
-              </a>
-            </li>
-            <li>
-              <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="hover:text-white transition">
-                Poliranje i pranje vozila
-              </a>
-            </li>
-          </ul>
-        </div>
+          {/* Column 2: Links Grid (Services & Info) (lg:col-span-4) */}
+          <div className="grid grid-cols-2 gap-8 lg:col-span-4">
+            
+            {/* Sub-column 1: Services */}
+            <div className="space-y-5">
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+                <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+                Usluge
+              </h4>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Tepisi</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Nameštaj</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Automobili</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Fleke i mirisi</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Dušeci</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Poliranje</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-        {/* Column 3: Help & Details */}
-        <div className="space-y-5">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Pomoć i informacije
-          </h4>
-          <ul className="space-y-2.5 text-xs text-slate-400">
-            <li>
-              <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="hover:text-white transition">
-                O našoj kompaniji
-              </a>
-            </li>
-            <li>
-              <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
-                Interaktivni kalkulator cene
-              </a>
-            </li>
-            <li>
-              <a href="#reviews-section" onClick={(e) => handleLinkClick(e, '#reviews-section')} className="hover:text-white transition">
-                Recenzije klijenata
-              </a>
-            </li>
-            <li>
-              <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="hover:text-white transition">
-                Zakazivanje
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
-                Politika privatnosti
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-white transition">
-                Uslovi korišćenja
-              </a>
-            </li>
-          </ul>
-        </div>
+            {/* Sub-column 2: Help & Info */}
+            <div className="space-y-5">
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+                <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+                Informacije
+              </h4>
+              <ul className="space-y-3 text-xs text-slate-400">
+                <li>
+                  <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">O nama</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Kalkulator cene</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#reviews-section" onClick={(e) => handleLinkClick(e, '#reviews-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Recenzije</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Zakazivanje</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Privatnost</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Uslovi</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-        {/* Column 4: Become a Cleaner */}
-        <div className="space-y-4">
-          <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-            Postani član {config.brand.shortName} tima!
-          </h4>
-          <p className="text-xs text-slate-400 leading-relaxed font-normal">
-            {config.recruitment.description}
-          </p>
-          <div className="pt-2">
-            <button
-              id="footer-join-us-btn"
-              onClick={onJoinStaff}
-              className="px-6 py-2.5 w-full rounded-xl bg-brand-500 hover:bg-brand-610 text-white text-xs font-semibold transition shadow-md shadow-brand-500/10 cursor-pointer text-center"
-            >
-              Prijavi se za posao
-            </button>
           </div>
+
+          {/* Column 3: Premium Contact Cards (lg:col-span-3) */}
+          <div className="space-y-5 lg:col-span-3">
+            <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+              <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+              Kontakt
+            </h4>
+            
+            <div className="space-y-3">
+              <a 
+                href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} 
+                className="group/contact flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900/90 transition-all duration-300"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center group-hover/contact:bg-brand-500 group-hover/contact:text-white transition-all duration-300 shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Pozovite nas</span>
+                  <span className="text-xs text-slate-300 font-semibold group-hover/contact:text-white transition-colors">{config.contact.phone}</span>
+                </div>
+              </a>
+              
+              <a 
+                href={`mailto:${config.contact.email}`} 
+                className="group/contact flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900/90 transition-all duration-300"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center group-hover/contact:bg-brand-500 group-hover/contact:text-white transition-all duration-300 shrink-0">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Email adresa</span>
+                  <span className="text-xs text-slate-300 font-semibold group-hover/contact:text-white transition-colors">{config.contact.email}</span>
+                </div>
+              </a>
+
+              <div 
+                className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 shrink-0"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div className="text-left">
+                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Naša lokacija</span>
+                  <span className="text-xs text-slate-350 font-semibold">{config.contact.address}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-      </div>
+        {/* Decorative full-width line */}
+        <div className="h-[1px] w-full bg-slate-800/60 mb-8" />
 
-      {/* Decorative full-width strip */}
-      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent mb-8" />
-
-      {/* Footer Bottom Bar */}
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-        <div>
-          <span>© {currentYear} {config.brand.name}. Sva prava zadržana.</span>
-        </div>
-        
-        {/* Socials Icons */}
-        <div className="flex gap-4.5">
-          <a href={config.contact.socials.facebook} onClick={(e) => { if(config.contact.socials.facebook === '#') e.preventDefault(); }} aria-label="Facebook handle" className="hover:text-brand-500 transition">
-            <Facebook className="w-4 h-4" />
-          </a>
-          <a href={config.contact.socials.twitter} onClick={(e) => { if(config.contact.socials.twitter === '#') e.preventDefault(); }} aria-label="Twitter handle" className="hover:text-brand-500 transition">
-            <Twitter className="w-4 h-4" />
-          </a>
-          <a href={config.contact.socials.instagram} onClick={(e) => { if(config.contact.socials.instagram === '#') e.preventDefault(); }} aria-label="Instagram handle" className="hover:text-brand-500 transition">
-            <Instagram className="w-4 h-4" />
-          </a>
+        {/* Footer Bottom Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+          <div>
+            <span>© {currentYear} {config.brand.name}. Sva prava zadržana.</span>
+          </div>
+          
+          <div>
+            <span>Designed & Developed by </span>
+            <a 
+              href="https://www.instagram.com/djuka.2/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="font-bold text-slate-350 hover:text-brand-400 transition-colors duration-200"
+            >
+              David
+            </a>
+          </div>
         </div>
       </div>
     </footer>

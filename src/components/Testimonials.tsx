@@ -164,14 +164,14 @@ export default function Testimonials() {
           {/* Absolute Navigation Arrows for both Desktop & Mobile */}
           <button
             onClick={prevSlide}
-            className="absolute -left-3 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-brand-500 shadow-[0_8px_30px_rgb(86,122,196,0.25)] border border-brand-500 text-white hover:bg-brand-610 hover:scale-110 active:scale-95 transition-all cursor-pointer"
+            className="absolute -left-3 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border-2 border-brand-500 text-brand-500 hover:bg-brand-500 hover:text-white hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
             aria-label="Previous Testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute -right-3 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-brand-500 shadow-[0_8px_30px_rgb(86,122,196,0.25)] border border-brand-500 text-white hover:bg-brand-610 hover:scale-110 active:scale-95 transition-all cursor-pointer"
+            className="absolute -right-3 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border-2 border-brand-500 text-brand-500 hover:bg-brand-500 hover:text-white hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
             aria-label="Next Testimonial"
           >
             <ChevronRight className="w-6 h-6" />

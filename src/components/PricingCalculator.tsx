@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowRight, Info, Minus, Plus } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Info, Minus, Plus, ShoppingBag, X, ChevronUp } from 'lucide-react';
 import { PRICING_ITEMS } from '../config';
 
 interface PricingCalculatorProps {
@@ -12,6 +12,8 @@ interface PricingCalculatorProps {
 export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCalculatorProps) {
   const [activeTab, setActiveTab] = useState<'namestaj' | 'tepisi' | 'automobili'>('namestaj');
   const [items, setItems] = useState<Record<string, number>>({});
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const handleUpdateItem = (id: string, amount: number) => {
     setItems(prev => {
@@ -39,13 +41,25 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
   };
 
   const estimatedTotal = calculateEstimate();
+  const itemCount = (Object.values(items) as number[]).reduce((sum, qty) => sum + qty, 0);
 
   const handleProceed = () => {
     onOpenBookingWithPrefs({
       items,
       totalPrice: estimatedTotal
     });
+    setIsDrawerOpen(false);
   };
+
+  // Lock body scroll when drawer is open
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isDrawerOpen]);
 
   const renderCategoryItems = (category: string) => {
     const categoryItems = PRICING_ITEMS.filter(item => item.category === category);
@@ -71,14 +85,14 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => handleUpdateItem(item.id, -1)}
-                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition"
+                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition cursor-pointer"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
                 <span className="w-8 text-center font-bold text-slate-800">{qty}</span>
                 <button
                   onClick={() => handleUpdateItem(item.id, 1)}
-                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition"
+                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -90,120 +104,222 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
     );
   };
 
-  return (
-    <section id="estimator-section" className="py-16 md:py-24 bg-slate-50 relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
-          <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            Transparentne cene
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            Interaktivni <span className="italic font-serif text-brand-500">Kalkulator Cene</span>
-          </h2>
-          <p className="text-sm text-slate-500 font-normal">
-            Dodajte stavke ispod i odmah pogledajte procenjenu cenu vašeg čišćenja.
+  /* ── Shared cart content (reused in sidebar & drawer) ── */
+  const renderCartContent = () => (
+    <>
+      <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 flex items-start gap-3">
+        <Info className="w-5 h-5 text-brand-200 mt-0.5 shrink-0" />
+        <div>
+          <h4 className="font-bold text-sm text-brand-100">Besplatno preuzimanje</h4>
+          <p className="text-[11px] text-brand-200">
+            Preuzimanje i vraćanje tepiha je besplatno za kvadrature veće od 5m².
           </p>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+      <div className="border-t border-brand-700 pt-6 space-y-3 text-xs text-brand-200/90">
+        <h4 className="font-bold text-brand-100 mb-4 uppercase tracking-wider text-[10px]">Vaša korpa</h4>
+        
+        {Object.keys(items).length === 0 ? (
+          <p className="text-white/50 italic">Niste izabrali nijednu uslugu.</p>
+        ) : (
+          <div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+            {Object.entries(items).map(([id, qty]) => {
+              const itemDef = PRICING_ITEMS.find(i => i.id === id);
+              if (!itemDef) return null;
+              return (
+                <div key={id} className="flex justify-between items-center text-sm border-b border-brand-700/50 pb-2">
+                  <span>{qty}x {itemDef.name}</span>
+                  <span className="font-bold text-white">{itemDef.price * Number(qty)} RSD</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
+  );
+
+  const renderCartFooter = () => (
+    <div className="pt-6 border-t border-brand-700 space-y-4">
+      <div className="flex justify-between items-baseline">
+        <div>
+          <span className="text-xs text-brand-200 uppercase tracking-wider block">
+            Ukupno (RSD)
+          </span>
+          <span className="text-[10px] opacity-60">Okvirna cena</span>
+        </div>
+        <div className="text-right">
+          <span className="text-4xl font-black text-white tracking-tight">
+            {estimatedTotal.toLocaleString('sr-RS')}
+          </span>
+        </div>
+      </div>
+
+      <button
+        id="estimator-proceed-btn"
+        onClick={handleProceed}
+        disabled={Object.keys(items).length === 0}
+        className="w-full py-4 bg-white text-brand-800 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 active:scale-[0.98] font-semibold text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
+      >
+        <span>Zakaži pranje</span>
+        <ArrowRight className="w-4 h-4" />
+      </button>
+    </div>
+  );
+
+  return (
+    <>
+      <section id="estimator-section" className="py-16 md:py-24 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           
-          <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-2xl border border-slate-100/80 shadow-sm text-left space-y-8 flex flex-col justify-between">
-            
-            <div className="flex gap-2 p-1 bg-slate-100 rounded-xl overflow-x-auto hide-scrollbar">
-              <button 
-                onClick={() => setActiveTab('namestaj')}
-                className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'namestaj' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-              >
-                Nameštaj
-              </button>
-              <button 
-                onClick={() => setActiveTab('tepisi')}
-                className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'tepisi' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-              >
-                Tepisi i podovi
-              </button>
-              <button 
-                onClick={() => setActiveTab('automobili')}
-                className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'automobili' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-              >
-                Automobili
-              </button>
-            </div>
-
-            <div className="min-h-[400px]">
-              {renderCategoryItems(activeTab)}
-            </div>
-
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
+            <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
+              Transparentne cene
+            </span>
+            <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
+              Interaktivni <span className="italic font-serif text-brand-500">Kalkulator Cene</span>
+            </h2>
+            <p className="text-sm text-slate-500 font-normal">
+              Dodajte stavke ispod i odmah pogledajte procenjenu cenu vašeg čišćenja.
+            </p>
           </div>
 
-          <div className="lg:col-span-5 h-fit lg:sticky lg:top-24 relative bg-brand-800 text-white p-8 rounded-2xl overflow-hidden flex flex-col justify-between text-left shadow-xl shadow-brand-800/10">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
             
-            <div className="space-y-6">
-              <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 flex items-start gap-3">
-                <Info className="w-5 h-5 text-brand-200 mt-0.5 shrink-0" />
-                <div>
-                  <h4 className="font-bold text-sm text-brand-100">Besplatno preuzimanje</h4>
-                  <p className="text-[11px] text-brand-200">
-                    Preuzimanje i vraćanje tepiha je besplatno za kvadrature veće od 5m².
-                  </p>
-                </div>
+            {/* Items list — add bottom padding on mobile so floating bar doesn't overlap */}
+            <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-2xl border border-slate-100/80 shadow-sm text-left space-y-8 flex flex-col justify-between pb-28 lg:pb-10">
+              
+              <div className="flex gap-2 p-1 bg-slate-100 rounded-xl overflow-x-auto hide-scrollbar">
+                <button 
+                  onClick={() => setActiveTab('namestaj')}
+                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'namestaj' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Nameštaj
+                </button>
+                <button 
+                  onClick={() => setActiveTab('tepisi')}
+                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'tepisi' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Tepisi i podovi
+                </button>
+                <button 
+                  onClick={() => setActiveTab('automobili')}
+                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'automobili' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                >
+                  Automobili
+                </button>
               </div>
 
-              <div className="border-t border-brand-700 pt-6 space-y-3 text-xs text-brand-200/90">
-                <h4 className="font-bold text-brand-100 mb-4 uppercase tracking-wider text-[10px]">Vaša korpa</h4>
-                
-                {Object.keys(items).length === 0 ? (
-                  <p className="text-white/50 italic">Niste izabrali nijednu uslugu.</p>
-                ) : (
-                  <div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
-                    {Object.entries(items).map(([id, qty]) => {
-                      const itemDef = PRICING_ITEMS.find(i => i.id === id);
-                      if (!itemDef) return null;
-                      return (
-                        <div key={id} className="flex justify-between items-center text-sm border-b border-brand-700/50 pb-2">
-                          <span>{qty}x {itemDef.name}</span>
-                          <span className="font-bold text-white">{itemDef.price * Number(qty)} RSD</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+              <div className="min-h-[400px]">
+                {renderCategoryItems(activeTab)}
               </div>
+
             </div>
 
-            <div className="mt-8 pt-6 border-t border-brand-700 space-y-4">
-              <div className="flex justify-between items-baseline">
-                <div>
-                  <span className="text-xs text-brand-200 uppercase tracking-wider block">
-                    Ukupno (RSD)
-                  </span>
-                  <span className="text-[10px] opacity-60">Okvirna cena</span>
-                </div>
-                <div className="text-right">
-                  <span className="text-4xl font-black text-white tracking-tight">
-                    {estimatedTotal.toLocaleString('sr-RS')}
-                  </span>
-                </div>
+            {/* ── Desktop sidebar cart (hidden on mobile) ── */}
+            <div className="hidden lg:flex lg:col-span-5 h-fit lg:sticky lg:top-24 relative bg-brand-800 text-white p-8 rounded-2xl overflow-hidden flex-col justify-between text-left shadow-xl shadow-brand-800/10">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/25 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="space-y-6">
+                {renderCartContent()}
               </div>
 
-              <button
-                id="estimator-proceed-btn"
-                onClick={handleProceed}
-                disabled={Object.keys(items).length === 0}
-                className="w-full py-4 bg-white text-brand-800 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 active:scale-[0.98] font-semibold text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <span>Zakaži pranje</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="mt-8">
+                {renderCartFooter()}
+              </div>
             </div>
 
           </div>
 
         </div>
+      </section>
 
+      {/* ── Mobile sticky floating bar (hidden on desktop) ── */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden transition-all duration-500 ease-out ${
+          itemCount > 0
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="mx-3 mb-3">
+          <button
+            onClick={() => setIsDrawerOpen(true)}
+            className="w-full bg-brand-800 text-white rounded-2xl px-5 py-4 flex items-center justify-between shadow-2xl shadow-brand-800/40 border border-brand-700/50 active:scale-[0.98] transition-transform cursor-pointer"
+          >
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <ShoppingBag className="w-5 h-5 text-brand-200" />
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-brand-500 text-white text-[10px] font-black rounded-full flex items-center justify-center">
+                  {itemCount}
+                </span>
+              </div>
+              <div className="text-left">
+                <span className="text-[10px] uppercase tracking-widest text-brand-300 block leading-none">Vaša korpa</span>
+                <span className="text-xs text-brand-100 font-medium">
+                  {itemCount} {itemCount === 1 ? 'stavka' : itemCount < 5 ? 'stavke' : 'stavki'}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <span className="text-xl font-black text-white tracking-tight">
+                  {estimatedTotal.toLocaleString('sr-RS')}
+                </span>
+                <span className="text-[10px] text-brand-300 block leading-none">RSD</span>
+              </div>
+              <ChevronUp className="w-5 h-5 text-brand-300" />
+            </div>
+          </button>
+        </div>
       </div>
-    </section>
+
+      {/* ── Mobile bottom sheet drawer ── */}
+      {/* Backdrop */}
+      <div
+        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
+          isDrawerOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setIsDrawerOpen(false)}
+      />
+
+      {/* Drawer panel */}
+      <div
+        ref={drawerRef}
+        className={`fixed bottom-0 left-0 right-0 z-[70] lg:hidden transition-transform duration-400 ease-out ${
+          isDrawerOpen ? 'translate-y-0' : 'translate-y-full'
+        }`}
+      >
+        <div className="bg-brand-800 text-white rounded-t-3xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+          
+          {/* Drag handle + close */}
+          <div className="pt-3 pb-2 px-6 flex items-center justify-between shrink-0">
+            <div className="w-10 h-1 bg-white/20 rounded-full mx-auto" />
+          </div>
+
+          <div className="px-6 pb-2 flex items-center justify-between shrink-0">
+            <h3 className="font-display text-lg font-semibold text-white">Vaša korpa</h3>
+            <button
+              onClick={() => setIsDrawerOpen(false)}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer"
+            >
+              <X className="w-4 h-4 text-white" />
+            </button>
+          </div>
+
+          {/* Scrollable cart content */}
+          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+            {renderCartContent()}
+          </div>
+
+          {/* Footer with total + CTA */}
+          <div className="px-6 pb-6 pt-2 shrink-0">
+            {renderCartFooter()}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

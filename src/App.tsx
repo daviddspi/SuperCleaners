@@ -6,7 +6,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WhyChoose from './components/WhyChoose';
 import Services from './components/Services';
+import OurWork from './components/OurWork';
 import Stats from './components/Stats';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
 import PricingCalculator from './components/PricingCalculator';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
@@ -18,12 +21,6 @@ export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [preselectedItems, setPreselectedItems] = useState<Record<string, number>>({});
   const [preselectedTotalPrice, setPreselectedTotalPrice] = useState<number>(0);
-  // Custom states for staff applications & news signups
-  const [isApplyingStaff, setIsApplyingStaff] = useState(false);
-  const [staffName, setStaffName] = useState('');
-  const [staffEmail, setStaffEmail] = useState('');
-  const [staffSuccess, setStaffSuccess] = useState(false);
-  
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
@@ -40,18 +37,6 @@ export default function App() {
     setIsBookingOpen(true);
   };
 
-  const handleJoinStaffSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (staffName && staffEmail) {
-      setStaffSuccess(true);
-      setTimeout(() => {
-        setStaffSuccess(false);
-        setStaffName('');
-        setStaffEmail('');
-        setIsApplyingStaff(false);
-      }, 3000);
-    }
-  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -177,6 +162,9 @@ export default function App() {
       {/* Core Cleaning Services List (6 main cards with hover properties) */}
       <Services onOpenBooking={handleOpenBooking} />
 
+      {/* Before/After gallery of works */}
+      <OurWork />
+
       {/* Dynamic Statistics Block with dark blue theme overlay */}
       <Stats onOpenBooking={() => handleOpenBooking()} />
 
@@ -255,26 +243,52 @@ export default function App() {
       {/* What Our Customers Say (Testimonial carousel) */}
       <Testimonials />
 
+      {/* FAQ accordion section */}
+      <FAQ />
+
+      {/* Contact info and form section */}
+      <Contact />
+
       {/* Dynamic continuous running infinite categories strip, matching graphic */}
-      <div className="w-full bg-brand-500 text-white py-4 overflow-hidden relative font-display font-extrabold text-xs uppercase tracking-wider select-none">
+      <div className="w-full bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 text-white py-5 overflow-hidden relative font-display font-semibold text-xs sm:text-sm uppercase tracking-widest select-none shadow-md border-y border-white/5">
+        {/* Left and Right Fade Overlays matching marquee gradient */}
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-brand-600 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-brand-600 to-transparent z-10 pointer-events-none" />
+        
         <div className="flex gap-16 whitespace-nowrap animate-marquee">
           {[1, 2, 3].map((set) => (
             <div key={set} className="flex gap-16 shrink-0 items-center justify-around">
-              <span>Pranje nameštaja</span> <span className="text-brand-200">✦</span>
-              <span>Dubinsko pranje automobila</span> <span className="text-brand-200">✦</span>
-              <span>Pranje tepiha</span> <span className="text-brand-200">✦</span>
-              <span>Poliranje vozila</span> <span className="text-brand-200">✦</span>
-              <span>Čišćenje dušeka</span> <span className="text-brand-200">✦</span>
-              <span>Uklanjanje fleka</span> <span className="text-brand-200">✦</span>
+              <span className="flex items-center gap-2">
+                <span>Pranje nameštaja</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span>Dubinsko pranje automobila</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span>Pranje tepiha</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span>Poliranje vozila</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span>Čišćenje dušeka</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <span>Uklanjanje fleka</span>
+                <span className="text-brand-300 font-bold">✦</span>
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Fully Finished Footer */}
       <Footer 
         onOpenBooking={() => handleOpenBooking()} 
-        onJoinStaff={() => setIsApplyingStaff(true)} 
       />
 
       {/* Accessible Interactive Booking Modal */}
@@ -284,96 +298,6 @@ export default function App() {
         items={preselectedItems}
         totalPrice={preselectedTotalPrice}
       />
-
-      {/* Dynamic Pop-up Apply for job modal */}
-      <AnimatePresence>
-        {isApplyingStaff && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-md">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative text-left"
-            >
-              <button
-                onClick={() => setIsApplyingStaff(false)}
-                className="absolute top-4 right-4 p-1.5 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="mb-6">
-                <span className="p-3 bg-brand-100 text-brand-500 rounded-2xl inline-block mb-3.5">
-                  <Sparkles className="w-5 h-5 animate-pulse" />
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 leading-tight">
-                  Pridruži se timu {config.brand.name}!
-                </h3>
-                <p className="text-xs text-slate-550 mt-1.5">
-                  {config.recruitment.description} Zaradi između {config.recruitment.salaryRange} uz fleksibilno radno vreme na teritoriji {config.recruitment.location}.
-                </p>
-              </div>
-
-              {staffSuccess ? (
-                <div className="py-6 text-center space-y-3.5">
-                  <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                    <Check className="w-6 h-6 stroke-[3]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">Prijava primljena!</h4>
-                    <p className="text-xs text-slate-500">
-                      Naš tim za ljudske resurse će vas kontaktirati radi zakazivanja intervjua u roku od 48 sati.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleJoinStaffSubmit} className="space-y-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Vaše ime *</label>
-                    <input 
-                      type="text" 
-                      required 
-                      placeholder="npr. Petar Petrović" 
-                      value={staffName}
-                      onChange={(e) => setStaffName(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 uppercase">Email adresa *</label>
-                    <input 
-                      type="email" 
-                      required 
-                      placeholder="npr. petar@gmail.com" 
-                      value={staffEmail}
-                      onChange={(e) => setStaffEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder:text-slate-400"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase block">Godine iskustva u čišćenju</label>
-                    <select className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
-                      <option>Manje od 1 godine</option>
-                      <option>1 - 2 godine</option>
-                      <option>3 - 5 godina</option>
-                      <option>Više od 5 godina</option>
-                    </select>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 bg-brand-500 text-white hover:bg-brand-610 font-bold text-center rounded-full transition shadow-md mt-4 text-xs tracking-wider uppercase cursor-pointer"
-                  >
-                    Pošalji prijavu
-                  </button>
-                </form>
-              )}
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

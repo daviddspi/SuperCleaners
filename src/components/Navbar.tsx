@@ -21,9 +21,11 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   const menuItems = [
     { label: 'O nama', href: '#about-section' },
     { label: 'Usluge', href: '#services-section' },
-    { label: 'Zašto mi', href: '#why-choose-section' },
+    { label: 'Naši radovi', href: '#portfolio-section' },
+    { label: 'Kalkulator', href: '#estimator-section' },
     { label: 'Recenzije', href: '#reviews-section' },
-    { label: 'Kalkulator', href: '#estimator-section' }
+    { label: 'FAQ', href: '#faq-section' },
+    { label: 'Kontakt', href: '#contact-section' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
