@@ -4,6 +4,9 @@ import { config } from '../config';
 
 export default function Contact() {
   const formattedPhone = config.contact.phone.replace(/\+/g, '').replace(/\s+/g, '');
+  const waViberPhone = formattedPhone.startsWith('0') 
+    ? '381' + formattedPhone.slice(1) 
+    : formattedPhone;
 
   return (
     <section id="contact-section" className="py-16 md:py-24 bg-white relative">
@@ -27,7 +30,7 @@ export default function Contact() {
 
           {/* WhatsApp Card */}
           <a
-            href={`https://wa.me/${formattedPhone}?text=Zdravo,%20interesuje%20me%20dubinsko%20pranje.`}
+            href={`https://wa.me/${waViberPhone}?text=Zdravo,%20interesuje%20me%20dubinsko%20pranje.`}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-emerald-500/20 active:scale-[0.98]"
@@ -62,7 +65,7 @@ export default function Contact() {
 
           {/* Viber Card */}
           <a
-            href={`viber://chat?number=%2B${formattedPhone}`}
+            href={`viber://chat?number=%2B${waViberPhone}`}
             className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-violet-500/20 active:scale-[0.98]"
           >
             {/* Background */}

@@ -83,7 +83,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left picture block wrapped with sparkle backdrop per layout */}
-            <div className="lg:col-span-5 relative flex justify-center">
+            <div className="lg:col-span-5 relative flex justify-center order-2 lg:order-1">
               <div className="relative w-full max-w-sm aspect-square">
                 {/* Decorative background circle */}
                 <div className="absolute inset-0 bg-brand-500 rounded-full scale-95 opacity-5 blur-xl -z-10" />
@@ -115,7 +115,7 @@ export default function App() {
             </div>
 
             {/* Right details content checklist */}
-            <div className="lg:col-span-7 space-y-7 text-left">
+            <div className="lg:col-span-7 space-y-7 text-center lg:text-left flex flex-col items-center lg:items-start order-1 lg:order-2">
               <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
                 Premium Dubinsko Pranje
               </span>
@@ -125,14 +125,14 @@ export default function App() {
                 {config.brand.aboutTitleLine2}
               </h2>
               
-              <p className="text-sm md:text-base text-slate-500 leading-relaxed font-normal">
+              <p className="text-sm md:text-base text-slate-500 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
                 {config.brand.aboutDescription}
               </p>
 
               {/* Checklist details matching reference mockup */}
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-650 font-medium">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-650 font-medium w-full">
                 {config.features.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
+                  <li key={item} className="flex items-start justify-center lg:justify-start gap-2.5 text-left">
                     <span className="p-1 bg-brand-50 text-brand-550 rounded-lg shrink-0 mt-0.5">
                       <Check className="w-3.5 h-3.5 stroke-[3]" />
                     </span>
@@ -174,7 +174,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
               <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
                 Izuzetna Pogodnost
               </span>
@@ -184,7 +184,7 @@ export default function App() {
                 {config.brand.convenienceTitleLine2}
               </h2>
               
-              <div className="space-y-4 text-xs sm:text-sm text-slate-550 leading-relaxed font-normal">
+              <div className="space-y-4 text-xs sm:text-sm text-slate-555 leading-relaxed font-normal max-w-lg mx-auto lg:mx-0">
                 <p>{config.brand.convenienceDescription1}</p>
                 <p>{config.brand.convenienceDescription2}</p>
               </div>

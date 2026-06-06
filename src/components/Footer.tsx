@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import { config } from '../config';
 
 interface FooterProps {
@@ -34,10 +34,10 @@ export default function Footer({ onOpenBooking }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
         
         {/* Main Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 text-left mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 text-center md:text-left mb-16">
           
           {/* Column 1: Info and brand profile (lg:col-span-5) */}
-          <div className="space-y-6 lg:col-span-5">
+          <div className="space-y-6 lg:col-span-5 flex flex-col items-center md:items-start">
             <a
               href="#"
               onClick={(e) => {
@@ -49,7 +49,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-103" />
             </a>
 
-            <p className="text-sm text-slate-400 leading-relaxed font-normal max-w-sm">
+            <p className="text-sm text-slate-400 leading-relaxed font-normal max-w-sm mx-auto md:mx-0">
               {config.brand.footerDescription}
             </p>
 
@@ -62,14 +62,6 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                 className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href={config.contact.socials.twitter} 
-                onClick={(e) => { if(config.contact.socials.twitter === '#') e.preventDefault(); }} 
-                aria-label="Twitter" 
-                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
-              >
-                <Twitter className="w-5 h-5" />
               </a>
               <a 
                 href={config.contact.socials.instagram} 
@@ -87,11 +79,11 @@ export default function Footer({ onOpenBooking }: FooterProps) {
             
             {/* Sub-column 1: Services */}
             <div className="space-y-5">
-              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
                 <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
                 Usluge
               </h4>
-              <ul className="space-y-3 text-xs text-slate-400">
+              <ul className="space-y-3 text-xs text-slate-400 flex flex-col items-center md:items-start">
                 <li>
                   <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
@@ -133,11 +125,11 @@ export default function Footer({ onOpenBooking }: FooterProps) {
 
             {/* Sub-column 2: Help & Info */}
             <div className="space-y-5">
-              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
                 <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
                 Informacije
               </h4>
-              <ul className="space-y-3 text-xs text-slate-400">
+              <ul className="space-y-3 text-xs text-slate-400 flex flex-col items-center md:items-start">
                 <li>
                   <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
@@ -181,12 +173,12 @@ export default function Footer({ onOpenBooking }: FooterProps) {
 
           {/* Column 3: Premium Contact Cards (lg:col-span-3) */}
           <div className="space-y-5 lg:col-span-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
               <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
               Kontakt
             </h4>
             
-            <div className="space-y-3">
+            <div className="space-y-3 max-w-sm mx-auto md:mx-0 w-full">
               <a 
                 href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} 
                 className="group/contact flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900/90 transition-all duration-300"

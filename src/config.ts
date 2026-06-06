@@ -42,12 +42,11 @@ export const config = {
     footerDescription: "Super Clean je vaša pouzdana agencija za dubinsko pranje nameštaja, tepiha i vozila u Beogradu. Kvalitet bez kompromisa.",
   },
   contact: {
-    phone: "+381 60 123 4567",
+    phone: "065 655 92 93",
     email: "online@dubinskopranjebg.rs",
     address: "Beograd, Srbija",
     socials: {
-      facebook: "#",
-      twitter: "#",
+      facebook: "https://www.facebook.com/profile.php?id=100064085710540&ref=PROFILE_EDIT_xav_ig_profile_page_web#",
       instagram: "https://www.instagram.com/dubinsko_pranje_namestaja_bg/"
     }
   },

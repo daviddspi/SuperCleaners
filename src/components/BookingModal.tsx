@@ -80,12 +80,25 @@ export default function BookingModal({ isOpen, onClose, items, totalPrice }: Boo
     '17:00 - 20:00 (Kasno popodne)'
   ];
 
+  const isValidPhone = (value: string): boolean => {
+    // Strip spaces, dashes, parentheses for digit counting
+    const digitsOnly = value.replace(/[\s\-()]/g, '');
+    // Must start with +, 0, or a digit, and contain at least 9 digits total
+    const phoneRegex = /^[+0]?\d{8,14}$/;
+    return phoneRegex.test(digitsOnly);
+  };
+
   const handleBookNow = (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError('');
 
     if (!fullName || !email || !phone || !address) {
       setValidationError('Molimo popunite sva obavezna polja označena sa *');
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      setValidationError('Unesite ispravan broj telefona (npr. 065 655 92 93 ili +381 65 655 92 93).');
       return;
     }
 

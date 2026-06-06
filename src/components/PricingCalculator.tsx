@@ -175,13 +175,13 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
           
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
             <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-              Transparentne cene
+              Jednostavno i brzo
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-              Interaktivni <span className="italic font-serif text-brand-500">Kalkulator Cene</span>
+              Zakažite Uslugu <span className="italic font-serif text-brand-500">Online</span>
             </h2>
             <p className="text-sm text-slate-500 font-normal">
-              Dodajte stavke ispod i odmah pogledajte procenjenu cenu vašeg čišćenja.
+              Dodajte komade nameštaja ili tepiha i pošaljite upit u nekoliko sekundi.
             </p>
           </div>
 

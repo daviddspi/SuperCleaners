@@ -22,8 +22,8 @@ export default function Services({ onOpenBooking }: ServicesProps) {
     <section id="services-section" className="py-16 md:py-24 bg-slate-50 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-xl text-left">
+        <div className="flex flex-col md:flex-row md:items-end justify-between items-center md:items-end gap-6 mb-12">
+          <div className="max-w-xl text-center md:text-left">
             <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block mb-2">
               Naše usluge
             </span>
@@ -35,7 +35,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center md:justify-start gap-2">
             {[
               { id: 'all', label: 'Sve usluge' },
               { id: 'Glavno', label: 'Glavne usluge' },

@@ -183,7 +183,7 @@ export default function Stats({ onOpenBooking }: StatsProps) {
         </div>
 
         {/* Right Side: Copy and call-to-action (6 cols) */}
-        <div className="lg:col-span-6 text-left space-y-6 order-1 lg:order-2">
+        <div className="lg:col-span-6 text-center lg:text-left flex flex-col items-center lg:items-start space-y-6 order-1 lg:order-2">
           <span className="text-xs uppercase tracking-widest text-brand-500 bg-brand-50 px-3.5 py-1.5 rounded-full font-bold inline-block text-[11px]">
             Brz rast na tržištu
           </span>
@@ -193,11 +193,12 @@ export default function Stats({ onOpenBooking }: StatsProps) {
             <span className="italic font-serif text-brand-200">Rastuća</span> Agencija za Čišćenje
           </h2>
           
-          <p className="text-sm md:text-base text-brand-100/95 leading-relaxed font-normal">
+          <p className="text-sm md:text-base text-brand-100/95 leading-relaxed font-normal max-w-lg">
             Naša usluga brzo raste jer naš tim marljivo radi kako bi vaš dom ili kancelarija bili čisti, sveži i besprekorno uredni. Možete nam verovati. Koristimo premium netoksične, ekološke formule kako biste živeli u savršeno sterilnom okruženju.
           </p>
 
-          <div className="pt-2">
+          {/* Desktop-only button */}
+          <div className="pt-2 hidden lg:block">
             <button
               id="stats-view-services-btn"
               onClick={onOpenBooking}
@@ -208,6 +209,17 @@ export default function Stats({ onOpenBooking }: StatsProps) {
           </div>
         </div>
 
+      </div>
+
+      {/* Mobile-only CTA button at the very bottom */}
+      <div className="pt-8 flex justify-center lg:hidden relative z-10">
+        <button
+          id="stats-view-services-btn-mobile"
+          onClick={onOpenBooking}
+          className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium text-sm transition shadow-lg shadow-brand-500/20 active:scale-95 cursor-pointer text-center"
+        >
+          Pogledajte usluge i cene
+        </button>
       </div>
     </section>
   );

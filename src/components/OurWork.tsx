@@ -63,6 +63,7 @@ const WORK_ITEMS: WorkItem[] = [
 
 const BeforeAfterSlider = ({ before, after, title }: { before: string; after: string; title: string }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (clientX: number) => {
@@ -73,9 +74,30 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
     setSliderPosition(percentage);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    // Only drag if left mouse button is pressed or hover is enough
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
     handleMove(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    handleMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length > 0) {
+      setIsDragging(true);
+      handleMove(e.touches[0].clientX);
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -84,12 +106,21 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
     }
   };
 
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div
       ref={containerRef}
+      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 select-none cursor-ew-resize group/slider"
+      onTouchEnd={handleTouchEnd}
+      className={`relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 select-none cursor-ew-resize group/slider ${isDragging ? 'cursor-grabbing' : ''}`}
     >
       {/* After Image (Background) */}
       <img
@@ -121,10 +152,19 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
         className="absolute inset-y-0 w-0.5 bg-white shadow-xl pointer-events-none"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-lg border-2 border-brand-500 flex items-center justify-center text-brand-600 transition-transform group-hover/slider:scale-110">
+        <div className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-lg border-2 border-brand-500 flex items-center justify-center text-brand-600 transition-transform ${isDragging ? 'scale-125' : 'group-hover/slider:scale-110'}`}>
           <Eye className="w-3.5 h-3.5" />
         </div>
       </div>
+
+      {/* Drag hint overlay — fades out after first interaction */}
+      {!isDragging && sliderPosition === 50 && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+          <span className="px-3 py-1.5 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold rounded-full animate-pulse">
+            ← Prevucite →
+          </span>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Menu, X, CheckCircle } from 'lucide-react';
+import { Sparkles, Menu, X, CheckCircle, ArrowRight } from 'lucide-react';
 import { config } from '../config';
 
 interface NavbarProps {
@@ -87,9 +87,10 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           <button
             id="nav-booking-btn"
             onClick={() => onOpenBooking()}
-            className="px-6 py-2.5 rounded-full bg-brand-500 text-white font-medium text-sm hover:bg-brand-600 transition-all shadow-sm shadow-brand-500/20 active:scale-95 cursor-pointer"
+            className="group flex items-center gap-2 px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium transition shadow-xl shadow-brand-500/10 active:scale-98 cursor-pointer text-sm"
           >
-            Zakažite
+            <span>Zakažite</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
@@ -111,7 +112,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-base font-semibold text-slate-800 py-2 hover:text-brand-500 transition-colors"
+              className="text-base font-semibold text-slate-800 py-2 hover:text-brand-500 transition-colors text-center"
             >
               {item.label}
             </a>
@@ -121,9 +122,10 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               setMobileMenuOpen(false);
               onOpenBooking();
             }}
-            className="w-full py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-center text-sm shadow-md shadow-brand-500/20"
+            className="group w-full py-4 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-bold transition shadow-xl shadow-brand-500/10 active:scale-98 cursor-pointer text-base flex items-center justify-center gap-2"
           >
-            Zakažite
+            <span>Zakažite čišćenje</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       )}

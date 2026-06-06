@@ -21,8 +21,8 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left: Persuasive Trust Information (5 cols) */}
-          <div className="lg:col-span-6 space-y-6 md:space-y-8 text-left">
+          {/* Left: Persuasive Trust Information (6 cols) */}
+          <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
             
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -38,13 +38,13 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4"
+              className="space-y-4 w-full"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light text-slate-900 tracking-tight leading-[1.12]">
                 {config.brand.heroTitleLine1} <br />
                 {config.brand.heroTitleLine2} <span className="italic font-serif text-brand-500">{config.brand.heroTitleHighlight}</span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-500 max-w-lg leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-500 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
                 {config.brand.heroDescription}
               </p>
             </motion.div>
@@ -54,7 +54,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-600 font-medium"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs text-slate-600 font-medium"
             >
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-brand-500" /> Potpuno osigurani i provereni
@@ -69,7 +69,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-4"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
             >
               <button
                 id="hero-book-now-btn"
