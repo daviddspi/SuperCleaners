@@ -77,6 +77,9 @@ export default function App() {
         onExploreServices={() => handleScrollToSection('#services-section')} 
       />
 
+      {/* Core Cleaning Services List (6 main cards with hover properties) */}
+      <Services onOpenBooking={handleOpenBooking} />
+
       {/* Few Words About Super Cleaners Block (About Segment) */}
       <section id="about-section" className="py-16 md:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -159,11 +162,14 @@ export default function App() {
       {/* Why Choose Super Cleaners list */}
       <WhyChoose />
 
-      {/* Core Cleaning Services List (6 main cards with hover properties) */}
-      <Services onOpenBooking={handleOpenBooking} />
-
       {/* Before/After gallery of works */}
       <OurWork />
+
+      {/* Pricing Estimator Panel segment */}
+      <PricingCalculator onOpenBookingWithPrefs={handleOpenBookingWithPrefs} />
+
+      {/* What Our Customers Say (Testimonial carousel) */}
+      <Testimonials />
 
       {/* Dynamic Statistics Block with dark blue theme overlay */}
       <Stats onOpenBooking={() => handleOpenBooking()} />
@@ -236,12 +242,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
-      {/* Pricing Estimator Panel segment */}
-      <PricingCalculator onOpenBookingWithPrefs={handleOpenBookingWithPrefs} />
-
-      {/* What Our Customers Say (Testimonial carousel) */}
-      <Testimonials />
 
       {/* FAQ accordion section */}
       <FAQ />

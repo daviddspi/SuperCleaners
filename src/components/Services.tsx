@@ -70,7 +70,7 @@ export default function Services({ onOpenBooking }: ServicesProps) {
             >
               <div>
                 <div 
-                  className="relative aspect-[4/3] overflow-hidden bg-slate-100 cursor-pointer"
+                  className="relative aspect-[16/9] md:aspect-[4/3] overflow-hidden bg-slate-100 cursor-pointer"
                   onClick={() => setSelectedServiceDetail(service)}
                 >
                   <img
