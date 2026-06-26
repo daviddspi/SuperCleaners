@@ -1,4 +1,7 @@
 import { Service, Addon, Testimonial, StatItem, PricingItem } from './types';
+import immaculateLiving from './assets/images/immaculate_living_1779523124896.webp';
+import heroCleaner from './assets/images/hero_cleaner_1779523144770.webp';
+import maleCleaner from './assets/images/male_cleaner_1779523165894.webp';
 
 export const PRICING_ITEMS: PricingItem[] = [
   { id: 'f-fotelja', name: 'Fotelja', price: 900, priceType: 'fixed', category: 'namestaj' },
@@ -66,9 +69,9 @@ export const config = {
     "Profesionalne Karcher mašine"
   ],
   images: {
-    immaculateLiving: '/src/assets/images/immaculate_living_1779523124896.png',
-    heroCleaner: '/src/assets/images/hero_cleaner_1779523144770.png',
-    maleCleaner: '/src/assets/images/male_cleaner_1779523165894.png'
+    immaculateLiving,
+    heroCleaner,
+    maleCleaner
   },
   services: [
     {

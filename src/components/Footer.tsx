@@ -46,7 +46,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               }}
               className="inline-block group cursor-pointer"
             >
-              <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-103" />
+              <img src="/superCleanLogo.webp" alt={config.brand.name} className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-103" />
             </a>
 
             <p className="text-sm text-slate-400 leading-relaxed font-normal max-w-sm mx-auto md:mx-0">
@@ -233,12 +233,12 @@ export default function Footer({ onOpenBooking }: FooterProps) {
           <div>
             <span>Designed & Developed by </span>
             <a 
-              href="https://www.instagram.com/djuka.2/" 
+              href="https://viddaflow.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="font-bold text-slate-350 hover:text-brand-400 transition-colors duration-200"
             >
-              David
+              Viddaflow
             </a>
           </div>
         </div>

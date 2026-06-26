@@ -65,7 +65,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
           }}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <img src="/superCleanLogo.jpg" alt={config.brand.name} className="h-16 w-auto object-contain" />
+          <img src="/superCleanLogo.webp" alt={config.brand.name} className="h-16 w-auto object-contain" />
         </a>
 
         {/* Desktop Links */}
