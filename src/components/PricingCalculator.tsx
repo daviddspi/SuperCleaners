@@ -120,7 +120,7 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
       <div className="p-3.5 sm:p-4 bg-white/10 rounded-2xl flex items-start gap-3">
         <Info className="w-5 h-5 text-brand-200 mt-0.5 shrink-0" />
         <div>
-          <h4 className="font-bold text-sm text-white">Besplatno preuzimanje</h4>
+          <h3 className="font-bold text-sm text-white">Besplatno preuzimanje</h3>
           <p className="text-xs sm:text-sm text-brand-100 mt-0.5 leading-relaxed">
             Preuzimanje i vraćanje tepiha je besplatno za kvadrature veće od 5m².
           </p>
@@ -128,10 +128,10 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
       </div>
 
       <div className="pt-3 space-y-3 text-sm text-brand-100">
-        <h4 className="font-display font-medium text-white mb-2 text-lg">Vaša korpa</h4>
+        <h3 className="font-display font-medium text-white mb-2 text-lg">Vaša korpa</h3>
         
         {Object.keys(items).length === 0 ? (
-          <p className="text-brand-200/80 italic text-sm">Niste izabrali nijednu uslugu.</p>
+          <p className="text-brand-100 italic text-sm">Niste izabrali nijednu uslugu.</p>
         ) : (
           <div className="space-y-1.5 max-h-[220px] sm:max-h-[260px] overflow-y-auto pr-2 custom-scrollbar divide-y divide-white/10">
             {Object.entries(items).map(([id, qty]) => {

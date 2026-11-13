@@ -63,7 +63,7 @@ const StatItem: FC<{ stat: (typeof STATS)[number]; visible: boolean; delay: numb
         {suffix}
       </div>
       <h3 className="mt-3 sm:mt-4 text-sm sm:text-base font-semibold text-white">{stat.label}</h3>
-      <p className="mt-1 text-xs sm:text-sm text-brand-100/80 leading-relaxed">{stat.description}</p>
+      <p className="mt-1 text-xs sm:text-sm text-brand-100 leading-relaxed">{stat.description}</p>
     </div>
   );
 };
@@ -97,7 +97,7 @@ export default function Stats({ onOpenBooking }: StatsProps) {
             <h2 className="font-display font-light tracking-[-0.03em] leading-[1.08] text-white text-3xl sm:text-4xl md:text-5xl">
               Mi smo najbrže <span className="accent !text-brand-200">Rastuća</span> Agencija za Čišćenje
             </h2>
-            <p className="mt-4 sm:mt-5 text-sm sm:text-base leading-relaxed text-brand-100/90 max-w-lg mx-auto lg:mx-0">
+            <p className="mt-4 sm:mt-5 text-sm sm:text-base leading-relaxed text-brand-100 max-w-lg mx-auto lg:mx-0">
               Naša usluga brzo raste jer naš tim marljivo radi kako bi vaš dom ili kancelarija bili čisti, sveži i
               besprekorno uredni. Možete nam verovati. Koristimo premium netoksične, ekološke formule kako biste
               živeli u savršeno sterilnom okruženju.

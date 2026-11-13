@@ -135,7 +135,7 @@
   .lead {
     font-size: clamp(1rem, 1.2vw, 1.125rem);
     line-height: 1.65;
-    color: #475569;
+    color: #334155;
     max-width: 38rem;
   }
 

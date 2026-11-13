@@ -40,7 +40,7 @@ export default function WhyChoose() {
                       <h3 className="font-display text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-slate-900 transition-colors duration-200 group-hover:text-white">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-600 transition-colors duration-200 group-hover:text-brand-50">
+                      <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed text-slate-700 transition-colors duration-200 group-hover:text-brand-50">
                         {item.description}
                       </p>
                     </div>

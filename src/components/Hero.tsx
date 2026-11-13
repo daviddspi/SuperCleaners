@@ -81,10 +81,11 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 <source media="(max-width: 640px)" srcSet="/images/immaculate_living_mobile.webp" type="image/webp" />
                 <source media="(min-width: 641px)" srcSet="/images/immaculate_living_desktop.webp" type="image/webp" />
                 <img
-                  src="/images/immaculate_living_desktop.webp"
+                  src="/images/immaculate_living_mobile.webp"
                   alt="Besprekorno čist luksuzni dom obasjan suncem"
                   width={600}
                   height={540}
+                  fetchPriority="high"
                   loading="eager"
                   decoding="async"
                   className="absolute inset-0 w-full h-full object-cover select-none"
@@ -116,7 +117,7 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
                 </div>
                 <div className="text-left">
                   <span className="block font-bold text-slate-900 text-xs sm:text-sm leading-tight">Jovana Nikolić</span>
-                  <span className="block text-[10px] sm:text-xs text-brand-600 font-semibold mt-0.5">5★ Elitni tim</span>
+                  <span className="block text-[10px] sm:text-xs text-brand-700 font-semibold mt-0.5">5★ Elitni tim</span>
                   <div className="flex gap-0.5 mt-0.5 sm:mt-1">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-400 text-amber-400" />

@@ -119,7 +119,7 @@ export default function Testimonials() {
                     referrerPolicy="no-referrer"
                   />
                   <span className="font-bold text-slate-900 text-base">{review.name}</span>
-                  <span className="text-xs text-slate-500 mt-0.5">{review.location}</span>
+                  <span className="text-xs text-slate-600 mt-0.5">{review.location}</span>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -197,7 +197,7 @@ export default function Testimonials() {
                     />
                     <div>
                       <span className="block font-semibold text-slate-900 text-base">{review.name}</span>
-                      <span className="block text-sm text-slate-500 mt-0.5">{review.location}</span>
+                      <span className="block text-sm text-slate-600 mt-0.5">{review.location}</span>
                     </div>
                   </figcaption>
                 </motion.figure>

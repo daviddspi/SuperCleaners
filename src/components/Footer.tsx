@@ -72,9 +72,9 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                     if (href === '#') e.preventDefault();
                   }}
                   aria-label={label}
-                  className="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-brand-500 hover:text-white flex items-center justify-center transition-colors duration-200"
+                  className="w-12 h-12 rounded-full bg-white/10 text-white hover:bg-brand-500 hover:text-white flex items-center justify-center transition-colors duration-200"
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -83,16 +83,16 @@ export default function Footer({ onOpenBooking }: FooterProps) {
           {/* Quick Links (Col 6-9) */}
           <div className="lg:col-span-4 grid grid-cols-2 gap-6 sm:gap-8 text-center sm:text-left">
             <div>
-              <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4">
+              <h3 className="font-display text-base font-semibold text-white tracking-wide mb-4">
                 Usluge
-              </h4>
-              <ul className="space-y-2.5">
+              </h3>
+              <ul className="space-y-1">
                 {SERVICE_LINKS.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-sm text-slate-400 hover:text-white transition-colors duration-150 inline-block py-0.5"
+                      className="text-sm text-slate-300 hover:text-white transition-colors duration-150 inline-block py-2"
                     >
                       {link.label}
                     </a>
@@ -102,16 +102,16 @@ export default function Footer({ onOpenBooking }: FooterProps) {
             </div>
 
             <div>
-              <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4">
+              <h3 className="font-display text-base font-semibold text-white tracking-wide mb-4">
                 Informacije
-              </h4>
-              <ul className="space-y-2.5">
+              </h3>
+              <ul className="space-y-1">
                 {INFO_LINKS.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
                       onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-sm text-slate-400 hover:text-white transition-colors duration-150 inline-block py-0.5"
+                      className="text-sm text-slate-300 hover:text-white transition-colors duration-150 inline-block py-2"
                     >
                       {link.label}
                     </a>
@@ -123,9 +123,9 @@ export default function Footer({ onOpenBooking }: FooterProps) {
 
           {/* Contact Details (Col 10-12) */}
           <div className="lg:col-span-3 text-center sm:text-left">
-            <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4 text-center sm:text-left">
+            <h3 className="font-display text-base font-semibold text-white tracking-wide mb-4 text-center sm:text-left">
               Kontakt
-            </h4>
+            </h3>
             <div className="space-y-3 max-w-md mx-auto sm:mx-0">
               <a
                 href={`tel:${config.contact.phone.replace(/\s+/g, '')}`}
@@ -135,7 +135,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                   <Phone className="w-4 h-4" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block text-[11px] text-slate-400 font-medium">Pozovite nas</span>
+                  <span className="block text-xs text-slate-300 font-medium">Pozovite nas</span>
                   <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.phone}</span>
                 </div>
               </a>
@@ -148,7 +148,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                   <Mail className="w-4 h-4" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block text-[11px] text-slate-400 font-medium">Email adresa</span>
+                  <span className="block text-xs text-slate-300 font-medium">Email adresa</span>
                   <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.email}</span>
                 </div>
               </a>
@@ -158,7 +158,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
                   <MapPin className="w-4 h-4" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block text-[11px] text-slate-400 font-medium">Lokacija</span>
+                  <span className="block text-xs text-slate-300 font-medium">Lokacija</span>
                   <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.address}</span>
                 </div>
               </div>
@@ -168,15 +168,15 @@ export default function Footer({ onOpenBooking }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 sm:mt-18 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-slate-400 text-center sm:text-left">
+        <div className="mt-14 sm:mt-18 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-slate-300 text-center sm:text-left">
           <p>© {currentYear} {config.brand.name}. Sva prava zadržana.</p>
-          <p>
-            Dizajn &amp; Izrada:{' '}
+          <p className="flex items-center gap-1.5">
+            <span>Dizajn &amp; Izrada:</span>{' '}
             <a
               href="https://viddaflow.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-slate-200 hover:text-brand-300 transition-colors"
+              className="font-semibold text-slate-100 hover:text-brand-300 transition-colors py-2 px-1.5 inline-block"
             >
               Viddaflow
             </a>

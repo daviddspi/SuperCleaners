@@ -98,7 +98,7 @@ export default function Contact() {
                   <d.icon className="w-5 h-5" />
                 </span>
                 <span className="min-w-0 text-left">
-                  <span className="block text-xs font-semibold text-slate-500">{d.label}</span>
+                  <span className="block text-xs font-semibold text-slate-600">{d.label}</span>
                   <span className="block text-sm sm:text-base font-bold text-slate-900 mt-0.5 truncate">{d.value}</span>
                 </span>
               </>

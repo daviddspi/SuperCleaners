@@ -81,7 +81,7 @@ export const config = {
       description: 'Temeljno čišćenje garnitura, fotelja, stolica i dušeka.',
       longDescription: 'Naše dubinsko pranje uklanja grinje, alergene, prljavštinu i fleke iz dubine materijala. Vaš nameštaj će biti čist, osvežen i suv za par sati.',
       category: 'Glavno',
-      image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80',
+      image: '/images/opt/service_namestaj.webp',
       iconName: 'Armchair',
       items: PRICING_ITEMS.filter(item => item.category === 'namestaj')
     },
@@ -91,7 +91,7 @@ export const config = {
       description: 'Dubinsko pranje tepiha i itisona.',
       longDescription: 'Nudimo preuzimanje i vraćanje tepiha (besplatno za preko 5m2). Koristimo specijalne četke i ekstrakciju kako bismo uklonili svu nečistoću.',
       category: 'Glavno',
-      image: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80',
+      image: '/images/opt/service_tepisi.webp',
       iconName: 'LayoutGrid',
       items: PRICING_ITEMS.filter(item => item.category === 'tepisi')
     },
@@ -101,7 +101,7 @@ export const config = {
       description: 'Dubinsko pranje enterijera i poliranje.',
       longDescription: 'Vratite sjaj vašem vozilu. Dubinsko pranje sedišta, poda, neba i gepeka, kao i profesionalno spoljašnje poliranje karoserije.',
       category: 'Dodatno',
-      image: 'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=600&q=80',
+      image: '/images/opt/service_automobili.webp',
       iconName: 'Car',
       items: PRICING_ITEMS.filter(item => item.category === 'automobili')
     }

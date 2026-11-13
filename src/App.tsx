@@ -71,7 +71,7 @@ export default function App() {
                 <Reveal className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
                   <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[500px] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md">
                     <img
-                      src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
+                      src="/images/opt/about_cleaner.webp"
                       alt="Vesela čistačica glanca moderan orman"
                       width={600}
                       height={500}

@@ -16,48 +16,48 @@ const WORK_ITEMS: WorkItem[] = [
     id: 'work-1',
     title: 'Dubinsko pranje ugaone garniture',
     category: 'namestaj',
-    beforeImage: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_1_before.webp',
+    afterImage: '/images/opt/work_1_after.webp',
     description: 'Uklanjanje dugogodišnjih fleka od hrane i osvežavanje boje tkanine.'
   },
   {
     id: 'work-2',
     title: 'Dubinsko pranje tepiha',
     category: 'tepisi',
-    beforeImage: 'https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_2_before.webp',
+    afterImage: '/images/opt/work_2_after.webp',
     description: 'Ispravljanje vlakana i vađenje dubinske prljavštine iz gustog tepiha.'
   },
   {
     id: 'work-3',
     title: 'Dubinsko pranje auto sedišta',
     category: 'automobili',
-    beforeImage: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_3_before.webp',
+    afterImage: '/images/opt/work_3_after.webp',
     description: 'Detaljno čišćenje enterijera i uklanjanje neprijatnih mirisa.'
   },
   {
     id: 'work-4',
     title: 'Čišćenje dušeka sa dezinfekcijom',
     category: 'namestaj',
-    beforeImage: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_4_before.webp',
+    afterImage: '/images/opt/work_4_after.webp',
     description: 'Uklanjanje grinja, alergena i žutih fleka sa obe strane dušeka.'
   },
   {
     id: 'work-5',
     title: 'Pranje salonskog tepiha',
     category: 'tepisi',
-    beforeImage: 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_5_before.webp',
+    afterImage: '/images/opt/work_5_after.webp',
     description: 'Vraćanje svežine i mekoće osetljivim vlaknima vunenog tepiha.'
   },
   {
     id: 'work-6',
     title: 'Poliranje i pranje vozila',
     category: 'automobili',
-    beforeImage: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80',
+    beforeImage: '/images/opt/work_6_before.webp',
+    afterImage: '/images/opt/work_6_after.webp',
     description: 'Uklanjanje mikro-ogrebotina i pranje enterijera do fabričkog stanja.'
   }
 ];
