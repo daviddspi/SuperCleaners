@@ -13,10 +13,11 @@ import Contact from './components/Contact';
 import PricingCalculator from './components/PricingCalculator';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
-import BookingModal from './components/BookingModal';
 import Reveal from './components/Reveal';
 import { GENERATED_IMAGES } from './data';
 import { config } from './config';
+
+const BookingModal = React.lazy(() => import('./components/BookingModal'));
 
 const MARQUEE_ITEMS = [
   'Pranje nameštaja',
@@ -238,12 +239,16 @@ export default function App() {
 
         <Footer onOpenBooking={() => handleOpenBooking()} />
 
-        <BookingModal
-          isOpen={isBookingOpen}
-          onClose={() => setIsBookingOpen(false)}
-          items={preselectedItems}
-          totalPrice={preselectedTotalPrice}
-        />
+        {isBookingOpen && (
+          <React.Suspense fallback={null}>
+            <BookingModal
+              isOpen={isBookingOpen}
+              onClose={() => setIsBookingOpen(false)}
+              items={preselectedItems}
+              totalPrice={preselectedTotalPrice}
+            />
+          </React.Suspense>
+        )}
       </div>
     </MotionConfig>
   );

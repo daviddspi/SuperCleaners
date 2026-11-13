@@ -93,7 +93,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             className="flex items-center shrink-0 cursor-pointer"
             aria-label={config.brand.name}
           >
-            <img src="/superCleanLogo.webp" alt={config.brand.name} width={180} height={60} loading="eager" decoding="async" className="h-11 sm:h-13 md:h-15 w-auto object-contain" />
+            <img src="/images/superCleanLogo_opt.webp" alt={config.brand.name} width={180} height={60} loading="eager" decoding="async" className="h-11 sm:h-13 md:h-15 w-auto object-contain" />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -170,7 +170,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
                 }}
                 className="flex items-center"
               >
-                <img src="/superCleanLogo.webp" alt={config.brand.name} width={150} height={44} loading="lazy" decoding="async" className="h-11 w-auto object-contain" />
+                <img src="/images/superCleanLogo_opt.webp" alt={config.brand.name} width={150} height={44} loading="lazy" decoding="async" className="h-11 w-auto object-contain" />
               </a>
               <button
                 onClick={() => setMobileMenuOpen(false)}

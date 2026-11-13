@@ -77,16 +77,20 @@ export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
             className="lg:col-span-6 xl:col-span-5 relative w-full flex justify-center"
           >
             <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[540px] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl shadow-brand-900/5">
-              <img
-                src={GENERATED_IMAGES.immaculateLiving}
-                alt="Besprekorno čist luksuzni dom obasjan suncem"
-                width={600}
-                height={540}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover select-none"
-                referrerPolicy="no-referrer"
-              />
+              <picture>
+                <source media="(max-width: 640px)" srcSet="/images/immaculate_living_mobile.webp" type="image/webp" />
+                <source media="(min-width: 641px)" srcSet="/images/immaculate_living_desktop.webp" type="image/webp" />
+                <img
+                  src="/images/immaculate_living_desktop.webp"
+                  alt="Besprekorno čist luksuzni dom obasjan suncem"
+                  width={600}
+                  height={540}
+                  loading="eager"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover select-none"
+                  referrerPolicy="no-referrer"
+                />
+              </picture>
 
               {/* Specialist Badge */}
               <motion.div

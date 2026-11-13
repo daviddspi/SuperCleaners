@@ -9,10 +9,20 @@
   <meta name="keywords" content="dubinsko pranje, pranje nameštaja, pranje tepiha, dubinsko čišćenje, Beograd, Super Clean, pranje garnitura, pranje dušeka, pranje automobila" />
   <meta name="author" content="Super Clean" />
   <meta name="theme-color" content="#567AC4" />
+  <link rel="canonical" href="https://dubinskopranjebg.rs/" />
+  <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLMs.txt" />
 
-  <!-- Preconnect to Google Font CDNs for 99+ Lighthouse performance -->
+  <!-- Preconnect to Google Font and Unsplash CDNs for 99+ Lighthouse performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+
+  <!-- Preload Highest-Priority Critical LCP Image (Mobile & Desktop) -->
+  <link rel="preload" as="image" href="/images/immaculate_living_mobile.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/immaculate_living_desktop.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/superCleanLogo_opt.webp" type="image/webp" />
+
+  <!-- Non-render-blocking high performance font loading -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
   <noscript>
@@ -23,18 +33,127 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Super Clean | Dubinsko Pranje Nameštaja Beograd" />
   <meta property="og:description" content="Profesionalno dubinsko pranje nameštaja, tepiha i automobila u Beogradu. Zakažite online — besplatan dolazak na adresu!" />
-  <meta property="og:image" content="/superCleanLogo.webp" />
+  <meta property="og:url" content="https://dubinskopranjebg.rs/" />
+  <meta property="og:image" content="/images/superCleanLogo_opt.webp" />
   <meta property="og:locale" content="sr_RS" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Super Clean | Dubinsko Pranje Nameštaja Beograd" />
   <meta name="twitter:description" content="Profesionalno dubinsko pranje nameštaja, tepiha i automobila u Beogradu. Zakažite online!" />
-  <meta name="twitter:image" content="/superCleanLogo.webp" />
+  <meta name="twitter:image" content="/images/superCleanLogo_opt.webp" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/webp" href="/superCleanLogo.webp" />
-  <link rel="apple-touch-icon" href="/superCleanLogo.webp" />
+  <link rel="icon" type="image/webp" href="/images/superCleanLogo_opt.webp" />
+  <link rel="apple-touch-icon" href="/images/superCleanLogo_opt.webp" />
+
+  <!-- 2026 Unified Schema.org JSON-LD Graph (Agentic Web 3/3 Standard) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+        "@id": "https://dubinskopranjebg.rs/#organization",
+        "name": "Super Clean",
+        "alternateName": "Super Clean Dubinsko Pranje Beograd",
+        "url": "https://dubinskopranjebg.rs/",
+        "logo": "https://dubinskopranjebg.rs/images/superCleanLogo_opt.webp",
+        "image": "https://dubinskopranjebg.rs/images/immaculate_living_desktop.webp",
+        "telephone": "+381656559293",
+        "email": "online@dubinskopranjebg.rs",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Beograd",
+          "addressCountry": "RS"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 44.8125,
+          "longitude": 20.4612
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Beograd" },
+          { "@type": "AdministrativeArea", "name": "Novi Beograd" },
+          { "@type": "AdministrativeArea", "name": "Zemun" },
+          { "@type": "AdministrativeArea", "name": "Vračar" },
+          { "@type": "AdministrativeArea", "name": "Stari Grad" },
+          { "@type": "AdministrativeArea", "name": "Voždovac" },
+          { "@type": "AdministrativeArea", "name": "Zvezdara" }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": "128"
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=100064085710540",
+          "https://www.instagram.com/dubinsko_pranje_namestaja_bg/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://dubinskopranjebg.rs/#website",
+        "url": "https://dubinskopranjebg.rs/",
+        "name": "Super Clean Beograd",
+        "publisher": { "@id": "https://dubinskopranjebg.rs/#organization" },
+        "inLanguage": "sr-RS"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://dubinskopranjebg.rs/#service-namestaj",
+        "name": "Dubinsko pranje nameštaja",
+        "serviceType": "Upholstery Cleaning",
+        "provider": { "@id": "https://dubinskopranjebg.rs/#organization" },
+        "description": "Profesionalno dubinsko pranje ugaonih garnitura, troseda, dvoseda, fotelja i stolica Kärcher mašinama uz besplatan dolazak.",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "RSD",
+          "lowPrice": "900",
+          "highPrice": "6500"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://dubinskopranjebg.rs/#service-tepisi",
+        "name": "Dubinsko pranje tepiha",
+        "serviceType": "Carpet Cleaning",
+        "provider": { "@id": "https://dubinskopranjebg.rs/#organization" },
+        "description": "Mašinsko pranje, centrifugiranje i komorno sušenje tepiha sa besplatnim preuzimanjem i dostavom za kvadrature veće od 5m².",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "RSD",
+          "price": "400",
+          "unitCode": "MTK"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://dubinskopranjebg.rs/#service-automobili",
+        "name": "Dubinsko pranje automobila i poliranje",
+        "serviceType": "Auto Detailing",
+        "provider": { "@id": "https://dubinskopranjebg.rs/#organization" },
+        "description": "Kompletan tretman enterijera automobila i mašinsko poliranje karoserije uz fabrički sjaj.",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "RSD",
+          "price": "8000"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>

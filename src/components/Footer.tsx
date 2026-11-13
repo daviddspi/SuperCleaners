@@ -53,7 +53,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               className="inline-block"
               aria-label={config.brand.name}
             >
-              <img src="/superCleanLogo.webp" alt={config.brand.name} width={180} height={64} loading="lazy" decoding="async" className="h-14 sm:h-16 w-auto object-contain" />
+              <img src="/images/superCleanLogo_opt.webp" alt={config.brand.name} width={180} height={64} loading="lazy" decoding="async" className="h-14 sm:h-16 w-auto object-contain" />
             </a>
 
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-sm">
