@@ -6,6 +6,24 @@ interface FooterProps {
   onOpenBooking: () => void;
 }
 
+const SERVICE_LINKS = [
+  { label: 'Tepisi', href: '#services-section' },
+  { label: 'Nameštaj', href: '#services-section' },
+  { label: 'Automobili', href: '#services-section' },
+  { label: 'Fleke i mirisi', href: '#services-section' },
+  { label: 'Dušeci', href: '#services-section' },
+  { label: 'Poliranje', href: '#services-section' }
+];
+
+const INFO_LINKS = [
+  { label: 'O nama', href: '#about-section' },
+  { label: 'Kalkulator cene', href: '#estimator-section' },
+  { label: 'Recenzije', href: '#reviews-section' },
+  { label: 'Naši radovi', href: '#portfolio-section' },
+  { label: 'Česta pitanja', href: '#faq-section' },
+  { label: 'Kontakt', href: '#contact-section' }
+];
+
 export default function Footer({ onOpenBooking }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
@@ -13,207 +31,135 @@ export default function Footer({ onOpenBooking }: FooterProps) {
     e.preventDefault();
     const element = document.querySelector(targetId);
     if (element) {
-      const offset = 85;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const top = element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   };
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 text-slate-300 pt-20 pb-10 border-t border-slate-800 relative overflow-hidden">
-      {/* Background radial accent glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-52 bg-brand-500/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-        
-        {/* Main Columns Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 text-center md:text-left mb-16">
+    <footer className="bg-slate-900 text-slate-300 pt-16 sm:pt-20 md:pt-24 pb-12">
+      <div className="frame">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-10 items-start">
           
-          {/* Column 1: Info and brand profile (lg:col-span-5) */}
-          <div className="space-y-6 lg:col-span-5 flex flex-col items-center md:items-start">
+          {/* Brand Info (Col 1-5) */}
+          <div className="lg:col-span-5 flex flex-col items-center md:items-start text-center md:text-left space-y-5">
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-block group cursor-pointer"
+              className="inline-block"
+              aria-label={config.brand.name}
             >
-              <img src="/superCleanLogo.webp" alt={config.brand.name} className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-103" />
+              <img src="/superCleanLogo.webp" alt={config.brand.name} width={180} height={64} loading="lazy" decoding="async" className="h-14 sm:h-16 w-auto object-contain" />
             </a>
 
-            <p className="text-sm text-slate-400 leading-relaxed font-normal max-w-sm mx-auto md:mx-0">
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-sm">
               {config.brand.footerDescription}
             </p>
 
-            {/* Social media icons */}
-            <div className="flex gap-3 pt-2">
-              <a 
-                href={config.contact.socials.facebook} 
-                onClick={(e) => { if(config.contact.socials.facebook === '#') e.preventDefault(); }} 
-                aria-label="Facebook" 
-                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a 
-                href={config.contact.socials.instagram} 
-                onClick={(e) => { if(config.contact.socials.instagram === '#') e.preventDefault(); }} 
-                aria-label="Instagram" 
-                className="w-10 h-10 rounded-full border border-slate-800 text-slate-400 hover:text-white hover:border-brand-500 hover:bg-brand-500/10 flex items-center justify-center transition-all duration-300"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
+            <div className="flex items-center gap-3 pt-1">
+              {[
+                { href: config.contact.socials.facebook, label: 'Facebook', Icon: Facebook },
+                { href: config.contact.socials.instagram, label: 'Instagram', Icon: Instagram }
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={(e) => {
+                    if (href === '#') e.preventDefault();
+                  }}
+                  aria-label={label}
+                  className="w-10 h-10 rounded-full bg-white/10 text-white hover:bg-brand-500 hover:text-white flex items-center justify-center transition-colors duration-200"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2: Links Grid (Services & Info) (lg:col-span-4) */}
-          <div className="grid grid-cols-2 gap-8 lg:col-span-4">
-            
-            {/* Sub-column 1: Services */}
-            <div className="space-y-5">
-              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
-                <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+          {/* Quick Links (Col 6-9) */}
+          <div className="lg:col-span-4 grid grid-cols-2 gap-6 sm:gap-8 text-center sm:text-left">
+            <div>
+              <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4">
                 Usluge
               </h4>
-              <ul className="space-y-3 text-xs text-slate-400 flex flex-col items-center md:items-start">
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Tepisi</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Nameštaj</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Automobili</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Fleke i mirisi</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Dušeci</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services-section" onClick={(e) => handleLinkClick(e, '#services-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Poliranje</span>
-                  </a>
-                </li>
+              <ul className="space-y-2.5">
+                {SERVICE_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
+                      className="text-sm text-slate-400 hover:text-white transition-colors duration-150 inline-block py-0.5"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Sub-column 2: Help & Info */}
-            <div className="space-y-5">
-              <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
-                <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+            <div>
+              <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4">
                 Informacije
               </h4>
-              <ul className="space-y-3 text-xs text-slate-400 flex flex-col items-center md:items-start">
-                <li>
-                  <a href="#about-section" onClick={(e) => handleLinkClick(e, '#about-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">O nama</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Kalkulator cene</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#reviews-section" onClick={(e) => handleLinkClick(e, '#reviews-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Recenzije</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#estimator-section" onClick={(e) => handleLinkClick(e, '#estimator-section')} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Zakazivanje</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => e.preventDefault()} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Privatnost</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => e.preventDefault()} className="group flex items-center gap-1.5 hover:text-white transition-colors duration-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 scale-0 group-hover:scale-100 transition-transform duration-200 shrink-0" />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">Uslovi</span>
-                  </a>
-                </li>
+              <ul className="space-y-2.5">
+                {INFO_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleLinkClick(e, link.href)}
+                      className="text-sm text-slate-400 hover:text-white transition-colors duration-150 inline-block py-0.5"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
-
           </div>
 
-          {/* Column 3: Premium Contact Cards (lg:col-span-3) */}
-          <div className="space-y-5 lg:col-span-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
-              <span className="w-1 h-3.5 bg-brand-500 rounded-full" />
+          {/* Contact Details (Col 10-12) */}
+          <div className="lg:col-span-3 text-center sm:text-left">
+            <h4 className="font-display text-base font-semibold text-white tracking-wide mb-4 text-center sm:text-left">
               Kontakt
             </h4>
-            
-            <div className="space-y-3 max-w-sm mx-auto md:mx-0 w-full">
-              <a 
-                href={`tel:${config.contact.phone.replace(/\s+/g, '')}`} 
-                className="group/contact flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900/90 transition-all duration-300"
+            <div className="space-y-3 max-w-md mx-auto sm:mx-0">
+              <a
+                href={`tel:${config.contact.phone.replace(/\s+/g, '')}`}
+                className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] transition-colors text-left"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center group-hover/contact:bg-brand-500 group-hover/contact:text-white transition-all duration-300 shrink-0">
+                <span className="w-10 h-10 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
                   <Phone className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Pozovite nas</span>
-                  <span className="text-xs text-slate-300 font-semibold group-hover/contact:text-white transition-colors">{config.contact.phone}</span>
-                </div>
-              </a>
-              
-              <a 
-                href={`mailto:${config.contact.email}`} 
-                className="group/contact flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900/90 transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center group-hover/contact:bg-brand-500 group-hover/contact:text-white transition-all duration-300 shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Email adresa</span>
-                  <span className="text-xs text-slate-300 font-semibold group-hover/contact:text-white transition-colors">{config.contact.email}</span>
+                </span>
+                <div className="min-w-0">
+                  <span className="block text-[11px] text-slate-400 font-medium">Pozovite nas</span>
+                  <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.phone}</span>
                 </div>
               </a>
 
-              <div 
-                className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 shrink-0"
+              <a
+                href={`mailto:${config.contact.email}`}
+                className="group flex items-center gap-3.5 p-3 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] transition-colors text-left"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4" />
+                <span className="w-10 h-10 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                  <Mail className="w-4 h-4" />
+                </span>
+                <div className="min-w-0">
+                  <span className="block text-[11px] text-slate-400 font-medium">Email adresa</span>
+                  <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.email}</span>
                 </div>
-                <div className="text-left">
-                  <span className="block text-[9px] uppercase tracking-wider text-slate-500 font-bold">Naša lokacija</span>
-                  <span className="text-xs text-slate-350 font-semibold">{config.contact.address}</span>
+              </a>
+
+              <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/[0.04] text-left">
+                <span className="w-10 h-10 rounded-xl bg-brand-500/15 text-brand-400 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </span>
+                <div className="min-w-0">
+                  <span className="block text-[11px] text-slate-400 font-medium">Lokacija</span>
+                  <span className="block text-sm font-semibold text-white mt-0.5 truncate">{config.contact.address}</span>
                 </div>
               </div>
             </div>
@@ -221,26 +167,20 @@ export default function Footer({ onOpenBooking }: FooterProps) {
 
         </div>
 
-        {/* Decorative full-width line */}
-        <div className="h-[1px] w-full bg-slate-800/60 mb-8" />
-
-        {/* Footer Bottom Bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <div>
-            <span>© {currentYear} {config.brand.name}. Sva prava zadržana.</span>
-          </div>
-          
-          <div>
-            <span>Designed & Developed by </span>
-            <a 
-              href="https://viddaflow.vercel.app/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="font-bold text-slate-350 hover:text-brand-400 transition-colors duration-200"
+        {/* Bottom Bar */}
+        <div className="mt-14 sm:mt-18 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-slate-400 text-center sm:text-left">
+          <p>© {currentYear} {config.brand.name}. Sva prava zadržana.</p>
+          <p>
+            Dizajn &amp; Izrada:{' '}
+            <a
+              href="https://viddaflow.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-slate-200 hover:text-brand-300 transition-colors"
             >
               Viddaflow
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </footer>

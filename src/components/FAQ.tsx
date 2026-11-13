@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import Reveal from './Reveal';
 
 interface FAQItem {
   question: string;
@@ -33,63 +34,71 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq-section" className="py-16 md:py-24 bg-slate-50 relative">
-      <div className="max-w-3xl mx-auto px-6 md:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
-          <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            Pitanja i odgovori
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            Često postavljana <span className="italic font-serif text-brand-500">Pitanja</span>
-          </h2>
-          <p className="text-sm text-slate-500 font-normal">
-            Pronađite brze odgovore na najčešća pitanja o našem procesu pranja, hemiji i uslovima.
-          </p>
-        </div>
+    <section id="faq-section" className="section-y bg-brand-50">
+      <div className="frame">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-start">
+          
+          <Reveal className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start text-center lg:text-left">
+            <h2 className="h-section">
+              Često postavljana <span className="accent">Pitanja</span>
+            </h2>
+            <p className="lead mt-3 sm:mt-5 mx-auto lg:mx-0">
+              Pronađite brze odgovore na najčešća pitanja o našem procesu pranja, hemiji i uslovima.
+            </p>
+          </Reveal>
 
-        {/* Accordion Container */}
-        <div className="space-y-3 text-left">
-          {FAQ_ITEMS.map((item, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div 
-                key={index} 
-                className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300"
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full px-6 py-5 flex items-center justify-between gap-4 font-semibold text-slate-800 hover:text-brand-600 transition-colors text-sm sm:text-base cursor-pointer text-left group"
-                >
-                  <span className="font-semibold text-slate-900 transition-colors duration-200 group-hover:text-brand-500">
-                    {item.question}
-                  </span>
-                  <span 
-                    className={`flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 text-slate-400 transition-all duration-300 group-hover:bg-brand-50 group-hover:text-brand-500 shrink-0 ${
-                      isOpen ? '!bg-brand-500 !text-white rotate-180' : ''
-                    }`}
-                  >
-                    <ChevronDown className="w-4.5 h-4.5" />
-                  </span>
-                </button>
-                
-                <div 
-                  className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
-                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="px-6 pb-6 pt-0 text-sm text-slate-650 leading-relaxed bg-white">
-                      {item.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          <ul className="lg:col-span-7 flex flex-col gap-3 text-left w-full">
+            {FAQ_ITEMS.map((item, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <li key={index}>
+                  <Reveal delay={index * 0.05} y={12}>
+                    <div className={`rounded-2xl sm:rounded-3xl transition-all duration-200 border ${
+                      isOpen 
+                        ? 'bg-white border-brand-200 shadow-xs' 
+                        : 'bg-white/80 border-slate-100 hover:bg-white hover:border-slate-200'
+                    }`}>
+                      <h3>
+                        <button
+                          onClick={() => setOpenIndex(isOpen ? null : index)}
+                          aria-expanded={isOpen}
+                          aria-controls={`faq-panel-${index}`}
+                          className="w-full px-5 sm:px-7 py-4 sm:py-5 flex items-center justify-between gap-4 text-left cursor-pointer"
+                        >
+                          <span className="font-display text-base sm:text-lg font-semibold tracking-tight text-slate-900 leading-snug">
+                            {item.question}
+                          </span>
+                          <span
+                            className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full shrink-0 transition-transform duration-200 ${
+                              isOpen ? 'bg-brand-500 text-white rotate-45 shadow-xs' : 'bg-brand-50 text-brand-600'
+                            }`}
+                          >
+                            <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                          </span>
+                        </button>
+                      </h3>
 
+                      <div
+                        id={`faq-panel-${index}`}
+                        role="region"
+                        className={`grid transition-[grid-template-rows] duration-200 ease-out ${
+                          isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="px-5 sm:px-7 pb-5 sm:pb-6 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed border-t border-slate-50 pt-3">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ul>
+
+        </div>
       </div>
     </section>
   );

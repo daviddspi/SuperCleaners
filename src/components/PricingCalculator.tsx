@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Info, Minus, Plus, ShoppingBag, X, ChevronUp } from 'lucide-react';
 import { PRICING_ITEMS } from '../config';
+import Reveal from './Reveal';
 
 interface PricingCalculatorProps {
   onOpenBookingWithPrefs: (prefs: {
@@ -51,7 +52,6 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
     setIsDrawerOpen(false);
   };
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
     if (isDrawerOpen) {
       document.body.style.overflow = 'hidden';
@@ -65,36 +65,47 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
     const categoryItems = PRICING_ITEMS.filter(item => item.category === category);
     
     return (
-      <div className="space-y-4">
+      <div className="space-y-3">
         {categoryItems.map(item => {
           const qty = items[item.id] || 0;
           
           return (
-            <div key={item.id} className="flex items-center justify-between p-4 border border-slate-200 rounded-xl bg-white shadow-sm hover:border-brand-500 transition-colors">
-              <div>
-                <h4 className="font-bold text-slate-800 text-sm">{item.name}</h4>
-                <p className="text-xs text-slate-500 mt-0.5">
+            <div 
+              key={item.id} 
+              className={`flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl transition-colors duration-150 border ${
+                qty > 0 
+                  ? 'bg-brand-50/80 border-brand-200 shadow-xs' 
+                  : 'bg-slate-50/70 border-slate-100 hover:bg-slate-100/70'
+              }`}
+            >
+              <div className="min-w-0 pr-2">
+                <h4 className="font-semibold text-slate-900 text-sm sm:text-base leading-snug">{item.name}</h4>
+                <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
                   {item.priceType === 'starting' && 'Od '}
-                  {item.price} RSD
+                  <span className="font-bold text-slate-800">{item.price} RSD</span>
                   {item.priceType === 'per_m2' && ' / m²'}
                   {item.priceType === 'per_seat' && ' / sedno mesto'}
-                  {item.description && ` (${item.description})`}
+                  {item.description && ` • ${item.description}`}
                 </p>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <button
+                  type="button"
                   onClick={() => handleUpdateItem(item.id, -1)}
-                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition cursor-pointer"
+                  aria-label={`Smanji: ${item.name}`}
+                  className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-white hover:bg-brand-50 rounded-full text-slate-700 transition active:scale-95 border border-slate-200 shadow-xs cursor-pointer"
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="w-8 text-center font-bold text-slate-800">{qty}</span>
+                <span className="w-6 sm:w-7 text-center font-bold text-slate-900 text-sm sm:text-base tabular-nums">{qty}</span>
                 <button
+                  type="button"
                   onClick={() => handleUpdateItem(item.id, 1)}
-                  className="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition cursor-pointer"
+                  aria-label={`Dodaj: ${item.name}`}
+                  className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-brand-500 hover:bg-brand-610 rounded-full text-white transition active:scale-95 shadow-xs cursor-pointer"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
@@ -104,33 +115,32 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
     );
   };
 
-  /* ── Shared cart content (reused in sidebar & drawer) ── */
   const renderCartContent = () => (
     <>
-      <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 flex items-start gap-3">
+      <div className="p-3.5 sm:p-4 bg-white/10 rounded-2xl flex items-start gap-3">
         <Info className="w-5 h-5 text-brand-200 mt-0.5 shrink-0" />
         <div>
-          <h4 className="font-bold text-sm text-brand-100">Besplatno preuzimanje</h4>
-          <p className="text-[11px] text-brand-200">
+          <h4 className="font-bold text-sm text-white">Besplatno preuzimanje</h4>
+          <p className="text-xs sm:text-sm text-brand-100 mt-0.5 leading-relaxed">
             Preuzimanje i vraćanje tepiha je besplatno za kvadrature veće od 5m².
           </p>
         </div>
       </div>
 
-      <div className="border-t border-brand-700 pt-6 space-y-3 text-xs text-brand-200/90">
-        <h4 className="font-bold text-brand-100 mb-4 uppercase tracking-wider text-[10px]">Vaša korpa</h4>
+      <div className="pt-3 space-y-3 text-sm text-brand-100">
+        <h4 className="font-display font-medium text-white mb-2 text-lg">Vaša korpa</h4>
         
         {Object.keys(items).length === 0 ? (
-          <p className="text-white/50 italic">Niste izabrali nijednu uslugu.</p>
+          <p className="text-brand-200/80 italic text-sm">Niste izabrali nijednu uslugu.</p>
         ) : (
-          <div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+          <div className="space-y-1.5 max-h-[220px] sm:max-h-[260px] overflow-y-auto pr-2 custom-scrollbar divide-y divide-white/10">
             {Object.entries(items).map(([id, qty]) => {
               const itemDef = PRICING_ITEMS.find(i => i.id === id);
               if (!itemDef) return null;
               return (
-                <div key={id} className="flex justify-between items-center text-sm border-b border-brand-700/50 pb-2">
-                  <span>{qty}x {itemDef.name}</span>
-                  <span className="font-bold text-white">{itemDef.price * Number(qty)} RSD</span>
+                <div key={id} className="flex justify-between items-center gap-3 text-xs sm:text-sm pt-2 pb-1">
+                  <span className="text-brand-50">{qty}x {itemDef.name}</span>
+                  <span className="font-bold text-white tabular-nums whitespace-nowrap">{itemDef.price * Number(qty)} RSD</span>
                 </div>
               );
             })}
@@ -141,26 +151,22 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
   );
 
   const renderCartFooter = () => (
-    <div className="pt-6 border-t border-brand-700 space-y-4">
-      <div className="flex justify-between items-baseline">
+    <div className="pt-5 border-t border-white/15 space-y-4">
+      <div className="flex justify-between items-end">
         <div>
-          <span className="text-xs text-brand-200 uppercase tracking-wider block">
-            Ukupno (RSD)
-          </span>
-          <span className="text-[10px] opacity-60">Okvirna cena</span>
+          <span className="text-xs sm:text-sm text-brand-100 block">Ukupno (RSD)</span>
+          <span className="text-[11px] text-brand-200">Okvirna procena</span>
         </div>
-        <div className="text-right">
-          <span className="text-4xl font-black text-white tracking-tight">
-            {estimatedTotal.toLocaleString('sr-RS')}
-          </span>
-        </div>
+        <span className="text-3xl sm:text-4xl font-display font-light text-white tracking-tight tabular-nums">
+          {estimatedTotal.toLocaleString('sr-RS')}
+        </span>
       </div>
 
       <button
         id="estimator-proceed-btn"
         onClick={handleProceed}
         disabled={Object.keys(items).length === 0}
-        className="w-full py-4 bg-white text-brand-800 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 active:scale-[0.98] font-semibold text-sm rounded-xl transition shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
+        className="btn btn-light w-full !py-3.5 text-sm sm:text-base font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-md cursor-pointer"
       >
         <span>Zakaži pranje</span>
         <ArrowRight className="w-4 h-4" />
@@ -170,62 +176,56 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
 
   return (
     <>
-      <section id="estimator-section" className="py-16 md:py-24 bg-slate-50 relative">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
+      <section id="estimator-section" className="section-y bg-brand-50">
+        <div className="frame">
           
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
-            <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-              Jednostavno i brzo
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-              Zakažite Uslugu <span className="italic font-serif text-brand-500">Online</span>
+          <Reveal className="max-w-2xl mb-8 sm:mb-12 text-center sm:text-left mx-auto sm:mx-0">
+            <h2 className="h-section">
+              Zakažite Uslugu <span className="accent">Online</span>
             </h2>
-            <p className="text-sm text-slate-500 font-normal">
+            <p className="lead mt-3 sm:mt-4 mx-auto sm:mx-0">
               Dodajte komade nameštaja ili tepiha i pošaljite upit u nekoliko sekundi.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             
-            {/* Items list — add bottom padding on mobile so floating bar doesn't overlap */}
-            <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-2xl border border-slate-100/80 shadow-sm text-left space-y-8 flex flex-col justify-between pb-28 lg:pb-10">
+            {/* Left Items Column */}
+            <div className="lg:col-span-7 bg-white p-5 sm:p-7 md:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-xs text-left space-y-5 pb-24 lg:pb-8">
               
-              <div className="flex gap-2 p-1 bg-slate-100 rounded-xl overflow-x-auto hide-scrollbar">
-                <button 
-                  onClick={() => setActiveTab('namestaj')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'namestaj' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                >
-                  Nameštaj
-                </button>
-                <button 
-                  onClick={() => setActiveTab('tepisi')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'tepisi' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                >
-                  Tepisi i podovi
-                </button>
-                <button 
-                  onClick={() => setActiveTab('automobili')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all whitespace-nowrap cursor-pointer ${activeTab === 'automobili' ? 'bg-white text-brand-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                >
-                  Automobili
-                </button>
+              <div role="tablist" aria-label="Kategorije" className="flex gap-2 overflow-x-auto hide-scrollbar pb-1 justify-center sm:justify-start">
+                {([
+                  ['namestaj', 'Nameštaj'],
+                  ['tepisi', 'Tepisi i podovi'],
+                  ['automobili', 'Automobili']
+                ] as const).map(([id, label]) => (
+                  <button
+                    key={id}
+                    role="tab"
+                    aria-selected={activeTab === id}
+                    onClick={() => setActiveTab(id)}
+                    className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer ${
+                      activeTab === id ? 'bg-brand-500 text-white shadow-xs' : 'bg-brand-50 text-brand-700 hover:bg-brand-100'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
 
-              <div className="min-h-[400px]">
+              <div className="min-h-[340px]">
                 {renderCategoryItems(activeTab)}
               </div>
 
             </div>
 
-            {/* ── Desktop sidebar cart (hidden on mobile) ── */}
-            <div className="hidden lg:flex lg:col-span-5 h-fit lg:sticky lg:top-24 relative bg-brand-800 text-white p-8 rounded-2xl overflow-hidden flex-col justify-between text-left shadow-xl shadow-brand-800/10">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-brand-500/25 rounded-full blur-3xl pointer-events-none" />
-              
-              <div className="space-y-6">
+            {/* Right Desktop Cart Column */}
+            <div className="hidden lg:flex lg:col-span-5 h-fit lg:sticky lg:top-28 bg-brand-800 text-white p-6 sm:p-7 rounded-2xl sm:rounded-3xl flex-col justify-between text-left shadow-lg">
+              <div className="space-y-4">
                 {renderCartContent()}
               </div>
 
-              <div className="mt-8">
+              <div className="mt-5">
                 {renderCartFooter()}
               </div>
             </div>
@@ -235,18 +235,18 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
         </div>
       </section>
 
-      {/* ── Mobile sticky floating bar (hidden on desktop) ── */}
+      {/* Mobile Floating Bar */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden transition-all duration-500 ease-out ${
+        className={`fixed bottom-0 left-0 right-0 z-40 lg:hidden transition-all duration-300 ease-out ${
           itemCount > 0
             ? 'translate-y-0 opacity-100'
             : 'translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <div className="mx-3 mb-3">
+        <div className="p-3 bg-gradient-to-t from-white via-white/90 to-transparent">
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className="w-full bg-brand-800 text-white rounded-2xl px-5 py-4 flex items-center justify-between shadow-2xl shadow-brand-800/40 border border-brand-700/50 active:scale-[0.98] transition-transform cursor-pointer"
+            className="w-full bg-brand-800 text-white rounded-2xl p-4 flex items-center justify-between shadow-xl border border-brand-700 active:scale-[0.98] transition-transform cursor-pointer"
           >
             <div className="flex items-center gap-3">
               <div className="relative">
@@ -263,9 +263,9 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <div className="text-right">
-                <span className="text-xl font-black text-white tracking-tight">
+                <span className="text-lg font-black text-white tracking-tight">
                   {estimatedTotal.toLocaleString('sr-RS')}
                 </span>
                 <span className="text-[10px] text-brand-300 block leading-none">RSD</span>
@@ -276,30 +276,26 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
         </div>
       </div>
 
-      {/* ── Mobile bottom sheet drawer ── */}
-      {/* Backdrop */}
-      <div
-        className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
-          isDrawerOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsDrawerOpen(false)}
-      />
+      {/* Mobile Bottom Sheet Drawer */}
+      {isDrawerOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs lg:hidden transition-opacity"
+          onClick={() => setIsDrawerOpen(false)}
+        />
+      )}
 
-      {/* Drawer panel */}
       <div
         ref={drawerRef}
-        className={`fixed bottom-0 left-0 right-0 z-[70] lg:hidden transition-transform duration-400 ease-out ${
+        className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden transition-transform duration-300 ease-out ${
           isDrawerOpen ? 'translate-y-0' : 'translate-y-full'
         }`}
       >
         <div className="bg-brand-800 text-white rounded-t-3xl max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
-          
-          {/* Drag handle + close */}
           <div className="pt-3 pb-2 px-6 flex items-center justify-between shrink-0">
             <div className="w-10 h-1 bg-white/20 rounded-full mx-auto" />
           </div>
 
-          <div className="px-6 pb-2 flex items-center justify-between shrink-0">
+          <div className="px-5 pb-3 flex items-center justify-between shrink-0 border-b border-white/10">
             <h3 className="font-display text-lg font-semibold text-white">Vaša korpa</h3>
             <button
               onClick={() => setIsDrawerOpen(false)}
@@ -309,13 +305,11 @@ export default function PricingCalculator({ onOpenBookingWithPrefs }: PricingCal
             </button>
           </div>
 
-          {/* Scrollable cart content */}
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
+          <div className="flex-1 overflow-y-auto p-5 space-y-4">
             {renderCartContent()}
           </div>
 
-          {/* Footer with total + CTA */}
-          <div className="px-6 pb-6 pt-2 shrink-0">
+          <div className="p-5 pt-3 shrink-0 bg-brand-850">
             {renderCartFooter()}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight, ShieldCheck, Heart, Star } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Heart, Star } from 'lucide-react';
 import { GENERATED_IMAGES } from '../data';
 import { config } from '../config';
 
@@ -8,173 +8,138 @@ interface HeroProps {
   onExploreServices: () => void;
 }
 
+const rise = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.55, delay, ease: [0.23, 1, 0.32, 1] as const }
+});
+
 export default function Hero({ onOpenBooking, onExploreServices }: HeroProps) {
   return (
-    <section 
-      id="hero-section"
-      className="relative pt-24 md:pt-36 pb-16 md:pb-24 overflow-hidden bg-radial from-brand-50/60 via-transparent to-transparent"
-    >
-      {/* Absolute decorative blurred blobs */}
-      <div className="absolute top-1/4 left-0 w-72 h-72 bg-brand-100/40 rounded-full blur-3xl -z-10" />
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-sky-100/45 rounded-full blur-3xl -z-10" />
-
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <section id="hero-section" className="relative bg-brand-50 pt-28 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-24 overflow-hidden">
+      <div className="frame-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
-          {/* Left: Persuasive Trust Information (6 cols) */}
-          <div className="lg:col-span-6 space-y-6 md:space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
-            
+          {/* Text Content - Centered on mobile, left-aligned on tablet/desktop */}
+          <div className="lg:col-span-6 xl:col-span-7 flex flex-col items-center sm:items-start text-center sm:text-left">
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-wider"
+              {...rise(0)}
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-700 bg-brand-100/70 px-3.5 py-1.5 rounded-full mx-auto sm:mx-0"
             >
-              <Sparkles className="w-3.5 h-3.5 text-brand-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
               <span>{config.brand.taglineHighlight}</span>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4 w-full"
+            <motion.h1
+              {...rise(0.08)}
+              className="mt-4 sm:mt-6 font-display font-light text-slate-900 tracking-[-0.03em] leading-[1.08] text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] text-center sm:text-left"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-light text-slate-900 tracking-tight leading-[1.12]">
-                {config.brand.heroTitleLine1} <br />
-                {config.brand.heroTitleLine2} <span className="italic font-serif text-brand-500">{config.brand.heroTitleHighlight}</span>
-              </h1>
-              <p className="text-base sm:text-lg text-slate-500 max-w-lg mx-auto lg:mx-0 leading-relaxed font-normal">
-                {config.brand.heroDescription}
-              </p>
-            </motion.div>
+              {config.brand.heroTitleLine1} <br />
+              {config.brand.heroTitleLine2} <br />
+              <span className="accent">{config.brand.heroTitleHighlight}</span>
+            </motion.h1>
 
-            {/* Micro-incentive list */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-6 text-xs text-slate-600 font-medium"
-            >
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-brand-500" /> Potpuno osigurani i provereni
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Heart className="w-4 h-4 text-red-400 fill-red-400" /> 100% garancija zadovoljstva
-              </span>
-            </motion.div>
+            <motion.p {...rise(0.16)} className="lead mt-4 sm:mt-6 text-center sm:text-left mx-auto sm:mx-0">
+              {config.brand.heroDescription}
+            </motion.p>
 
-            {/* Quick Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
-            >
-              <button
-                id="hero-book-now-btn"
-                onClick={onOpenBooking}
-                className="group flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-610 text-white font-medium transition shadow-xl shadow-brand-500/10 active:scale-98 cursor-pointer text-sm"
-              >
+            <motion.div {...rise(0.24)} className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center sm:justify-start">
+              <button id="hero-book-now-btn" onClick={onOpenBooking} className="btn btn-primary group w-full sm:w-auto !py-3.5 sm:!py-4 text-sm sm:text-base shadow-sm cursor-pointer">
                 <span>Zakažite čišćenje</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
-              
-              <button
-                id="hero-explore-btn"
-                onClick={onExploreServices}
-                className="px-8 py-4 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-medium transition text-sm cursor-pointer border border-slate-200"
-              >
+              <button id="hero-explore-btn" onClick={onExploreServices} className="btn btn-light w-full sm:w-auto !py-3.5 sm:!py-4 text-sm sm:text-base border border-slate-200 cursor-pointer">
                 Pogledajte usluge
               </button>
             </motion.div>
 
+            {/* Hidden on mobile, visible on sm and up as requested */}
+            <motion.ul
+              {...rise(0.32)}
+              className="mt-8 sm:mt-10 hidden sm:flex sm:flex-row sm:flex-wrap gap-x-6 gap-y-2.5 text-xs sm:text-sm font-medium text-slate-700 justify-center sm:justify-start"
+            >
+              <li className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-brand-500 shrink-0" />
+                <span>Potpuno osigurani i provereni</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 fill-red-400 shrink-0" />
+                <span>100% garancija zadovoljstva</span>
+              </li>
+            </motion.ul>
           </div>
 
-          {/* Right: Beautiful Layered Hero Glassmorphism Setting (6 cols) */}
-          <div className="lg:col-span-6 relative flex justify-center items-center">
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative w-full max-w-lg aspect-square"
-            >
-              
-              {/* Main Pristine Living Room Frame */}
-              <div className="w-full h-full rounded-[40px] overflow-hidden border-4 border-white shadow-2xl relative">
-                <img 
-                  src={GENERATED_IMAGES.immaculateLiving}
-                  alt="Spotless Luxury Home Exterior Sunlit" 
-                  className="w-full h-full object-cover select-none scale-102 hover:scale-105 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Subtle soft gradient fade internally */}
-                <div className="absolute inset-0 bg-linear-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
-              </div>
+          {/* Right Visual Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+            className="lg:col-span-6 xl:col-span-5 relative w-full flex justify-center"
+          >
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/5] max-h-[540px] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl shadow-brand-900/5">
+              <img
+                src={GENERATED_IMAGES.immaculateLiving}
+                alt="Besprekorno čist luksuzni dom obasjan suncem"
+                width={600}
+                height={540}
+                loading="eager"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover select-none"
+                referrerPolicy="no-referrer"
+              />
 
-              {/* Floating Specialist Card (Jovana Nikolić) with glassmorphism */}
+              {/* Specialist Badge */}
               <motion.div
-                initial={{ opacity: 0, x: 25 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="absolute -top-3 sm:top-6 -right-5 sm:-right-8 p-4 rounded-2xl shadow-xl glass border border-white/50 flex items-center gap-3.5 max-w-[280px]"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.35, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute top-3 left-3 sm:top-5 sm:left-5 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 pr-4 flex items-center gap-3 shadow-md border border-slate-100"
               >
                 <div className="relative shrink-0">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-500">
-                    <img 
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden ring-2 ring-brand-500/20">
+                    <img
                       src={GENERATED_IMAGES.heroCleaner}
-                      alt="Jovana Nikolić Headshot" 
+                      alt="Jovana Nikolić"
+                      width={44}
+                      height={44}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" />
+                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 border-2 border-white rounded-full" />
                 </div>
-                
                 <div className="text-left">
-                  <span className="block font-black text-slate-900 text-xs sm:text-sm">
-                    Jovana Nikolić
-                  </span>
-                  <span className="text-[10px] text-brand-600 block font-bold leading-normal">
-                    5★ Elitni tim za čišćenje
-                  </span>
-                  <div className="flex gap-0.5 mt-0.5">
+                  <span className="block font-bold text-slate-900 text-xs sm:text-sm leading-tight">Jovana Nikolić</span>
+                  <span className="block text-[10px] sm:text-xs text-brand-600 font-semibold mt-0.5">5★ Elitni tim</span>
+                  <div className="flex gap-0.5 mt-0.5 sm:mt-1">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                      <Star key={s} className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                 </div>
               </motion.div>
 
-              {/* High-quality confidence helper overlay */}
+              {/* Guarantee Card */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="absolute -bottom-5 left-6 right-6 p-4 rounded-2xl shadow-xl glass border border-white/40 flex items-center justify-between text-left"
+                transition={{ duration: 0.45, delay: 0.45, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 flex items-center justify-between gap-3 text-left shadow-md border border-slate-100"
               >
                 <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                    Trenutno olakšanje garantovano
-                  </span>
-                  <span className="block text-xs sm:text-sm font-black text-slate-800 uppercase mt-0.5">
+                  <span className="block text-[10px] sm:text-xs font-semibold text-slate-500 leading-tight">Garantovan kvalitet</span>
+                  <span className="block text-xs sm:text-sm font-bold text-slate-900 mt-0.5 leading-tight">
                     Premium održavanje domaćinstva
                   </span>
                 </div>
-                <div className="px-3 py-1.5 bg-brand-500 rounded-xl text-white font-black text-xs">
+                <div className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-brand-500 rounded-lg sm:rounded-xl text-white font-bold text-xs whitespace-nowrap shadow-xs">
                   99% ocena
                 </div>
               </motion.div>
-
-              {/* Tiny decorative sparkles floating around */}
-              <Sparkles className="absolute -left-6 bottom-1/4 w-7 h-7 text-brand-500/60 animate-bounce" />
-              <div className="absolute -right-3 top-1/2 w-4 h-4 bg-sky-300 rounded-full opacity-60 animate-pulse" />
-
-            </motion.div>
-
-          </div>
+            </div>
+          </motion.div>
 
         </div>
       </div>

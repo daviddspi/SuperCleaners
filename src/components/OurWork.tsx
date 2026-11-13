@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Sparkles, Eye, Check } from 'lucide-react';
+import { Eye } from 'lucide-react';
+import Reveal from './Reveal';
 
 interface WorkItem {
   id: string;
@@ -85,13 +86,8 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
     handleMove(e.clientX);
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
+  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseLeave = () => setIsDragging(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length > 0) {
@@ -106,9 +102,7 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
     }
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  const handleTouchEnd = () => setIsDragging(false);
 
   return (
     <div
@@ -120,15 +114,20 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className={`relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 select-none cursor-ew-resize group/slider ${isDragging ? 'cursor-grabbing' : ''}`}
+      style={{ touchAction: isDragging ? 'none' : 'pan-y' }}
+      className={`relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-100 select-none cursor-ew-resize group/slider ${isDragging ? 'cursor-grabbing' : ''}`}
     >
       {/* After Image (Background) */}
       <img
         src={after}
         alt={`Posle - ${title}`}
+        width={600}
+        height={450}
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
-      <span className="absolute bottom-3 right-3 bg-emerald-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm shadow-sm z-10">
+      <span className="absolute bottom-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full z-10 shadow-xs">
         POSLE
       </span>
 
@@ -140,9 +139,13 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
         <img
           src={before}
           alt={`Pre - ${title}`}
+          width={600}
+          height={450}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
-        <span className="absolute bottom-3 left-3 bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm shadow-sm z-10">
+        <span className="absolute bottom-3 left-3 bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full z-10 shadow-xs">
           PRE
         </span>
       </div>
@@ -152,15 +155,15 @@ const BeforeAfterSlider = ({ before, after, title }: { before: string; after: st
         className="absolute inset-y-0 w-0.5 bg-white shadow-xl pointer-events-none"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white shadow-lg border-2 border-brand-500 flex items-center justify-center text-brand-600 transition-transform ${isDragging ? 'scale-125' : 'group-hover/slider:scale-110'}`}>
+        <div className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white shadow-md border-2 border-brand-500 flex items-center justify-center text-brand-600 transition-transform ${isDragging ? 'scale-110' : 'group-hover/slider:scale-105'}`}>
           <Eye className="w-3.5 h-3.5" />
         </div>
       </div>
 
-      {/* Drag hint overlay — fades out after first interaction */}
+      {/* Drag hint overlay */}
       {!isDragging && sliderPosition === 50 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-          <span className="px-3 py-1.5 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold rounded-full animate-pulse">
+          <span className="px-3.5 py-1.5 bg-slate-900/70 text-white text-xs font-semibold rounded-full animate-pulse shadow-sm">
             ← Prevucite →
           </span>
         </div>
@@ -177,64 +180,67 @@ export default function OurWork() {
   );
 
   return (
-    <section id="portfolio-section" className="py-16 md:py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="portfolio-section" className="section-y bg-white">
+      <div className="frame-wide">
         
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3.5">
-          <span className="text-xs uppercase tracking-widest text-brand-500 font-bold block">
-            Rezultati rada
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-light text-slate-900 tracking-tight leading-tight">
-            Naša galerija <span className="italic font-serif text-brand-500">Pre i Posle</span>
-          </h2>
-          <p className="text-sm text-slate-550 font-normal">
-            Prevucite slajder na bilo kojoj slici levo ili desno kako biste videli neverovatne efekte našeg dubinskog čišćenja.
-          </p>
-        </div>
+        {/* Header & Filters */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between items-center md:items-end gap-6 sm:gap-8 mb-10 sm:mb-14 text-center md:text-left">
+          <Reveal className="max-w-2xl text-center md:text-left">
+            <h2 className="h-section">
+              Naša galerija <span className="accent">Pre i Posle</span>
+            </h2>
+            <p className="lead mt-3 sm:mt-4 mx-auto md:mx-0">
+              Prevucite slajder na bilo kojoj slici levo ili desno kako biste videli neverovatne efekte našeg dubinskog čišćenja.
+            </p>
+          </Reveal>
 
-        {/* Filters */}
-        <div className="flex justify-center gap-2 mb-12 max-w-lg mx-auto p-1 bg-slate-100 rounded-xl overflow-x-auto hide-scrollbar">
-          {(['sve', 'namestaj', 'tepisi', 'automobili'] as const).map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`flex-1 py-2 px-4 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer uppercase tracking-wider ${
-                activeFilter === filter
-                  ? 'bg-white text-brand-600 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              {filter === 'sve'
-                ? 'Sve'
-                : filter === 'namestaj'
-                ? 'Nameštaj'
-                : filter === 'tepisi'
-                ? 'Tepisi'
-                : 'Automobili'}
-            </button>
-          ))}
+          <Reveal delay={0.1}>
+            <div role="tablist" aria-label="Filter radova" className="flex flex-wrap gap-2 justify-center md:justify-start">
+              {(['sve', 'namestaj', 'tepisi', 'automobili'] as const).map((filter) => (
+                <button
+                  key={filter}
+                  role="tab"
+                  aria-selected={activeFilter === filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-150 whitespace-nowrap cursor-pointer ${
+                    activeFilter === filter
+                      ? 'bg-brand-500 text-white shadow-xs'
+                      : 'bg-brand-50 text-brand-700 hover:bg-brand-100'
+                  }`}
+                >
+                  {filter === 'sve'
+                    ? 'Sve'
+                    : filter === 'namestaj'
+                    ? 'Nameštaj'
+                    : filter === 'tepisi'
+                    ? 'Tepisi'
+                    : 'Automobili'}
+                </button>
+              ))}
+            </div>
+          </Reveal>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-slate-50 p-4 rounded-3xl border border-slate-100 flex flex-col justify-between hover:shadow-lg transition duration-300"
-            >
-              <BeforeAfterSlider
-                before={item.beforeImage}
-                after={item.afterImage}
-                title={item.title}
-              />
-              <div className="mt-4 space-y-2">
-                <h4 className="font-bold text-slate-800 text-sm">{item.title}</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
+          {filteredItems.map((item, i) => (
+            <Reveal key={item.id} delay={(i % 3) * 0.06}>
+              <figure className="group flex flex-col p-3.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-slate-50/60 hover:bg-slate-50 transition-colors border border-slate-100 shadow-xs">
+                <BeforeAfterSlider
+                  before={item.beforeImage}
+                  after={item.afterImage}
+                  title={item.title}
+                />
+                <figcaption className="mt-4 sm:mt-5 flex flex-col flex-1 text-center sm:text-left">
+                  <h3 className="font-display text-lg sm:text-xl font-semibold tracking-tight text-slate-900 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
 
